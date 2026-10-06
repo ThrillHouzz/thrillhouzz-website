@@ -50,6 +50,19 @@ img { max-width: 100%; display: block; }
   align-items: center;
   min-width: 226px;
 }
+.brand-image {
+  display: flex;
+  width: 186px;
+  height: 58px;
+  min-width: 186px;
+  align-items: center;
+}
+.brand-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
 .mark { width: 44px; height: 44px; }
 .wordmark {
   font-size: 1.18rem;
@@ -577,6 +590,14 @@ p { color: var(--muted); }
   gap: 26px;
 }
 .footer .wordmark { color: white; }
+.footer-logo {
+  width: 190px;
+  height: auto;
+  max-height: 145px;
+  object-fit: contain;
+  object-position: left top;
+  filter: brightness(0) invert(1);
+}
 .footer p, .footer a { color: rgba(255,255,255,.72); }
 .footer h4 {
   color: var(--gold);
@@ -624,6 +645,7 @@ p { color: var(--muted); }
 @media (max-width: 640px) {
   .wrap, .hero-inner { width: calc(100% - 32px); }
   .brand { min-width: 0; grid-template-columns: 38px auto; }
+  .brand-image { width: 132px; min-width: 132px; height: 48px; }
   .mark { width: 38px; height: 38px; }
   .wordmark { font-size: .96rem; }
   .micro { display: none; }
