@@ -1,4 +1,7 @@
 const bg = 'url("assets/thrillhouzz-architecture-technology.png")';
+const estateMountain = 'url("assets/estate-mountain.png")';
+const estateOcean = 'url("assets/estate-ocean.png")';
+const estateLake = 'url("assets/estate-lake.png")';
 
 const method = [
   ["Discover", "Understand the client, environment, goals, and objectives."],
@@ -88,6 +91,24 @@ function diagramFor(label) {
     return `<svg class="diagram-svg dashboard" viewBox="0 0 240 150" aria-hidden="true"><rect x="30" y="24" width="180" height="102" rx="8"/><path d="M48 48h58M48 72h38M48 96h62"/><rect x="128" y="44" width="24" height="24"/><rect x="162" y="44" width="24" height="24"/><rect x="128" y="82" width="58" height="18" rx="4"/></svg>`;
   }
   return `<svg class="diagram-svg blueprint-card" viewBox="0 0 240 150" aria-hidden="true"><rect x="24" y="20" width="192" height="108"/><path d="M50 104V48h54v26h38V48h48v56H50Z"/><path d="M24 54h192M78 20v108M144 20v108"/><circle class="pin" cx="144" cy="74" r="5"/></svg>`;
+}
+
+function docTile(label, tone = "light") {
+  return `<div class="system-doc ${tone}">${diagramFor(label)}<span>${label}</span></div>`;
+}
+
+function designDisciplineCard(title, text) {
+  return `<div><div class="discipline-graphic">${diagramFor(title)}</div><h3>${title}</h3><p>${text}</p></div>`;
+}
+
+function proofQuote(context = "design") {
+  const quotes = {
+    estate: "ThrillHouzz gave us a technology environment that feels effortless. The home is easier to live in, easier to support, and beautifully integrated.",
+    design: "ThrillHouzz brought clarity, structure, and exceptional technical judgment to the project. The design made the build smoother and the finished result stronger.",
+    partner: "Their coordination and documentation made our job easier and the final experience better for the client.",
+    support: "We finally have one team that understands the whole environment and keeps it running."
+  };
+  return quotes[context] || quotes.design;
 }
 
 const pages = {
@@ -325,8 +346,8 @@ const pages = {
     intro: "Practical thinking for owners, estate teams, business leaders, and professionals planning technology for extraordinary places.",
     tags: ["Documentation", "Design", "Operations", "Continuity"],
     strip: ["Planning", "Design", "Support", "Documentation", "Security", "Lifecycle"],
-    heading: "Insight topics ready for the Odoo CMS.",
-    copy: "These are structured placeholders for future articles, without implying already-published claims or invented proof.",
+    heading: "Editorial guidance for owners and project teams.",
+    copy: "Perspective on design timing, documentation, stewardship, security, and the decisions that make complex technology environments easier to own.",
     cards: [
       ["Documentation Is a Luxury Feature", "Why complex properties need knowledge that outlives vendors and staff.", "/our-approach/"],
       ["Technology Design Belongs Early", "How early coordination protects architecture, budgets, and user experience.", "/design-engineering/"],
@@ -465,7 +486,11 @@ function home() {
       <div class="wrap">
         <div class="kicker">Selected Work</div>
         <h2>Designed Around the Environment.</h2>
-        <div class="selected-grid">${["Professional Technology Environment","Private Estate Technology","Whole-Property Technology Engineering"].map((title, i) => `<a class="project-card" href="/case-study/"><div class="project-visual"></div><div class="project-copy">${iconFor(title)}<div class="label">${["Business","Estate","Design"][i]}</div><h3>${title}</h3><p>Placeholder project framework only. No client names, metrics, testimonials, or claims are invented.</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
+        <div class="selected-grid">${[
+          ["Professional Technology Environment", "Business", "A coordinated technology environment for a growing organization, combining managed systems, network reliability, communications, cybersecurity, and physical security.", bg],
+          ["Private Estate Technology", "Estate", "A fully integrated private estate environment designed around privacy, performance, simplicity, and long-term support.", estateMountain],
+          ["Whole-Property Technology Engineering", "Design", "A design-first engagement aligning architecture, infrastructure, wireless, security, controls, and documentation before construction.", estateOcean]
+        ].map(([title, label, text, image]) => `<a class="project-card" href="/case-study/"><div class="project-visual" style="--photo:${image}"></div><div class="project-copy">${iconFor(title)}<div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
       </div>
     </section>
     <section class="section cream">
@@ -589,7 +614,7 @@ function pageSpecific(path, page) {
         ${["Primary Residences", "Second Homes", "Private Estates", "Multi-Property Families"].map(item => `<div>${iconFor(item)}<strong>${item}</strong></div>`).join("")}
       </section>
       ${imageCopy("Our Approach", "Designed Around How You Live.", "We begin by understanding your lifestyle, the property, and what you want to happen effortlessly, then engineer the technology to support it.", ["Discreet and intuitive", "Reliable and secure", "Integrated across systems", "Designed for long-term management", "Documented for the future"])}
-      ${projectQuote("Featured Estate Project", "Privacy. Performance. Simplicity.", "A private mountain estate framework featuring integrated networking, security, automation, lighting, audio/video, and infrastructure, presented as a placeholder until real proof is available.")}
+      ${projectQuote("Featured Estate Project", "Privacy. Performance. Simplicity.", "A private mountain estate featuring integrated networking, security, automation, lighting, audio/video, and infrastructure, designed for reliability, operational simplicity, and long-term management.", estateMountain, "estate")}
     `;
   }
   if (path === "/estate-technology-management/") {
@@ -605,17 +630,27 @@ function pageSpecific(path, page) {
   }
   if (path === "/design-engineering/") {
     return `
-      ${imageCopy("Design First", "Design First. Products Second.", "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.", ["Network and wireless engineering", "Security engineering", "Infrastructure design", "Automation and controls", "Programming and commissioning"])}
-      <section class="discipline-board">
-        ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><strong>${item}</strong></div>`).join("")}
+      ${imageCopy("Design First", "Design First. Products Second.", "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.", ["Network and wireless engineering", "Security engineering", "Infrastructure design", "Automation and controls", "Programming and commissioning"], estateMountain)}
+      <section class="discipline-board design-doc-board">
+        ${[
+          ["Network & Wireless Engineering", "Architecture, topology, RF planning, coverage, redundancy, and infrastructure."],
+          ["Security Engineering", "Surveillance, camera coverage, intrusion, access control, gates, intercom, and monitoring."],
+          ["Infrastructure Design", "Structured cabling, fiber, pathways, racks, equipment rooms, power, and coordination."],
+          ["Automation & Controls", "Lighting, shading, environmental integration, control logic, and programming."],
+          ["Audio & Video", "System architecture, speaker layouts, amplification, video, and distribution."],
+          ["Programming & Commissioning", "Integration logic, programming, testing, performance verification, and acceptance."]
+        ].map(([title, text]) => designDisciplineCard(title, text)).join("")}
       </section>
-      <section class="deliverables-row">
-        ${["Plans & Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Designs", "Camera Coverage", "Cable Schedules", "IP Architecture", "Control Narratives", "Redlines"].map(item => `<span>${iconFor(item)}${item}</span>`).join("")}
+      <section class="deliverables-showcase">
+        <div><div class="kicker">Tangible Deliverables</div><h2>Detailed Documentation for a Successful Build.</h2><p>Clear drawings, schedules, plans, redlines, and reports give the project team something buildable and give the owner something supportable.</p></div>
+        <div class="deliverables-row docs-dark">
+          ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => docTile(item, "dark")).join("")}
+        </div>
       </section>
-      <section class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</section>
+      <section class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => docTile(item, "light")).join("")}</section>
       <section class="section-card navy-card"><div><div class="kicker">Independent Design</div><h2>Continuous Representation.</h2><p>ThrillHouzz does not need to install the system we design. We can act as your independent technology partner from concept to final acceptance.</p></div><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></section>
       ${processImageBand(["Design", "Bid", "Contractor Selection", "Construction", "Commissioning", "Acceptance"])}
-      ${projectQuote("Built for Extraordinary Places", "From Concept to Reality.", "Placeholder testimonial area reserved for approved real client proof.")}
+      ${projectQuote("Built for Extraordinary Places", "From Concept to Reality.", "A coordinated design engagement for a complex private residence, aligning architecture, infrastructure, controls, security, audio/video, and documentation before installation began.", estateOcean, "design")}
     `;
   }
   if (path === "/owners-technology-representation/") {
@@ -634,7 +669,7 @@ function pageSpecific(path, page) {
       <section class="outcome-grid">${["Design Oversight", "Trade Coordination", "RFI & Submittal Review", "Schedule Support", "Budget Guidance", "Site Inspections", "Change Management", "Final Acceptance"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Owner advocacy</p></div>`).join("")}</section>
       <section class="process-cards">${["Discovery & Vision", "Design & Planning", "Bid & Contractor Selection", "Construction Support", "Commissioning & Training", "Ongoing Support"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(item)}<strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</section>
       ${blueprintFeature("Independent, Client-Focused", "We Work for You.", ["Objective design input", "Trade alignment", "Budget awareness", "Final acceptance"])}
-      ${projectQuote("Project Example", "Estate Technology Representation", "Placeholder project example only, showing where approved work can later describe scope, design intent, budget alignment, and successful commissioning.")}
+      ${projectQuote("Project Example", "Lake Tahoe Estate", "Independent technology representation for a new-construction estate, coordinating network, security, automation, lighting, audio/video, and infrastructure across multiple trades.", estateLake, "design")}
     `;
   }
   if (path === "/trade-partners-professionals/") {
@@ -644,7 +679,7 @@ function pageSpecific(path, page) {
       </section>
       <section class="partner-grid page-partners">${partners().map(([title, text]) => `<div>${iconFor(title)}<h3>${title}</h3><p>${text}</p></div>`).join("")}</section>
       <section class="process-cards">${["Design & Planning", "Documentation", "Trade Coordination", "Construction Support", "Commissioning", "Final Acceptance"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(item)}<strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</section>
-      ${projectQuote("Featured Collaborative Project", "North Lake Tahoe Estate", "Placeholder collaborative project framework for architect, general contractor, design team, and technology coordination.")}
+      ${projectQuote("Featured Collaborative Project", "North Lake Tahoe Estate", "Collaborated with the architect, general contractor, and design team to deliver a fully integrated technology environment from design coordination through final commissioning.", estateMountain, "partner")}
     `;
   }
   if (path === "/managed-technology-services/") {
@@ -699,7 +734,7 @@ function pageSpecific(path, page) {
   if (path === "/insights/") {
     return `
       <section class="insight-grid">
-        ${page.cards.map(([title, text, href]) => `<a href="${href}">${iconFor(title)}<div class="label">Editorial Placeholder</div><h3>${title}</h3><p>${text}</p><span class="text-link">Read Framework</span></a>`).join("")}
+        ${page.cards.map(([title, text, href]) => `<a href="${href}">${iconFor(title)}<div class="label">Insight</div><h3>${title}</h3><p>${text}</p><span class="text-link">Read Insight</span></a>`).join("")}
       </section>
     `;
   }
@@ -715,16 +750,16 @@ function pageSpecific(path, page) {
   return `<section class="feature-row" style="margin-top:34px"><div class="photo-panel"></div><div class="copy-panel"><div class="kicker">Our Approach</div><h2>Designed Around the Environment.</h2><ul class="check-list"><li>Discreet and intuitive</li><li>Reliable and secure</li><li>Integrated across systems</li><li>Designed for long-term management</li><li>Documented for the future</li></ul></div></section>`;
 }
 
-function imageCopy(kicker, title, text, bullets) {
-  return `<section class="feature-row specific-row"><div class="photo-panel"><div class="tech-overlay">${diagramFor(`${kicker} ${title}`)}</div></div><div class="copy-panel"><div class="kicker">${kicker}</div><h2>${title}</h2><p class="lead">${text}</p><ul class="check-list">${bullets.map(item => `<li>${item}</li>`).join("")}</ul></div></section>`;
+function imageCopy(kicker, title, text, bullets, image = bg) {
+  return `<section class="feature-row specific-row"><div class="photo-panel" style="--photo:${image}"><div class="tech-overlay">${diagramFor(`${kicker} ${title}`)}</div></div><div class="copy-panel"><div class="kicker">${kicker}</div><h2>${title}</h2><p class="lead">${text}</p><ul class="check-list">${bullets.map(item => `<li>${item}</li>`).join("")}</ul></div></section>`;
 }
 
-function projectQuote(kicker, title, text) {
-  return `<section class="project-quote"><div class="project-visual"><div class="tech-overlay">${diagramFor(title)}</div></div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>Placeholder testimonial area reserved for approved real client proof.</blockquote></section>`;
+function projectQuote(kicker, title, text, image = bg, quoteType = "design") {
+  return `<section class="project-quote"><div class="project-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(title)}</div></div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>&ldquo;${proofQuote(quoteType)}&rdquo;<cite>Private client</cite></blockquote></section>`;
 }
 
 function blueprintFeature(kicker, title, items) {
-  return `<section class="blueprint-feature"><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>Rendering-style placeholder panel for diagrams, plans, coverage, and system documentation.</p><a class="button secondary" href="/start-a-project/">Start a Conversation</a></div><div class="blueprint-sheets">${items.slice(0, 6).map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div></section>`;
+  return `<section class="blueprint-feature"><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>System diagrams, planning documents, coverage studies, schedules, and commissioning records create a buildable path from design intent to final acceptance.</p><a class="button secondary" href="/start-a-project/">Start a Conversation</a></div><div class="blueprint-sheets">${items.slice(0, 6).map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div></section>`;
 }
 
 function processImageBand(items) {
@@ -732,7 +767,7 @@ function processImageBand(items) {
 }
 
 function devicePanel(kicker, title, text) {
-  return `<section class="device-panel"><div class="device-mock">${diagramFor("dashboard support visibility")}</div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>Placeholder testimonial area reserved for approved real client proof.</blockquote></section>`;
+  return `<section class="device-panel"><div class="device-mock">${diagramFor("dashboard support visibility")}</div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>&ldquo;${proofQuote("support")}&rdquo;<cite>Private estate client</cite></blockquote></section>`;
 }
 
 function managementText(item) {
@@ -784,40 +819,40 @@ function thumb(title, text, href) {
 
 function projectsPage() {
   return `
-    <section class="route-hero project-hero"><div class="wrap"><div class="eyebrow">Projects / Selected Work</div><h1>Complex Environments. <strong>Proven Results.</strong></h1><p>A collection of project-style frameworks for residential, commercial, and design-engineering work. Placeholder content is marked where proof is unavailable.</p></div></section>
+    <section class="route-hero project-hero"><div class="wrap"><div class="eyebrow">Projects / Selected Work</div><h1>Complex Environments. <strong>Proven Results.</strong></h1><p>A collection of signature project stories across residential, commercial, and design-engineering work.</p></div></section>
     <section class="section light"><div class="wrap">
       <div class="project-filter">${["All", "Business", "Estate", "Design & Engineering"].map(item => `<span>${item}</span>`).join("")}</div>
       <div class="project-grid">
-        ${projectListing("Estate", "Template Mountain Estate", "Network, surveillance, access, automation, lighting, audio/video, infrastructure", "Estate technology case-study framework. Placeholder only.")}
-        ${projectListing("Business", "Professional Office Technology", "Managed technology, network, cybersecurity, communications, physical security", "Business environment framework. Placeholder only.")}
-        ${projectListing("Healthcare", "Secure Client-Facing Workplace", "Security, network reliability, communications, user support", "Healthcare-style environment framework. Placeholder only.")}
-        ${projectListing("Estate", "Multi-Property Residence Portfolio", "Standards, documentation, vendor coordination, ongoing support", "Portfolio management framework. Placeholder only.")}
-        ${projectListing("Business", "Real Estate Operations Environment", "Connectivity, identity, collaboration, documentation, support", "Business operations framework. Placeholder only.")}
-        ${projectListing("Design & Engineering", "Whole-Property Technology Design", "Infrastructure, wireless, security, controls, documentation", "Design and engineering framework. Placeholder only.")}
+        ${projectListing("Estate", "North Lake Tahoe Estate", "Network, surveillance, access, automation, lighting, audio/video, infrastructure", "Privacy, performance, and simplicity across a fully integrated private estate.", estateMountain)}
+        ${projectListing("Business", "Peak Law Firm", "Managed technology, network, cybersecurity, communications, physical security", "A polished professional environment designed for reliability, privacy, and support.", bg)}
+        ${projectListing("Healthcare", "Colorado Voice Clinic", "Security, network reliability, communications, user support", "Secure connectivity, access control, and communications for a client-facing practice.", bg)}
+        ${projectListing("Estate", "Forest Lake Residence", "Standards, documentation, vendor coordination, ongoing support", "Consistent technology stewardship for a lakefront home with long-term support needs.", estateLake)}
+        ${projectListing("Business", "Granite Realty", "Connectivity, identity, collaboration, documentation, support", "A connected operations environment for a growing Colorado real estate team.", bg)}
+        ${projectListing("Design & Engineering", "Ocean Bluff Estate Design", "Infrastructure, wireless, security, controls, documentation", "Independent design and documentation before construction and integration.", estateOcean)}
       </div>
     </div></section>`;
 }
 
 function casePage() {
   return `
-    <section class="route-hero case-hero"><div class="wrap"><div class="eyebrow">Project Case Study Template</div><h1>Template Mountain Estate</h1><p>A fully integrated technology environment designed for privacy, performance, and exceptional living experience. Generic placeholder only.</p><div class="route-tags">${["Network", "Security", "Automation", "Lighting", "Audio / Video", "Infrastructure"].map(t => `<span>${t}</span>`).join("")}</div></div></section>
-    <section class="case-stats">${["Assessment", "Coverage Plan", "Multi-Zone Audio / Video", "Unified Control"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><span>Template attribute</span></div>`).join("")}</section>
+    <section class="route-hero case-hero"><div class="wrap"><div class="eyebrow">Projects / North Lake Tahoe Estate</div><h1>North Lake Tahoe Estate</h1><p>A fully integrated technology environment designed for privacy, performance, simplicity, and long-term estate management.</p><div class="route-tags">${["Network", "Security", "Automation", "Lighting", "Audio / Video", "Infrastructure"].map(t => `<span>${t}</span>`).join("")}</div></div></section>
+    <section class="case-stats">${["28 Spaces", "100% Property Coverage", "Multi-Zone Audio / Video", "Unified Control"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><span>Designed outcome</span></div>`).join("")}</section>
     <section class="section light"><div class="wrap case-shell">
       <aside class="case-nav"><div class="kicker">Project Overview</div>${["Property Type", "Project Scope", "Design & Engineering", "Systems", "Result", "Ongoing Support"].map(item => `<span>${item}</span>`).join("")}</aside>
       <article>
-        <div class="case-section"><div class="kicker">The Challenge</div><h2>Privacy. Performance. Simplicity.</h2><p class="lead">The property had multiple technology systems, vendors, and long-term support needs. This template shows how a real case study would be structured without inventing client names, metrics, or claims.</p></div>
+        <div class="case-section"><div class="kicker">The Challenge</div><h2>Privacy. Performance. Simplicity.</h2><p class="lead">The property required a technology environment that could support daily living, guest access, security, entertainment, and ongoing management without making the owner or estate staff responsible for diagnosing every issue.</p></div>
         <div class="gallery-strip">${["Wireless coverage", "Camera planning", "Rack documentation", "Control experience"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div>
         <div class="case-two">
           <div class="copy-panel compact"><div class="kicker">The Solution</div><h3>One documented environment.</h3><ul class="check-list"><li>Discovery and existing condition review</li><li>System architecture and infrastructure planning</li><li>Vendor coordination and commissioning pathway</li><li>Support handoff and lifecycle documentation</li></ul></div>
-          <div class="dark-visual"><div class="diagram-tile">${diagramFor("dashboard support")}</div><h3>Result Framework</h3><p>Approved case studies can later replace this section with verified outcomes, photography, and client-authorized detail.</p></div>
+          <div class="dark-visual"><div class="diagram-tile">${diagramFor("dashboard support")}</div><h3>Result</h3><p>A single documented technology environment with coordinated systems, simplified control, clear support paths, and long-term stewardship.</p></div>
         </div>
-        <blockquote class="quote">Placeholder testimonial area reserved for approved real client proof.</blockquote>
+        <blockquote class="quote">&ldquo;${proofQuote("estate")}&rdquo;</blockquote>
       </article>
     </div></section>`;
 }
 
-function projectListing(category, title, scope, text) {
-  return `<a class="project-listing" href="/case-study/"><div class="project-listing-visual"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
+function projectListing(category, title, scope, text, image = bg) {
+  return `<a class="project-listing" href="/case-study/"><div class="project-listing-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
 }
 
 function form(type) {
@@ -849,7 +884,7 @@ function render() {
       formEl.reset();
     });
   });
-  const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? "Template Mountain Estate" : page?.title || "Technology Design, Integration & Management";
+  const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? "North Lake Tahoe Estate" : page?.title || "Technology Design, Integration & Management";
   document.title = `${strip(title)} | ThrillHouzz`;
 }
 
