@@ -555,6 +555,24 @@ function routePage(page, path) {
 }
 
 function pageSpecific(path, page) {
+  if (path === "/business-technology-assessment/") {
+    return `
+      <section class="assessment-board">
+        <div class="copy-panel compact"><div class="kicker">What You Receive</div><h2>Clarity before commitment.</h2><ul class="check-list">${["Complete environment review", "Documentation and mapping", "Risk and gap analysis", "Prioritized recommendations", "Technology roadmap"].map(item => `<li>${item}</li>`).join("")}</ul></div>
+        <div class="dark-visual"><div class="diagram-tile">${diagramFor("network dashboard documentation")}</div><h3>Designed for Your Business</h3><p>Whether you are preparing support, professionalizing an informal setup, or planning a transition, the assessment gives leadership a clear operating picture.</p></div>
+      </section>
+      <section class="outcome-grid">${["Infrastructure Review", "Security Posture", "Endpoint & User Access", "Communications", "Documentation", "Roadmap"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Assessment category</p></div>`).join("")}</section>
+    `;
+  }
+  if (path === "/estate-assessment-remediation/") {
+    return `
+      <section class="assessment-board">
+        <div class="photo-panel"><div class="tech-overlay">${diagramFor("control documentation")}</div></div>
+        <div class="copy-panel compact"><div class="kicker">Existing System Remediation</div><h2>When the technology is already there but is not working together.</h2><p class="lead">We document what exists, separate symptoms from root causes, and build a staged path toward stability, simplicity, and long-term manageability.</p><ul class="check-list">${["Recover missing system knowledge", "Prioritize reliability and security issues", "Coordinate vendors and trades", "Prepare the home for ongoing management"].map(item => `<li>${item}</li>`).join("")}</ul></div>
+      </section>
+      <section class="outcome-grid">${["Network & Wi-Fi", "Security & Cameras", "Access & Entry", "Automation & Control", "Lighting", "Infrastructure Documentation"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Assessment focus</p></div>`).join("")}</section>
+    `;
+  }
   if (path === "/estate/" || path === "/estate-technology/") {
     return `
       <section class="folio-row">
@@ -586,6 +604,21 @@ function pageSpecific(path, page) {
       <section class="section-card navy-card"><div><div class="kicker">Independent Design</div><h2>Continuous Representation.</h2><p>ThrillHouzz does not need to install the system we design. We can act as your independent technology partner from concept to final acceptance.</p></div><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></section>
     `;
   }
+  if (path === "/owners-technology-representation/") {
+    return `
+      <section class="representation-strip">
+        ${[
+          ["Architect", "Represents the architecture."],
+          ["Engineers", "Represent their disciplines."],
+          ["General Contractor", "Manages construction."],
+          ["ThrillHouzz", "Represents your technology."]
+        ].map(([title, text]) => `<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}
+      </section>
+      <section class="outcome-grid">${["Design Oversight", "Trade Coordination", "RFI & Submittal Review", "Schedule Support", "Budget Guidance", "Site Inspections", "Change Management", "Final Acceptance"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Owner advocacy</p></div>`).join("")}</section>
+      <section class="process-cards">${["Discovery & Vision", "Design & Planning", "Bid & Contractor Selection", "Construction Support", "Commissioning & Training", "Ongoing Support"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(item)}<strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</section>
+      ${projectQuote("Project Example", "Estate Technology Representation", "Placeholder project example only, showing where approved work can later describe scope, design intent, budget alignment, and successful commissioning.")}
+    `;
+  }
   if (path === "/trade-partners-professionals/") {
     return `
       <section class="folio-row">
@@ -596,12 +629,59 @@ function pageSpecific(path, page) {
       ${projectQuote("Featured Collaborative Project", "North Lake Tahoe Estate", "Placeholder collaborative project framework for architect, general contractor, design team, and technology coordination.")}
     `;
   }
+  if (path === "/managed-technology-services/") {
+    return `
+      <section class="outcome-grid">${["Monitoring", "Support Desk", "Cybersecurity", "Identity & Access", "Communications", "Vendor Coordination", "Documentation", "Lifecycle Planning"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Managed service discipline</p></div>`).join("")}</section>
+      ${imageCopy("Management Rhythm", "Stable systems come from steady attention.", "Managed service is not advertised as new-client break/fix. ThrillHouzz builds an ongoing relationship around standards, support, documentation, and accountable ownership.", ["Assessment-led onboarding", "Recurring support relationship", "Documented systems and users", "Planning for change before it becomes urgent"])}
+    `;
+  }
+  if (path === "/about/") {
+    return `
+      <section class="about-proof">
+        ${["Independent Expertise", "Cross-Discipline Knowledge", "Accountability", "Long-Term Partnership"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>${aboutProofText(item)}</p></div>`).join("")}
+      </section>
+      ${imageCopy("Built on Real-World Experience", "Technology should feel clear, accountable, and supportable.", "ThrillHouzz sits between the design vision, the systems, the trades, and the people who depend on the environment every day.", ["Technology recommendations without guesswork", "System knowledge preserved through documentation", "Clear ownership across disciplines", "Long-term support after installation"])}
+    `;
+  }
+  if (path === "/our-approach/") {
+    return `
+      <section class="method-panel">${method.map((m, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(m[0])}<strong>${m[0]}</strong><p>${m[1]}</p></div>`).join("")}</section>
+      <section class="section-card navy-card"><div><div class="kicker">More Than Installation</div><h2>A Better Process.</h2><p>Our approach reduces risk, improves communication, and ensures your technology works together now and for the future.</p></div><a class="button bronze" href="/start-a-project/">See How We Begin</a></section>
+    `;
+  }
+  if (path === "/start-a-project/") {
+    return `
+      <section class="intake-grid">
+        ${[
+          ["Business Discovery", "IT, security, communications, support, and documentation needs.", "/business/"],
+          ["Residence / Estate", "Home, estate, portfolio, automation, security, and lifecycle needs.", "/estate/"],
+          ["Design & Engineering", "Architecture, construction, documentation, coordination, and representation.", "/design-engineering/"]
+        ].map(([title, text, href]) => `<a href="${href}">${iconFor(title)}<strong>${title}</strong><p>${text}</p><span class="text-link">Explore path</span></a>`).join("")}
+      </section>
+      <section class="gallery-strip">${["Business environment", "Estate environment", "Design documents"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</section>
+    `;
+  }
   if (path === "/client-support/") {
     return `
       <section class="support-action-grid">
         ${["Request Support", "Emergency Assistance", "Remote Support", "Schedule Service", "System Resources", "Training"].map(item => `<a href="/client-support/">${iconFor(item)}<strong>${item}</strong><span>Existing client pathway</span></a>`).join("")}
       </section>
       ${imageCopy("Client Support", "We&rsquo;re Here to Keep You Running.", "Our support team is ready to help with questions, troubleshooting, system requests, and ongoing support for managed environments.", ["Schedule service", "Open a support request", "Coordinate remote support", "Access system resources"])}
+    `;
+  }
+  if (path === "/technology-partners/") {
+    return `
+      <section class="partner-matrix">
+        ${["Networking", "Security", "Communications", "Automation", "Lighting", "Entertainment", "Infrastructure", "Support"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Selected when the environment calls for it.</p></div>`).join("")}
+      </section>
+      <section class="section-card"><div><div class="kicker">Requirements First</div><h2>Manufacturer lists do not define the design.</h2><p>Public partner logos can be added later after approval. For now, this page keeps the positioning clear without implying unauthorized relationships.</p></div></section>
+    `;
+  }
+  if (path === "/insights/") {
+    return `
+      <section class="insight-grid">
+        ${page.cards.map(([title, text, href]) => `<a href="${href}">${iconFor(title)}<div class="label">Editorial Placeholder</div><h3>${title}</h3><p>${text}</p><span class="text-link">Read Framework</span></a>`).join("")}
+      </section>
     `;
   }
   if (path === "/network-wireless/" || path === "/security-access/" || path === "/automation-lighting-experience/" || path === "/infrastructure-systems-engineering/") {
@@ -630,8 +710,21 @@ function partnerStepText(item) {
     "Trade Coordination": "Collaborate with all trades to ensure seamless integration.",
     "Construction Support": "Answer questions, review installation, and resolve issues.",
     Commissioning: "Test and verify systems perform as designed.",
-    "Final Acceptance": "Deliver documentation, training, and ongoing support options."
+    "Final Acceptance": "Deliver documentation, training, and ongoing support options.",
+    "Discovery & Vision": "Understand goals, lifestyle, project scope, risks, and priorities.",
+    "Bid & Contractor Selection": "Support proposal review, scope clarity, and trade partner selection.",
+    "Commissioning & Training": "Verify performance and ensure the owner or team is trained.",
+    "Ongoing Support": "Remain an ongoing resource for future projects and expansions."
   }[item] || "Coordinate the next step.";
+}
+
+function aboutProofText(item) {
+  return {
+    "Independent Expertise": "Technology recommendations start with requirements, not a default product stack.",
+    "Cross-Discipline Knowledge": "Network, security, automation, lighting, AV, infrastructure, and support are considered together.",
+    Accountability: "One partner keeps responsibility visible when many systems and vendors are involved.",
+    "Long-Term Partnership": "Documentation and management help the environment remain understandable over time."
+  }[item] || "A practical standard for complex environments.";
 }
 
 function emphasis(title) {
@@ -650,22 +743,40 @@ function thumb(title, text, href) {
 
 function projectsPage() {
   return `
-    <section class="route-hero"><div class="wrap"><div class="eyebrow">Projects / Selected Work</div><h1>Complex Environments. <strong>Proven Results.</strong></h1><p>A collection of project-style frameworks for residential, commercial, and design-engineering work. Placeholder content is marked where proof is unavailable.</p></div></section>
-    <section class="section light"><div class="wrap thumb-grid">
-      ${thumb("North Lake Tahoe Estate", "Placeholder estate technology case-study layout.", "/case-study/")}
-      ${thumb("PK Law Firm", "Placeholder business technology environment.", "/case-study/")}
-      ${thumb("Colorado Voice Clinic", "Placeholder healthcare technology environment.", "/case-study/")}
-      ${thumb("13 Village Estate", "Placeholder estate technology example.", "/case-study/")}
-      ${thumb("Granite Realty", "Placeholder business networking example.", "/case-study/")}
-      ${thumb("Barley Wealth Management", "Placeholder secure office technology example.", "/case-study/")}
+    <section class="route-hero project-hero"><div class="wrap"><div class="eyebrow">Projects / Selected Work</div><h1>Complex Environments. <strong>Proven Results.</strong></h1><p>A collection of project-style frameworks for residential, commercial, and design-engineering work. Placeholder content is marked where proof is unavailable.</p></div></section>
+    <section class="section light"><div class="wrap">
+      <div class="project-filter">${["All", "Business", "Estate", "Design & Engineering"].map(item => `<span>${item}</span>`).join("")}</div>
+      <div class="project-grid">
+        ${projectListing("Estate", "Template Mountain Estate", "Network, surveillance, access, automation, lighting, audio/video, infrastructure", "Estate technology case-study framework. Placeholder only.")}
+        ${projectListing("Business", "Professional Office Technology", "Managed technology, network, cybersecurity, communications, physical security", "Business environment framework. Placeholder only.")}
+        ${projectListing("Healthcare", "Secure Client-Facing Workplace", "Security, network reliability, communications, user support", "Healthcare-style environment framework. Placeholder only.")}
+        ${projectListing("Estate", "Multi-Property Residence Portfolio", "Standards, documentation, vendor coordination, ongoing support", "Portfolio management framework. Placeholder only.")}
+        ${projectListing("Business", "Real Estate Operations Environment", "Connectivity, identity, collaboration, documentation, support", "Business operations framework. Placeholder only.")}
+        ${projectListing("Design & Engineering", "Whole-Property Technology Design", "Infrastructure, wireless, security, controls, documentation", "Design and engineering framework. Placeholder only.")}
+      </div>
     </div></section>`;
 }
 
 function casePage() {
   return `
-    <section class="route-hero"><div class="wrap"><div class="eyebrow">Project Case Study Template</div><h1>North Lake Tahoe Estate</h1><p>A fully integrated technology environment designed for privacy, performance, and exceptional living experience. Generic placeholder only.</p></div></section>
-    <section class="service-strip">${["Network","Security","Automation","Lighting","Audio / Video","Infrastructure"].map(s => `<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</section>
-    <section class="section light"><div class="wrap feature-row"><div class="copy-panel"><div class="kicker">The Challenge</div><h2>Privacy. Performance. Simplicity.</h2><p class="lead">The property had multiple technology systems, vendors, and long-term support needs. This template shows how a real case study would be structured without inventing a client claim.</p><ul class="check-list"><li>Discovery and documentation</li><li>System architecture and coordination</li><li>Commissioning and support handoff</li></ul></div><div class="photo-panel"></div></div></section>`;
+    <section class="route-hero case-hero"><div class="wrap"><div class="eyebrow">Project Case Study Template</div><h1>Template Mountain Estate</h1><p>A fully integrated technology environment designed for privacy, performance, and exceptional living experience. Generic placeholder only.</p><div class="route-tags">${["Network", "Security", "Automation", "Lighting", "Audio / Video", "Infrastructure"].map(t => `<span>${t}</span>`).join("")}</div></div></section>
+    <section class="case-stats">${["Assessment", "Coverage Plan", "Multi-Zone Audio / Video", "Unified Control"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><span>Template attribute</span></div>`).join("")}</section>
+    <section class="section light"><div class="wrap case-shell">
+      <aside class="case-nav"><div class="kicker">Project Overview</div>${["Property Type", "Project Scope", "Design & Engineering", "Systems", "Result", "Ongoing Support"].map(item => `<span>${item}</span>`).join("")}</aside>
+      <article>
+        <div class="case-section"><div class="kicker">The Challenge</div><h2>Privacy. Performance. Simplicity.</h2><p class="lead">The property had multiple technology systems, vendors, and long-term support needs. This template shows how a real case study would be structured without inventing client names, metrics, or claims.</p></div>
+        <div class="gallery-strip">${["Wireless coverage", "Camera planning", "Rack documentation", "Control experience"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div>
+        <div class="case-two">
+          <div class="copy-panel compact"><div class="kicker">The Solution</div><h3>One documented environment.</h3><ul class="check-list"><li>Discovery and existing condition review</li><li>System architecture and infrastructure planning</li><li>Vendor coordination and commissioning pathway</li><li>Support handoff and lifecycle documentation</li></ul></div>
+          <div class="dark-visual"><div class="diagram-tile">${diagramFor("dashboard support")}</div><h3>Result Framework</h3><p>Approved case studies can later replace this section with verified outcomes, photography, and client-authorized detail.</p></div>
+        </div>
+        <blockquote class="quote">Placeholder testimonial area reserved for approved real client proof.</blockquote>
+      </article>
+    </div></section>`;
+}
+
+function projectListing(category, title, scope, text) {
+  return `<a class="project-listing" href="/case-study/"><div class="project-listing-visual"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
 }
 
 function form(type) {
@@ -697,7 +808,8 @@ function render() {
       formEl.reset();
     });
   });
-  document.title = `${strip(page?.title || "Technology Design, Integration & Management")} | ThrillHouzz`;
+  const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? "Template Mountain Estate" : page?.title || "Technology Design, Integration & Management";
+  document.title = `${strip(title)} | ThrillHouzz`;
 }
 
 function strip(value) {
