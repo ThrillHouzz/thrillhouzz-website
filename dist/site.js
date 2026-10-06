@@ -501,7 +501,7 @@ function capCard([title, text]) {
   return `<div class="cap-card">${iconFor(title)}<h3>${title}</h3><p>${text}</p></div>`;
 }
 
-function routePage(page) {
+function routePage(page, path) {
   return `
     <div class="route-page">
       <section class="route-hero">
@@ -520,12 +520,92 @@ function routePage(page) {
           <article>
             <div class="split"><div><div class="kicker">Overview</div><h2>${page.heading}</h2></div><div><p class="lead">${page.copy}</p>${page.form ? form(page.form) : ""}</div></div>
             ${page.form ? "" : `<div class="thumb-grid">${page.cards.map(([title, text, href]) => thumb(title, text, href)).join("")}</div>`}
-            <section class="feature-row" style="margin-top:34px"><div class="photo-panel"></div><div class="copy-panel"><div class="kicker">Our Approach</div><h2>Designed Around the Environment.</h2><ul class="check-list"><li>Discreet and intuitive</li><li>Reliable and secure</li><li>Integrated across systems</li><li>Designed for long-term management</li><li>Documented for the future</li></ul></div></section>
+            ${pageSpecific(path, page)}
           </article>
           <aside class="sidebar"><div class="kicker">Related</div>${serviceLinks.map(([href, label]) => `<a class="side-link" href="${href}">${label}</a>`).join("")}</aside>
         </div>
       </section>
     </div>`;
+}
+
+function pageSpecific(path, page) {
+  if (path === "/estate/" || path === "/estate-technology/") {
+    return `
+      <section class="folio-row">
+        ${["Primary Residences", "Second Homes", "Private Estates", "Multi-Property Families"].map(item => `<div>${iconFor(item)}<strong>${item}</strong></div>`).join("")}
+      </section>
+      ${imageCopy("Our Approach", "Designed Around How You Live.", "We begin by understanding your lifestyle, the property, and what you want to happen effortlessly, then engineer the technology to support it.", ["Discreet and intuitive", "Reliable and secure", "Integrated across systems", "Designed for long-term management", "Documented for the future"])}
+      ${projectQuote("Featured Estate Project", "Privacy. Performance. Simplicity.", "A private mountain estate framework featuring integrated networking, security, automation, lighting, audio/video, and infrastructure, presented as a placeholder until real proof is available.")}
+    `;
+  }
+  if (path === "/estate-technology-management/") {
+    return `
+      <section class="folio-row">
+        ${["Proactive Monitoring", "Preventative Maintenance", "Vendor Coordination", "Complete Documentation"].map(item => `<div>${iconFor(item)}<strong>${item}</strong></div>`).join("")}
+      </section>
+      ${imageCopy("Our Approach", "Proactive. Personal. Accountable.", "We continuously monitor, maintain, and optimize your technology environment, coordinating with trusted trade partners and manufacturers so everything works together now and for years to come.", ["24/7 system monitoring", "Firmware and security updates", "Performance optimization", "Vendor and warranty management", "Dedicated client support"])}
+      <section class="section-card navy-card"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>Whether it is your primary residence, second home, or multiple estates, ThrillHouzz provides a unified management strategy, consistent standards, and a single knowledgeable team across your portfolio.</p></div><div class="mini-folio">${["Primary Residence", "Second Homes", "Private Estates", "Multi-Property Families"].map(item => `<span>${iconFor(item)}${item}</span>`).join("")}</div></section>
+      ${projectQuote("At Your Fingertips", "Visibility Without the Complexity.", "Access key system information, status updates, and support through a simple, secure interface when the production support workflow is connected.")}
+    `;
+  }
+  if (path === "/design-engineering/") {
+    return `
+      ${imageCopy("Design First", "Design First. Products Second.", "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.", ["Network and wireless engineering", "Security engineering", "Infrastructure design", "Automation and controls", "Programming and commissioning"])}
+      <section class="discipline-board">
+        ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => `<div><div class="diagram-tile">${iconFor(item)}</div><strong>${item}</strong></div>`).join("")}
+      </section>
+      <section class="deliverables-row">
+        ${["Plans & Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Designs", "Camera Coverage", "Cable Schedules", "IP Architecture", "Control Narratives", "Redlines"].map(item => `<span>${iconFor(item)}${item}</span>`).join("")}
+      </section>
+      <section class="section-card navy-card"><div><div class="kicker">Independent Design</div><h2>Continuous Representation.</h2><p>ThrillHouzz does not need to install the system we design. We can act as your independent technology partner from concept to final acceptance.</p></div><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></section>
+    `;
+  }
+  if (path === "/trade-partners-professionals/") {
+    return `
+      <section class="folio-row">
+        ${["Preserve Design Intent", "Reduce Change Orders", "Streamline Coordination", "Deliver Exceptional Results"].map(item => `<div>${iconFor(item)}<strong>${item}</strong></div>`).join("")}
+      </section>
+      <section class="partner-grid page-partners">${partners().map(([title, text]) => `<div>${iconFor(title)}<h3>${title}</h3><p>${text}</p></div>`).join("")}</section>
+      <section class="process-cards">${["Design & Planning", "Documentation", "Trade Coordination", "Construction Support", "Commissioning", "Final Acceptance"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(item)}<strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</section>
+      ${projectQuote("Featured Collaborative Project", "North Lake Tahoe Estate", "Placeholder collaborative project framework for architect, general contractor, design team, and technology coordination.")}
+    `;
+  }
+  if (path === "/client-support/") {
+    return `
+      <section class="support-action-grid">
+        ${["Request Support", "Emergency Assistance", "Remote Support", "Schedule Service", "System Resources", "Training"].map(item => `<a href="/client-support/">${iconFor(item)}<strong>${item}</strong><span>Existing client pathway</span></a>`).join("")}
+      </section>
+      ${imageCopy("Client Support", "We&rsquo;re Here to Keep You Running.", "Our support team is ready to help with questions, troubleshooting, system requests, and ongoing support for managed environments.", ["Schedule service", "Open a support request", "Coordinate remote support", "Access system resources"])}
+    `;
+  }
+  if (path === "/network-wireless/" || path === "/security-access/" || path === "/automation-lighting-experience/" || path === "/infrastructure-systems-engineering/") {
+    return `
+      ${imageCopy("Engineered for Performance", page.heading, page.copy, page.strip)}
+      <section class="discipline-board">
+        ${page.strip.map(item => `<div><div class="diagram-tile">${iconFor(item)}</div><strong>${item}</strong></div>`).join("")}
+      </section>
+    `;
+  }
+  return `<section class="feature-row" style="margin-top:34px"><div class="photo-panel"></div><div class="copy-panel"><div class="kicker">Our Approach</div><h2>Designed Around the Environment.</h2><ul class="check-list"><li>Discreet and intuitive</li><li>Reliable and secure</li><li>Integrated across systems</li><li>Designed for long-term management</li><li>Documented for the future</li></ul></div></section>`;
+}
+
+function imageCopy(kicker, title, text, bullets) {
+  return `<section class="feature-row specific-row"><div class="photo-panel"></div><div class="copy-panel"><div class="kicker">${kicker}</div><h2>${title}</h2><p class="lead">${text}</p><ul class="check-list">${bullets.map(item => `<li>${item}</li>`).join("")}</ul></div></section>`;
+}
+
+function projectQuote(kicker, title, text) {
+  return `<section class="project-quote"><div class="project-visual"></div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>Placeholder testimonial area reserved for approved real client proof.</blockquote></section>`;
+}
+
+function partnerStepText(item) {
+  return {
+    "Design & Planning": "Align on goals, design intent, and technology requirements.",
+    Documentation: "Provide detailed plans, specifications, and coordination documents.",
+    "Trade Coordination": "Collaborate with all trades to ensure seamless integration.",
+    "Construction Support": "Answer questions, review installation, and resolve issues.",
+    Commissioning: "Test and verify systems perform as designed.",
+    "Final Acceptance": "Deliver documentation, training, and ongoing support options."
+  }[item] || "Coordinate the next step.";
 }
 
 function emphasis(title) {
@@ -582,7 +662,7 @@ function render() {
   if (path === "/") html = home();
   else if (page === "projects") html = projectsPage();
   else if (page === "case") html = casePage();
-  else html = routePage(page || pages["/contact/"]);
+  else html = routePage(page || pages["/contact/"], path);
   document.getElementById("app").innerHTML = html;
   document.querySelectorAll("[data-form]").forEach(formEl => {
     formEl.addEventListener("submit", event => {
