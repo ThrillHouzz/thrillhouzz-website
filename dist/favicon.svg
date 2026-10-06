@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ThrillHouzz">
+  <rect width="64" height="64" rx="14" fill="#0d1c2d"/>
+  <path d="M22 27c0-7 5-13 12-13s12 6 12 13c0 5-3 9-7 12v6H29v-6c-4-3-7-7-7-12Z" fill="none" stroke="#d8b56d" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M29 50h10M30 44h8M20 27h-5M49 27h-5M24 17l-4-4M44 17l4-4" stroke="#f7f1e8" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="25" cy="29" r="2.5" fill="#d8b56d"/>
+  <circle cx="34" cy="24" r="2.5" fill="#d8b56d"/>
+  <circle cx="41" cy="31" r="2.5" fill="#d8b56d"/>
+  <path d="M27 28l6-3 7 6" fill="none" stroke="#f7f1e8" stroke-width="2" stroke-linecap="round"/>
+</svg>
