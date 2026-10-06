@@ -591,6 +591,61 @@ p { color: var(--muted); }
   border: 1px solid rgba(255,255,255,.18);
 }
 .diagram-tile .site-icon { color: var(--gold); width: 44px; height: 44px; }
+.diagram-svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(255,255,255,.82);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.diagram-svg rect,
+.diagram-svg path {
+  vector-effect: non-scaling-stroke;
+}
+.diagram-svg .heat-a {
+  fill: rgba(213,181,108,.22);
+  stroke: rgba(213,181,108,.7);
+}
+.diagram-svg .heat-b {
+  fill: rgba(255,255,255,.16);
+  stroke: rgba(255,255,255,.7);
+}
+.diagram-svg .pin {
+  fill: var(--gold);
+  stroke: var(--navy);
+}
+.diagram-svg .fov {
+  fill: rgba(213,181,108,.18);
+  stroke: var(--gold);
+}
+.diagram-svg .wire {
+  stroke: var(--gold);
+}
+.diagram-svg .redline {
+  stroke: var(--bronze);
+  stroke-width: 3;
+}
+.tech-overlay {
+  position: absolute;
+  inset: 8%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.3);
+  background:
+    linear-gradient(rgba(7,26,42,.18), rgba(7,26,42,.42)),
+    linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+  background-size: auto, 28px 28px, 28px 28px;
+  opacity: .9;
+  mix-blend-mode: screen;
+}
+.tech-overlay .diagram-svg {
+  width: min(82%, 420px);
+  height: min(70%, 260px);
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.28));
+}
 .deliverables-row {
   display: grid;
   grid-template-columns: repeat(10, 1fr);

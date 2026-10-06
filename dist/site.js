@@ -64,6 +64,32 @@ function iconFor(label, extraClass = "") {
   return `<svg class="site-icon ${extraClass}" viewBox="0 0 24 24" aria-hidden="true">${iconPaths[key]}</svg>`;
 }
 
+function diagramFor(label) {
+  const text = String(label).toLowerCase();
+  if (/wireless|wi-fi|network|coverage/.test(text)) {
+    return `<svg class="diagram-svg heatmap" viewBox="0 0 240 150" aria-hidden="true"><rect x="18" y="18" width="204" height="114"/><path d="M18 55h204M70 18v114M132 18v114M180 55v77"/><circle class="heat heat-a" cx="118" cy="76" r="42"/><circle class="heat heat-b" cx="118" cy="76" r="25"/><circle class="pin" cx="118" cy="76" r="6"/><path d="M35 36h42M88 102h32M150 35h52M160 95h38"/></svg>`;
+  }
+  if (/camera|surveillance|security/.test(text)) {
+    return `<svg class="diagram-svg camera-map" viewBox="0 0 240 150" aria-hidden="true"><rect x="20" y="20" width="200" height="110"/><path d="M20 58h200M80 20v110M150 20v110"/><path class="fov" d="M52 48l76 38-76 38Z"/><path class="fov" d="M185 58l-64 25 64 25Z"/><circle class="pin" cx="52" cy="86" r="5"/><circle class="pin" cx="185" cy="83" r="5"/></svg>`;
+  }
+  if (/rack|infrastructure|equipment|server/.test(text)) {
+    return `<svg class="diagram-svg rack" viewBox="0 0 240 150" aria-hidden="true"><rect x="76" y="14" width="88" height="122"/><path d="M86 28h68M86 42h68M86 58h68M86 76h68M86 94h68M86 112h68"/><circle cx="94" cy="35" r="2"/><circle cx="94" cy="65" r="2"/><circle cx="94" cy="101" r="2"/><path class="wire" d="M154 35c35 0 35 80 0 80"/></svg>`;
+  }
+  if (/control|automation|lighting|scene/.test(text)) {
+    return `<svg class="diagram-svg control" viewBox="0 0 240 150" aria-hidden="true"><rect x="28" y="28" width="184" height="94" rx="6"/><path d="M48 52h48M48 76h32M48 100h58"/><circle cx="142" cy="58" r="13"/><circle cx="178" cy="58" r="13"/><rect x="132" y="88" width="58" height="16" rx="8"/></svg>`;
+  }
+  if (/audio|video|layout/.test(text)) {
+    return `<svg class="diagram-svg audio" viewBox="0 0 240 150" aria-hidden="true"><rect x="28" y="26" width="184" height="98"/><path d="M58 58h50v36H58zM136 48h44v56h-44z"/><circle cx="64" cy="36" r="5"/><circle cx="176" cy="36" r="5"/><circle cx="64" cy="116" r="5"/><circle cx="176" cy="116" r="5"/><path class="wire" d="M69 36c44 22 68 22 102 0M69 116c44-22 68-22 102 0"/></svg>`;
+  }
+  if (/document|schedule|report|redline|plans|floor|riser|architecture/.test(text)) {
+    return `<svg class="diagram-svg sheet" viewBox="0 0 240 150" aria-hidden="true"><rect x="46" y="18" width="148" height="114"/><path d="M66 42h70M66 58h108M66 76h45M66 94h108M66 112h76"/><path class="redline" d="M132 75l18 16 28-36"/><circle class="pin" cx="150" cy="91" r="4"/></svg>`;
+  }
+  if (/support|dashboard|client|visibility|status|monitor/.test(text)) {
+    return `<svg class="diagram-svg dashboard" viewBox="0 0 240 150" aria-hidden="true"><rect x="30" y="24" width="180" height="102" rx="8"/><path d="M48 48h58M48 72h38M48 96h62"/><rect x="128" y="44" width="24" height="24"/><rect x="162" y="44" width="24" height="24"/><rect x="128" y="82" width="58" height="18" rx="4"/></svg>`;
+  }
+  return `<svg class="diagram-svg blueprint-card" viewBox="0 0 240 150" aria-hidden="true"><rect x="24" y="20" width="192" height="108"/><path d="M50 104V48h54v26h38V48h48v56H50Z"/><path d="M24 54h192M78 20v108M144 20v108"/><circle class="pin" cx="144" cy="74" r="5"/></svg>`;
+}
+
 const pages = {
   "/business/": {
     eyebrow: "Business Technology",
@@ -552,7 +578,7 @@ function pageSpecific(path, page) {
     return `
       ${imageCopy("Design First", "Design First. Products Second.", "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.", ["Network and wireless engineering", "Security engineering", "Infrastructure design", "Automation and controls", "Programming and commissioning"])}
       <section class="discipline-board">
-        ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => `<div><div class="diagram-tile">${iconFor(item)}</div><strong>${item}</strong></div>`).join("")}
+        ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><strong>${item}</strong></div>`).join("")}
       </section>
       <section class="deliverables-row">
         ${["Plans & Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Designs", "Camera Coverage", "Cable Schedules", "IP Architecture", "Control Narratives", "Redlines"].map(item => `<span>${iconFor(item)}${item}</span>`).join("")}
@@ -582,7 +608,7 @@ function pageSpecific(path, page) {
     return `
       ${imageCopy("Engineered for Performance", page.heading, page.copy, page.strip)}
       <section class="discipline-board">
-        ${page.strip.map(item => `<div><div class="diagram-tile">${iconFor(item)}</div><strong>${item}</strong></div>`).join("")}
+        ${page.strip.map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><strong>${item}</strong></div>`).join("")}
       </section>
     `;
   }
@@ -590,7 +616,7 @@ function pageSpecific(path, page) {
 }
 
 function imageCopy(kicker, title, text, bullets) {
-  return `<section class="feature-row specific-row"><div class="photo-panel"></div><div class="copy-panel"><div class="kicker">${kicker}</div><h2>${title}</h2><p class="lead">${text}</p><ul class="check-list">${bullets.map(item => `<li>${item}</li>`).join("")}</ul></div></section>`;
+  return `<section class="feature-row specific-row"><div class="photo-panel"><div class="tech-overlay">${diagramFor(`${kicker} ${title}`)}</div></div><div class="copy-panel"><div class="kicker">${kicker}</div><h2>${title}</h2><p class="lead">${text}</p><ul class="check-list">${bullets.map(item => `<li>${item}</li>`).join("")}</ul></div></section>`;
 }
 
 function projectQuote(kicker, title, text) {
