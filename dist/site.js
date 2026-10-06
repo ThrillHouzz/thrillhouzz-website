@@ -138,6 +138,20 @@ const pages = {
       ["Estate Managers & Family Offices", "Create continuity across vendors, properties, staff, and ongoing operations.", "/estate-technology-management/"]
     ]
   },
+  "/owners-technology-representation/": {
+    eyebrow: "Owner's Technology Representation",
+    title: "Your Vision. Our Representation.",
+    intro: "We represent your technology interests from concept to completion, ensuring every system, trade, and vendor is aligned, coordinated, and accountable.",
+    tags: ["New construction", "Renovations", "Estates", "Multi-property"],
+    strip: ["Owner Representation", "System Coordination", "Trade Alignment", "Budget Oversight", "Schedule Support", "Final Acceptance"],
+    heading: "Who represents your technology?",
+    copy: "Your architect represents the architecture. Your engineers represent their disciplines. Your GC manages construction. ThrillHouzz represents your technology from early planning and contractor selection through construction, commissioning, documentation, and long-term management.",
+    cards: [
+      ["Design Oversight", "Ensure approved designs are maintained through construction.", "/design-engineering/"],
+      ["Trade Coordination", "Align architects, GCs, electrical contractors, integrators, and specialty vendors.", "/trade-partners-professionals/"],
+      ["Final Acceptance", "Verify system performance, documentation, and training before handover.", "/our-approach/"]
+    ]
+  },
   "/network-wireless/": {
     eyebrow: "Network & Wireless",
     title: "Connectivity Is Infrastructure, Not an Accessory.",
@@ -335,6 +349,75 @@ function home() {
     <section class="section light">
       <div class="wrap feature-row"><div class="copy-panel"><div class="kicker">Beyond Installation</div><h2>Installation Is the Beginning. Not the End.</h2><p class="lead">ThrillHouzz provides ongoing management designed to preserve system performance, documentation, security, and continuity over time.</p><a class="button secondary" href="/managed-technology-services/">Explore Managed Business Services</a></div><div class="copy-panel"><div class="kicker">Estate Management</div><h2>You Shouldn&rsquo;t Have to Know Who to Call.</h2><p class="lead">We investigate the issue and, when another trade is responsible, help coordinate the appropriate resource.</p><a class="button secondary" href="/estate-technology-management/">Discover Estate Management</a></div></div>
     </section>
+    <section class="section cream">
+      <div class="wrap split">
+        <div><div class="kicker">Continuity</div><h2>Your Technology Shouldn&rsquo;t Depend on Someone&rsquo;s Memory.</h2></div>
+        <div><p class="lead">Complex technology environments often outlive the people who originally designed them. Technicians change. Employees change. Contractors change. Equipment changes. The property changes.</p><p>Without proper documentation and ongoing management, every service call risks becoming another discovery project.</p><p class="pull">The goal is not simply to make technology work today. It is to keep it understandable tomorrow.</p></div>
+      </div>
+    </section>
+    <section class="section navy">
+      <div class="wrap management-feature">
+        <div>
+          <div class="kicker">Estate Technology Management</div>
+          <h2>You Shouldn&rsquo;t Have to Know Who to Call.</h2>
+          <p class="lead">The gate is not opening. The internet is down. A camera went offline. The lighting is not behaving correctly. The television stopped working. A new device needs to be connected.</p>
+          <p>The problem may involve networking, electrical, automation, an ISP, security, AV, or another contractor. That should not become the homeowner&rsquo;s problem to diagnose.</p>
+          <a class="button bronze" href="/estate-technology-management/">Explore Estate Management</a>
+        </div>
+        <div class="support-points">
+          ${["One call for any technology issue.","We diagnose, resolve, or coordinate.","Your systems remain documented and understood."].map(item => `<div>${item}</div>`).join("")}
+        </div>
+      </div>
+    </section>
+    <section class="section light">
+      <div class="wrap feature-row">
+        <div class="copy-panel">
+          <div class="kicker">Design & Engineering</div>
+          <h2>Good Technology Starts Before Installation.</h2>
+          <p class="lead">Technology decisions made late in a project often create unnecessary compromises, change orders, aesthetic conflicts, and infrastructure limitations.</p>
+          <p>ThrillHouzz develops technology architecture, coordinates requirements between disciplines, creates documentation, assists with contractor selection, reviews implementation, and commissions the finished environment.</p>
+          <a class="button secondary" href="/design-engineering/">Explore Design Services</a>
+        </div>
+        <div class="photo-panel"></div>
+      </div>
+    </section>
+    <section class="section navy">
+      <div class="wrap split">
+        <div><div class="kicker">Owner's Technology Representation</div><h2>Someone Should Represent the Owner&rsquo;s Technology Interests.</h2><p class="lead">Architects protect the architectural vision. Interior designers protect the aesthetic. Engineers protect their disciplines. General contractors manage construction. ThrillHouzz can represent the technology.</p><a class="button bronze" href="/owners-technology-representation/">Owner's Technology Representation</a></div>
+        <div class="timeline-row">${["Planning","Design","Procurement","Construction","Commissioning","Acceptance","Management"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><strong>${item}</strong></div>`).join("")}</div>
+      </div>
+    </section>
+    <section class="section light">
+      <div class="wrap">
+        <div class="split"><div><div class="kicker">For Professionals</div><h2>Built to Work With Your Team.</h2></div><p class="lead">ThrillHouzz collaborates with architects, general contractors, interior designers, electrical contractors, technology integrators, developers, estate managers, and family offices.</p></div>
+        <div class="partner-grid">${partners().map(([title, text]) => `<div><h3>${title}</h3><p>${text}</p></div>`).join("")}</div>
+        <a class="button secondary" href="/trade-partners-professionals/">Work With ThrillHouzz</a>
+      </div>
+    </section>
+    <section class="section light">
+      <div class="wrap">
+        <div class="kicker">Selected Work</div>
+        <h2>Designed Around the Environment.</h2>
+        <div class="selected-grid">${["Professional Technology Environment","Private Estate Technology","Whole-Property Technology Engineering"].map((title, i) => `<a class="project-card" href="/case-study/"><div class="project-visual"></div><div class="project-copy"><div class="label">${["Business","Estate","Design"][i]}</div><h3>${title}</h3><p>Placeholder project framework only. No client names, metrics, testimonials, or claims are invented.</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
+      </div>
+    </section>
+    <section class="section cream">
+      <div class="wrap split">
+        <div><div class="kicker">Technology</div><h2>Technology Selected for the Environment.</h2></div>
+        <div><p class="lead">ThrillHouzz works with leading technology manufacturers across networking, security, communications, automation, lighting, and entertainment. But manufacturer relationships do not define our designs. Requirements do.</p><a class="button secondary" href="/technology-partners/">Explore Technology Partners</a></div>
+      </div>
+    </section>
+    <section class="section light">
+      <div class="wrap">
+        <div class="kicker">Geography</div>
+        <h2>Colorado Based. Project Driven.</h2>
+        <div class="geo-grid">
+          <div><h3>Business Technology</h3><p>Primarily serving businesses throughout Denver and Colorado&rsquo;s Front Range.</p></div>
+          <div><h3>Estate Technology</h3><p>Serving Colorado residences and select private estate projects throughout the United States.</p></div>
+          <div><h3>Design & Engineering</h3><p>Available nationally for qualified residential, commercial, and professional design engagements.</p></div>
+        </div>
+      </div>
+    </section>
     <section class="section navy"><div class="wrap split"><div><div class="kicker">Start With the Outcome</div><h2>What Are You Trying to Accomplish?</h2></div><div><p class="lead">Start by telling us what you are trying to accomplish. We will begin there.</p><a class="button bronze" href="/start-a-project/">Start a Project</a><a class="button bronze" href="/client-support/" style="margin-left:12px">Request Support</a></div></div></section>`;
 }
 
@@ -359,6 +442,17 @@ function capabilities() {
     ["Business Technology", "Managed IT, cybersecurity, endpoint management, communications, identity, and support."],
     ["Infrastructure", "Equipment rooms, racks, distribution, power, UPS, pathways, and documentation."],
     ["Engineering", "Technology planning, system design, programming, construction coordination, and commissioning."]
+  ];
+}
+
+function partners() {
+  return [
+    ["Architects", "Integrate technology requirements before they compromise architectural intent."],
+    ["General Contractors", "Create a coordinated technology scope that can be planned, scheduled, and executed."],
+    ["Interior Designers", "Integrate controls, speakers, displays, security devices, and technology without sacrificing design."],
+    ["Electrical Contractors", "Coordinate pathways, power, controls, low-voltage systems, equipment locations, and infrastructure."],
+    ["Technology Integrators", "Add engineering, documentation, programming, or specialized capabilities to complex projects."],
+    ["Estate Managers & Family Offices", "Create continuity across technology, vendors, properties, staff, and ongoing operations."]
   ];
 }
 
