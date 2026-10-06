@@ -117,6 +117,22 @@ img { max-width: 100%; display: block; }
 }
 .light .button.bronze { color: var(--navy); border-color: var(--bronze); background: rgba(255,255,255,0.2); }
 .menu-button { display: none; }
+.site-icon {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--navy);
+}
+.section.navy .site-icon,
+.capability-band .site-icon,
+.service-strip .site-icon,
+.practice-tile .site-icon {
+  color: white;
+}
 
 h1, h2, h3, h4, p { margin-top: 0; }
 h1, h2, h3 {
@@ -258,6 +274,10 @@ p { color: var(--muted); }
   color: white;
   font-weight: 900;
 }
+.mini-icon .site-icon {
+  width: 27px;
+  height: 27px;
+}
 .text-link {
   display: inline-block;
   margin-top: 12px;
@@ -300,6 +320,7 @@ p { color: var(--muted); }
   align-content: start;
 }
 .q-item:last-child { border-right: 0; }
+.q-item .site-icon { color: var(--bronze); }
 .pull {
   border-left: 3px solid var(--bronze);
   padding-left: 22px;
@@ -320,12 +341,14 @@ p { color: var(--muted); }
 }
 .trade-list {
   display: grid;
-  gap: 7px;
+  gap: 9px;
   color: rgba(255,255,255,.86);
   font-size: .86rem;
 }
-.trade-list span { display: flex; justify-content: space-between; gap: 12px; }
+.trade-list span { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .trade-list span::after { content: ""; flex: 1; border-bottom: 1px solid rgba(255,255,255,.28); transform: translateY(-7px); }
+.trade-list .site-icon { width: 20px; height: 20px; color: var(--gold); flex: 0 0 auto; }
+.trade-list em { font-style: normal; min-width: 142px; }
 .model-target {
   border: 1px solid rgba(213,181,108,.55);
   padding: 20px;
@@ -359,6 +382,13 @@ p { color: var(--muted); }
   font-size: .72rem;
   font-weight: 900;
 }
+.step .site-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-top: 14px;
+  color: var(--bronze);
+}
 .step strong { display: block; margin: 14px 0 8px; color: var(--navy); }
 .step p { font-size: .82rem; line-height: 1.45; }
 
@@ -378,6 +408,7 @@ p { color: var(--muted); }
   border-right: 1px solid var(--white-line);
   min-height: 172px;
 }
+.cap-card .site-icon { color: var(--gold); margin-bottom: 16px; }
 .cap-card h3 { font-size: 1.15rem; min-height: 46px; }
 .cap-card p { color: rgba(255,255,255,.72); font-size: .87rem; }
 
@@ -403,7 +434,12 @@ p { color: var(--muted); }
   padding: 22px 24px;
   color: rgba(255,255,255,.86);
   background: rgba(255,255,255,.05);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  align-items: center;
 }
+.support-points .site-icon { color: var(--gold); }
 .timeline-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -427,6 +463,11 @@ p { color: var(--muted); }
   font-size: .68rem;
   font-weight: 900;
 }
+.timeline-row .site-icon {
+  display: block;
+  margin-top: 14px;
+  color: var(--gold);
+}
 .timeline-row strong {
   display: block;
   margin-top: 12px;
@@ -447,6 +488,7 @@ p { color: var(--muted); }
   border-bottom: 1px solid var(--line);
   background: rgba(255,255,255,.46);
 }
+.partner-grid .site-icon { color: var(--bronze); margin-bottom: 16px; }
 .partner-grid h3 { font-size: 1.12rem; }
 .partner-grid p { font-size: .9rem; }
 .selected-grid {
@@ -472,6 +514,7 @@ p { color: var(--muted); }
   padding: 28px;
   border-right: 1px solid var(--line);
 }
+.geo-grid .site-icon { color: var(--bronze); margin-bottom: 16px; }
 .geo-grid div:last-child { border-right: 0; }
 .photo-panel {
   min-height: 360px;
@@ -515,6 +558,18 @@ p { color: var(--muted); }
   margin-bottom: 20px;
 }
 .thumb-card h3, .thumb-card p, .thumb-card .text-link { padding-left: 24px; padding-right: 24px; }
+.thumb-copy { padding: 0 24px 22px; }
+.thumb-copy h3,
+.thumb-copy p,
+.thumb-copy .text-link {
+  padding-left: 0;
+  padding-right: 0;
+}
+.thumb-copy .site-icon,
+.project-copy .site-icon {
+  color: var(--bronze);
+  margin-bottom: 12px;
+}
 .thumb-card .text-link { padding-bottom: 22px; }
 
 .route-hero {
@@ -564,7 +619,11 @@ p { color: var(--muted); }
   font-size: .72rem;
   letter-spacing: .12em;
   font-weight: 800;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
 }
+.service-strip .site-icon { width: 30px; height: 30px; color: var(--gold); }
 .service-strip div:last-child { border-right: 0; }
 .route-layout {
   display: grid;

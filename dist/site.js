@@ -23,6 +23,47 @@ const serviceLinks = [
   ["/client-support/", "Client Support"]
 ];
 
+const iconPaths = {
+  business: '<path d="M4 19h16M6 19V7h8v12M14 11h4v8M8 10h2M8 14h2"/>',
+  estate: '<path d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"/>',
+  design: '<path d="M4 18L18 4M7 21l14-14M4 18l3 3M6 16l2 2M13 5l6 6"/>',
+  network: '<circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M11 7l-5 9M13 7l5 9M7 18h10"/>',
+  security: '<path d="M12 3l8 4v5c0 5-3.4 8.2-8 9-4.6-.8-8-4-8-9V7l8-4Z"/><path d="M9 12l2 2 4-5"/>',
+  automation: '<path d="M4 12h4M16 12h4M12 4v4M12 16v4"/><circle cx="12" cy="12" r="4"/>',
+  lighting: '<path d="M9 18h6M10 21h4M8 10a4 4 0 1 1 8 0c0 2-2 3-2 5h-4c0-2-2-3-2-5Z"/>',
+  audio: '<path d="M4 15h4l5 4V5L8 9H4v6Z"/><path d="M17 9c1 1 1 5 0 6M20 7c2 3 2 7 0 10"/>',
+  infrastructure: '<path d="M5 5h14v4H5zM5 10h14v4H5zM5 15h14v4H5z"/><path d="M8 7h.01M8 12h.01M8 17h.01"/>',
+  support: '<path d="M5 12a7 7 0 0 1 14 0v4a3 3 0 0 1-3 3h-2"/><path d="M5 13H3v4h2v-4ZM19 13h2v4h-2v-4Z"/><path d="M11 19h3"/>',
+  documentation: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M9 12h6M9 16h6"/>',
+  monitoring: '<path d="M3 17h4l3-10 4 14 3-8h4"/><path d="M4 21h16"/>',
+  people: '<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 20a5 5 0 0 1 10 0M11 20a5 5 0 0 1 10 0"/>',
+  roadmap: '<path d="M5 19V5l5 3 5-3 4 2v14l-4-2-5 3-5-3Z"/><path d="M10 8v14M15 5v14"/>',
+  power: '<path d="M13 2L5 14h6l-1 8 8-12h-6l1-8Z"/>',
+  privacy: '<path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v11H5z"/><path d="M12 14v3"/>',
+  default: '<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/>'
+};
+
+function iconFor(label, extraClass = "") {
+  const text = String(label).toLowerCase();
+  let key = "default";
+  if (/business|managed|endpoint|identity|communications|office|company/.test(text)) key = "business";
+  if (/estate|home|residence|property|portfolio|famil/.test(text)) key = "estate";
+  if (/design|engineer|architect|drawing|plan|representation|procurement|acceptance/.test(text)) key = "design";
+  if (/network|wireless|wi-fi|connect|fiber|wan|switch|internet/.test(text)) key = "network";
+  if (/security|access|surveillance|intrusion|privacy|credential|camera|intercom/.test(text)) key = "security";
+  if (/automation|control|scene|shade|environment|climate/.test(text)) key = "automation";
+  if (/lighting|light/.test(text)) key = "lighting";
+  if (/audio|video|entertainment|av/.test(text)) key = "audio";
+  if (/infrastructure|rack|cabling|pathway|power|ups|room|foundation/.test(text)) key = /power|ups/.test(text) ? "power" : "infrastructure";
+  if (/support|help|service|maintenance|client/.test(text)) key = "support";
+  if (/document|records|knowledge|continuity|schedules|reports/.test(text)) key = "documentation";
+  if (/monitor|health|performance|reliability|status/.test(text)) key = "monitoring";
+  if (/people|team|staff|owner|user|trade|partner|contractor|manager/.test(text)) key = "people";
+  if (/roadmap|lifecycle|future|evolve|change/.test(text)) key = "roadmap";
+  if (/privacy/.test(text)) key = "privacy";
+  return `<svg class="site-icon ${extraClass}" viewBox="0 0 24 24" aria-hidden="true">${iconPaths[key]}</svg>`;
+}
+
 const pages = {
   "/business/": {
     eyebrow: "Business Technology",
@@ -324,7 +365,7 @@ function home() {
         <div>
           <p class="lead">Before selecting a platform, device, or manufacturer, we need to understand the environment it is supposed to serve.</p>
           <div class="question-grid">
-            ${["How do you live or work here?","What should happen automatically?","What needs to remain secure?","How should this environment evolve?","Who will understand it five years from now?"].map(item => `<div class="q-item"><strong>${item}</strong></div>`).join("")}
+            ${["How do you live or work here?","What should happen automatically?","What needs to remain secure?","How should this environment evolve?","Who will understand it five years from now?"].map(item => `<div class="q-item">${iconFor(item)}<strong>${item}</strong></div>`).join("")}
           </div>
           <p class="pull">Technology should adapt to the people using it, not require people to adapt to the technology.</p>
         </div>
@@ -365,7 +406,7 @@ function home() {
           <a class="button bronze" href="/estate-technology-management/">Explore Estate Management</a>
         </div>
         <div class="support-points">
-          ${["One call for any technology issue.","We diagnose, resolve, or coordinate.","Your systems remain documented and understood."].map(item => `<div>${item}</div>`).join("")}
+          ${["One call for any technology issue.","We diagnose, resolve, or coordinate.","Your systems remain documented and understood."].map(item => `<div>${iconFor(item)}<span>${item}</span></div>`).join("")}
         </div>
       </div>
     </section>
@@ -384,13 +425,13 @@ function home() {
     <section class="section navy">
       <div class="wrap split">
         <div><div class="kicker">Owner's Technology Representation</div><h2>Someone Should Represent the Owner&rsquo;s Technology Interests.</h2><p class="lead">Architects protect the architectural vision. Interior designers protect the aesthetic. Engineers protect their disciplines. General contractors manage construction. ThrillHouzz can represent the technology.</p><a class="button bronze" href="/owners-technology-representation/">Owner's Technology Representation</a></div>
-        <div class="timeline-row">${["Planning","Design","Procurement","Construction","Commissioning","Acceptance","Management"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><strong>${item}</strong></div>`).join("")}</div>
+        <div class="timeline-row">${["Planning","Design","Procurement","Construction","Commissioning","Acceptance","Management"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(item)}<strong>${item}</strong></div>`).join("")}</div>
       </div>
     </section>
     <section class="section light">
       <div class="wrap">
         <div class="split"><div><div class="kicker">For Professionals</div><h2>Built to Work With Your Team.</h2></div><p class="lead">ThrillHouzz collaborates with architects, general contractors, interior designers, electrical contractors, technology integrators, developers, estate managers, and family offices.</p></div>
-        <div class="partner-grid">${partners().map(([title, text]) => `<div><h3>${title}</h3><p>${text}</p></div>`).join("")}</div>
+        <div class="partner-grid">${partners().map(([title, text]) => `<div>${iconFor(title)}<h3>${title}</h3><p>${text}</p></div>`).join("")}</div>
         <a class="button secondary" href="/trade-partners-professionals/">Work With ThrillHouzz</a>
       </div>
     </section>
@@ -398,7 +439,7 @@ function home() {
       <div class="wrap">
         <div class="kicker">Selected Work</div>
         <h2>Designed Around the Environment.</h2>
-        <div class="selected-grid">${["Professional Technology Environment","Private Estate Technology","Whole-Property Technology Engineering"].map((title, i) => `<a class="project-card" href="/case-study/"><div class="project-visual"></div><div class="project-copy"><div class="label">${["Business","Estate","Design"][i]}</div><h3>${title}</h3><p>Placeholder project framework only. No client names, metrics, testimonials, or claims are invented.</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
+        <div class="selected-grid">${["Professional Technology Environment","Private Estate Technology","Whole-Property Technology Engineering"].map((title, i) => `<a class="project-card" href="/case-study/"><div class="project-visual"></div><div class="project-copy">${iconFor(title)}<div class="label">${["Business","Estate","Design"][i]}</div><h3>${title}</h3><p>Placeholder project framework only. No client names, metrics, testimonials, or claims are invented.</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
       </div>
     </section>
     <section class="section cream">
@@ -412,9 +453,9 @@ function home() {
         <div class="kicker">Geography</div>
         <h2>Colorado Based. Project Driven.</h2>
         <div class="geo-grid">
-          <div><h3>Business Technology</h3><p>Primarily serving businesses throughout Denver and Colorado&rsquo;s Front Range.</p></div>
-          <div><h3>Estate Technology</h3><p>Serving Colorado residences and select private estate projects throughout the United States.</p></div>
-          <div><h3>Design & Engineering</h3><p>Available nationally for qualified residential, commercial, and professional design engagements.</p></div>
+          <div>${iconFor("Business Technology")}<h3>Business Technology</h3><p>Primarily serving businesses throughout Denver and Colorado&rsquo;s Front Range.</p></div>
+          <div>${iconFor("Estate Technology")}<h3>Estate Technology</h3><p>Serving Colorado residences and select private estate projects throughout the United States.</p></div>
+          <div>${iconFor("Design Engineering")}<h3>Design & Engineering</h3><p>Available nationally for qualified residential, commercial, and professional design engagements.</p></div>
         </div>
       </div>
     </section>
@@ -422,16 +463,16 @@ function home() {
 }
 
 function practiceTile(icon, label, title, text, href, pos) {
-  return `<a class="practice-tile" style="--bg:${bg};background-position:${pos}" href="${href}"><div><div class="mini-icon">${icon}</div><div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Explore ${label.split(" ")[0]}</span></div></a>`;
+  return `<a class="practice-tile" style="--bg:${bg};background-position:${pos}" href="${href}"><div><div class="mini-icon">${iconFor(label)}</div><div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Explore ${label.split(" ")[0]}</span></div></a>`;
 }
 
 function modelPanel(title, target) {
   const trades = ["Internet Provider", "IT Company", "Security Contractor", "AV Integrator", "Electrician", "Automation Specialist", "Lighting Contractor", "HVAC Contractor", "Gate Company"];
-  return `<div class="model-panel"><div class="kicker">${title}</div><div class="trade-list">${trades.map(t => `<span>${t}</span>`).join("")}</div><div class="model-target">${target}</div></div>`;
+  return `<div class="model-panel"><div class="kicker">${title}</div><div class="trade-list">${trades.map(t => `<span>${iconFor(t)}<em>${t}</em></span>`).join("")}</div><div class="model-target">${target}</div></div>`;
 }
 
 function methodHtml() {
-  return `<div class="method">${method.map((m, i) => `<div class="step"><span>${String(i + 1).padStart(2, "0")}</span><strong>${m[0]}</strong><p>${m[1]}</p></div>`).join("")}</div>`;
+  return `<div class="method">${method.map((m, i) => `<div class="step"><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(m[0])}<strong>${m[0]}</strong><p>${m[1]}</p></div>`).join("")}</div>`;
 }
 
 function capabilities() {
@@ -457,7 +498,7 @@ function partners() {
 }
 
 function capCard([title, text]) {
-  return `<div class="cap-card"><h3>${title}</h3><p>${text}</p></div>`;
+  return `<div class="cap-card">${iconFor(title)}<h3>${title}</h3><p>${text}</p></div>`;
 }
 
 function routePage(page) {
@@ -473,7 +514,7 @@ function routePage(page) {
           <div class="hero-ctas"><a class="button" href="/start-a-project/">Start a Conversation</a><a class="button secondary" href="/our-approach/">Explore Our Process</a></div>
         </div>
       </section>
-      <section class="service-strip">${page.strip.map(s => `<div>${s}</div>`).join("")}</section>
+      <section class="service-strip">${page.strip.map(s => `<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</section>
       <section class="section light">
         <div class="wrap route-layout">
           <article>
@@ -498,7 +539,7 @@ function emphasis(title) {
 }
 
 function thumb(title, text, href) {
-  return `<a class="thumb-card" href="${href}"><div class="thumb-img" style="--bg:${bg}"></div><h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></a>`;
+  return `<a class="thumb-card" href="${href}"><div class="thumb-img" style="--bg:${bg}"></div><div class="thumb-copy">${iconFor(title)}<h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></div></a>`;
 }
 
 function projectsPage() {
@@ -517,7 +558,7 @@ function projectsPage() {
 function casePage() {
   return `
     <section class="route-hero"><div class="wrap"><div class="eyebrow">Project Case Study Template</div><h1>North Lake Tahoe Estate</h1><p>A fully integrated technology environment designed for privacy, performance, and exceptional living experience. Generic placeholder only.</p></div></section>
-    <section class="service-strip"><div>Network</div><div>Security</div><div>Automation</div><div>Lighting</div><div>Audio / Video</div><div>Infrastructure</div></section>
+    <section class="service-strip">${["Network","Security","Automation","Lighting","Audio / Video","Infrastructure"].map(s => `<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</section>
     <section class="section light"><div class="wrap feature-row"><div class="copy-panel"><div class="kicker">The Challenge</div><h2>Privacy. Performance. Simplicity.</h2><p class="lead">The property had multiple technology systems, vendors, and long-term support needs. This template shows how a real case study would be structured without inventing a client claim.</p><ul class="check-list"><li>Discovery and documentation</li><li>System architecture and coordination</li><li>Commissioning and support handoff</li></ul></div><div class="photo-panel"></div></div></section>`;
 }
 
