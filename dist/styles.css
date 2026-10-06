@@ -20,6 +20,7 @@ body {
   background: var(--paper);
   font-size: 16px;
   line-height: 1.55;
+  overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font: inherit; }
@@ -228,7 +229,35 @@ p { color: var(--muted); }
   font-size: 0.7rem;
   font-weight: 800;
 }
-.blueprint-labels span { text-shadow: 0 1px 12px rgba(0,0,0,.65); }
+.blueprint-labels span {
+  text-shadow: 0 1px 12px rgba(0,0,0,.65);
+  position: relative;
+  padding-left: 76px;
+}
+.blueprint-labels span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 62px;
+  height: 1px;
+  background: rgba(255,255,255,.62);
+}
+.hero-line-art {
+  position: absolute;
+  z-index: 2;
+  right: 13%;
+  top: 18%;
+  width: min(34vw, 470px);
+  height: min(28vw, 350px);
+  pointer-events: none;
+  opacity: .92;
+  filter: drop-shadow(0 16px 30px rgba(0,0,0,.24));
+}
+.hero-line-art .diagram-svg {
+  stroke: rgba(255,255,255,.84);
+  stroke-width: 1.35;
+}
 
 .practice-tiles {
   display: grid;
@@ -360,15 +389,17 @@ p { color: var(--muted); }
 
 .method {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   margin-top: 34px;
+  overflow: hidden;
 }
 .step {
   padding: 20px 15px;
   border-right: 1px solid var(--line);
   min-height: 176px;
+  min-width: 0;
 }
 .step:last-child { border-right: 0; }
 .step span {
@@ -389,7 +420,7 @@ p { color: var(--muted); }
   margin-top: 14px;
   color: var(--bronze);
 }
-.step strong { display: block; margin: 14px 0 8px; color: var(--navy); }
+.step strong { display: block; margin: 14px 0 8px; color: var(--navy); overflow-wrap: anywhere; }
 .step p { font-size: .82rem; line-height: 1.45; }
 
 .capability-band {
@@ -442,14 +473,16 @@ p { color: var(--muted); }
 .support-points .site-icon { color: var(--gold); }
 .timeline-row {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   border-top: 1px solid var(--white-line);
   border-bottom: 1px solid var(--white-line);
+  overflow: hidden;
 }
 .timeline-row div {
   min-height: 120px;
   border-right: 1px solid var(--white-line);
   padding: 18px 12px;
+  min-width: 0;
 }
 .timeline-row div:last-child { border-right: 0; }
 .timeline-row span {
@@ -473,6 +506,7 @@ p { color: var(--muted); }
   margin-top: 12px;
   color: white;
   font-size: .82rem;
+  overflow-wrap: anywhere;
 }
 .partner-grid {
   display: grid;
@@ -579,6 +613,13 @@ p { color: var(--muted); }
   padding: 18px;
   border-right: 1px solid var(--white-line);
 }
+.discipline-board strong {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  font-size: .72rem;
+  color: white;
+}
 .diagram-tile {
   aspect-ratio: 4 / 3;
   display: grid;
@@ -669,6 +710,39 @@ p { color: var(--muted); }
   font-weight: 900;
 }
 .deliverables-row .site-icon { color: var(--bronze); }
+.doc-gallery {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+}
+.doc-gallery > div {
+  background: white;
+  border: 1px solid var(--line);
+  min-height: 128px;
+}
+.doc-gallery .diagram-tile {
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(7,26,42,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7,26,42,.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.doc-gallery .diagram-svg {
+  stroke: rgba(7,26,42,.7);
+}
+.doc-gallery span {
+  display: block;
+  padding: 9px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .58rem;
+  font-weight: 900;
+  text-align: center;
+  color: var(--navy);
+}
 .process-cards {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -703,6 +777,10 @@ p { color: var(--muted); }
   border: 1px solid var(--line);
   margin-top: 34px;
   background: white;
+}
+.project-quote .project-visual {
+  position: relative;
+  overflow: hidden;
 }
 .project-quote > div:not(.project-visual),
 .project-quote blockquote {
@@ -740,6 +818,85 @@ p { color: var(--muted); }
 .dark-visual .diagram-tile {
   background: rgba(255,255,255,.04);
   border-color: rgba(255,255,255,.16);
+}
+.visual-card-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 34px;
+  border: 1px solid var(--line);
+  border-right: 0;
+  background: white;
+}
+.visual-card-row > div {
+  padding: 0 0 24px;
+  border-right: 1px solid var(--line);
+}
+.visual-card-row .mini-photo {
+  min-height: 145px;
+  margin-bottom: 20px;
+}
+.visual-card-row h3,
+.visual-card-row p,
+.visual-card-row .text-link,
+.visual-card-row .site-icon {
+  margin-left: 22px;
+  margin-right: 22px;
+}
+.visual-card-row .site-icon { color: var(--bronze); }
+.mini-photo {
+  position: relative;
+  overflow: hidden;
+  background: url("assets/thrillhouzz-architecture-technology.png") center / cover no-repeat;
+}
+.mini-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(7,26,42,.05), rgba(7,26,42,.48));
+}
+.blueprint-feature {
+  display: grid;
+  grid-template-columns: .85fr 1.4fr;
+  margin-top: 34px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, var(--paper), rgba(248,245,239,.88)),
+    url("assets/thrillhouzz-architecture-technology.png") center right / cover no-repeat;
+}
+.blueprint-feature > div:first-child {
+  padding: 40px;
+}
+.blueprint-sheets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 28px;
+  background: rgba(255,255,255,.72);
+  border-left: 1px solid var(--line);
+}
+.blueprint-sheets > div {
+  background: white;
+  border: 1px solid var(--line);
+}
+.blueprint-sheets .diagram-tile {
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(7,26,42,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7,26,42,.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.blueprint-sheets .diagram-svg { stroke: rgba(7,26,42,.72); }
+.blueprint-sheets span {
+  display: block;
+  padding: 9px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .62rem;
+  font-weight: 900;
+  color: var(--navy);
 }
 .outcome-grid,
 .about-proof,
@@ -793,6 +950,65 @@ p { color: var(--muted); }
   border: 1px solid var(--line);
   background: white;
 }
+.missing-piece {
+  display: grid;
+  grid-template-columns: 1.25fr repeat(4, 1fr);
+  margin-top: 34px;
+  border: 1px solid var(--line);
+  background: white;
+}
+.missing-piece > div {
+  min-height: 210px;
+  padding: 26px;
+  border-right: 1px solid var(--line);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 9px;
+  background:
+    linear-gradient(rgba(255,255,255,.88), rgba(255,255,255,.7)),
+    url("assets/thrillhouzz-architecture-technology.png") center / cover no-repeat;
+}
+.missing-piece > div:first-child {
+  justify-items: start;
+  text-align: left;
+  background: white;
+}
+.missing-piece > div:last-child {
+  border-right: 0;
+  background:
+    linear-gradient(rgba(7,26,42,.72), rgba(7,26,42,.88)),
+    url("assets/thrillhouzz-architecture-technology.png") center / cover no-repeat;
+  color: white;
+}
+.missing-piece > div:last-child p { color: rgba(255,255,255,.75); }
+.leadership-board {
+  display: grid;
+  grid-template-columns: .8fr 1.6fr;
+  margin-top: 34px;
+  background: var(--navy);
+  color: white;
+  border: 1px solid rgba(255,255,255,.14);
+}
+.leadership-board > div:first-child {
+  padding: 42px;
+}
+.leadership-board p { color: rgba(255,255,255,.75); }
+.dark-grid {
+  margin-top: 0;
+  border: 0;
+  background: transparent;
+  grid-template-columns: repeat(4, 1fr);
+}
+.dark-grid div {
+  background: transparent;
+  color: white;
+  border-color: rgba(255,255,255,.14);
+}
+.dark-grid strong { color: white; }
+.dark-grid p { color: rgba(255,255,255,.68); }
+.dark-grid .site-icon { color: var(--gold); }
 .representation-strip div {
   min-height: 205px;
   padding: 28px;
@@ -835,6 +1051,44 @@ p { color: var(--muted); }
   font-weight: 900;
 }
 .method-panel .site-icon { display: block; color: var(--bronze); margin: 14px 0 10px; }
+.process-image-band {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 34px;
+  border: 1px solid var(--line);
+  border-right: 0;
+  background: white;
+}
+.process-image-band > div {
+  min-height: 232px;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+}
+.process-image-band span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  font-size: .68rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+.process-image-band .mini-photo {
+  min-height: 76px;
+  margin-bottom: 12px;
+}
+.process-image-band strong {
+  display: block;
+  color: var(--navy);
+  line-height: 1.15;
+}
+.process-image-band p {
+  font-size: .78rem;
+  margin-top: 8px;
+}
 .gallery-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -853,6 +1107,65 @@ p { color: var(--muted); }
   font-size: .68rem;
   font-weight: 900;
   color: var(--navy);
+}
+.device-panel {
+  display: grid;
+  grid-template-columns: .85fr 1fr .8fr;
+  gap: 0;
+  margin-top: 34px;
+  border: 1px solid var(--line);
+  background: white;
+}
+.device-mock {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(213,181,108,.18), transparent 32%),
+    linear-gradient(135deg, #081827, #0f2b3e);
+  padding: 28px;
+}
+.device-mock .diagram-svg {
+  stroke: rgba(255,255,255,.86);
+  max-width: 88%;
+}
+.device-panel > div:not(.device-mock),
+.device-panel blockquote {
+  padding: 32px;
+}
+.device-panel blockquote {
+  margin: 0;
+  border-left: 1px solid var(--line);
+  color: var(--bronze);
+  font-size: 1.12rem;
+  font-style: italic;
+}
+.start-mosaic {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 34px;
+}
+.start-mosaic > div {
+  min-height: 190px;
+  position: relative;
+  overflow: hidden;
+  background: url("assets/thrillhouzz-architecture-technology.png") center / cover no-repeat;
+}
+.start-mosaic > div:first-child,
+.start-mosaic > div:nth-child(4) {
+  grid-row: span 2;
+}
+.start-mosaic span {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 3;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .72rem;
+  font-weight: 900;
 }
 .project-filter {
   display: flex;
@@ -1038,13 +1351,38 @@ p { color: var(--muted); }
 .thumb-card .text-link { padding-bottom: 22px; }
 
 .route-hero {
-  min-height: 430px;
-  padding: 76px 0 44px;
+  min-height: 470px;
+  padding: 82px 0 50px;
   color: var(--navy);
   position: relative;
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(248,245,239,0.98) 0%, rgba(248,245,239,0.87) 39%, rgba(248,245,239,0.14) 62%, rgba(7,26,42,0.38) 100%),
+    url("assets/thrillhouzz-architecture-technology.png") center right / cover no-repeat;
+}
+.route-hero.hero-design,
+.route-hero.hero-estate,
+.route-hero.hero-capability {
+  min-height: 505px;
+}
+.route-hero.hero-design {
+  background:
+    linear-gradient(90deg, rgba(248,245,239,0.98) 0%, rgba(248,245,239,0.84) 40%, rgba(248,245,239,0.1) 64%, rgba(7,26,42,0.46) 100%),
+    url("assets/thrillhouzz-architecture-technology.png") center right / cover no-repeat;
+}
+.route-hero.hero-estate {
+  background:
+    linear-gradient(90deg, rgba(248,245,239,0.98) 0%, rgba(248,245,239,0.84) 39%, rgba(248,245,239,0.08) 63%, rgba(7,26,42,0.46) 100%),
+    url("assets/thrillhouzz-architecture-technology.png") center right / cover no-repeat;
+}
+.route-hero.hero-business {
+  background:
+    linear-gradient(90deg, rgba(248,245,239,0.98) 0%, rgba(248,245,239,0.88) 42%, rgba(248,245,239,0.18) 67%, rgba(7,26,42,0.4) 100%),
+    url("assets/thrillhouzz-architecture-technology.png") center right / cover no-repeat;
+}
+.route-hero.hero-capability {
+  background:
+    linear-gradient(90deg, rgba(248,245,239,0.98) 0%, rgba(248,245,239,0.82) 39%, rgba(248,245,239,0.1) 63%, rgba(7,26,42,0.5) 100%),
     url("assets/thrillhouzz-architecture-technology.png") center right / cover no-repeat;
 }
 .route-hero .wrap { position: relative; z-index: 2; }
@@ -1092,10 +1430,11 @@ p { color: var(--muted); }
 .service-strip div:last-child { border-right: 0; }
 .route-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
 }
 .sidebar {
+  display: none;
   border-left: 1px solid var(--line);
   padding-left: 26px;
   align-self: start;
@@ -1246,8 +1585,9 @@ p { color: var(--muted); }
   .nav.open .nav-links, .nav.open .nav-actions { display: grid; }
   .practice-tiles, .split, .model-comparison, .feature-row, .management-feature, .route-layout, .footer-grid, .grid.two, .grid.three, .project-card, .project-quote, .selected-grid, .geo-grid, .section-card { grid-template-columns: 1fr; }
   .capability-grid, .service-strip, .support-action-grid { grid-template-columns: repeat(3, 1fr); }
-  .question-grid, .method, .timeline-row, .partner-grid, .folio-row, .discipline-board, .deliverables-row, .process-cards, .mini-folio, .project-grid, .outcome-grid, .about-proof, .partner-matrix, .insight-grid, .intake-grid, .method-panel, .gallery-strip { grid-template-columns: repeat(2, 1fr); }
-  .assessment-board, .case-two, .case-shell { grid-template-columns: 1fr; }
+  .question-grid, .method, .timeline-row, .partner-grid, .folio-row, .discipline-board, .deliverables-row, .process-cards, .mini-folio, .project-grid, .outcome-grid, .about-proof, .partner-matrix, .insight-grid, .intake-grid, .method-panel, .gallery-strip, .visual-card-row, .doc-gallery, .process-image-band, .blueprint-sheets { grid-template-columns: repeat(2, 1fr); }
+  .assessment-board, .case-two, .case-shell, .blueprint-feature, .device-panel, .leadership-board, .missing-piece { grid-template-columns: 1fr; }
+  .start-mosaic { grid-template-columns: 1fr 1fr; }
   .case-nav { position: static; }
   .practice-tile { border-right: 0; border-bottom: 2px solid white; }
   .sidebar { position: static; border-left: 0; padding-left: 0; }
@@ -1264,10 +1604,11 @@ p { color: var(--muted); }
   .hero-inner, .route-hero { padding-top: 52px; padding-bottom: 44px; }
   h1 { font-size: 3rem; }
   h2 { font-size: 2.35rem; }
-  .blueprint-labels { display: none; }
+  .blueprint-labels, .hero-line-art { display: none; }
   .section { padding: 54px 0; }
-  .question-grid, .method, .timeline-row, .partner-grid, .folio-row, .discipline-board, .deliverables-row, .process-cards, .mini-folio, .capability-grid, .service-strip, .support-action-grid, .thumb-grid, .list, .project-grid, .outcome-grid, .about-proof, .partner-matrix, .insight-grid, .intake-grid, .method-panel, .gallery-strip, .representation-strip, .case-stats { grid-template-columns: 1fr; }
-  .assessment-board, .case-two, .case-shell { grid-template-columns: 1fr; }
+  .question-grid, .method, .timeline-row, .partner-grid, .folio-row, .discipline-board, .deliverables-row, .process-cards, .mini-folio, .capability-grid, .service-strip, .support-action-grid, .thumb-grid, .list, .project-grid, .outcome-grid, .about-proof, .partner-matrix, .insight-grid, .intake-grid, .method-panel, .gallery-strip, .representation-strip, .case-stats, .visual-card-row, .doc-gallery, .process-image-band, .blueprint-sheets, .start-mosaic { grid-template-columns: 1fr; }
+  .assessment-board, .case-two, .case-shell, .blueprint-feature, .device-panel, .leadership-board, .missing-piece { grid-template-columns: 1fr; }
+  .start-mosaic > div:first-child, .start-mosaic > div:nth-child(4) { grid-row: auto; }
   .copy-panel { padding: 34px 22px; }
   .button { width: 100%; }
 }

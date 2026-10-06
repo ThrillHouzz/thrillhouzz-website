@@ -530,8 +530,9 @@ function capCard([title, text]) {
 function routePage(page, path) {
   return `
     <div class="route-page">
-      <section class="route-hero">
+      <section class="route-hero ${heroClass(path)}">
         <div class="blueprint-labels">${(page.strip || []).slice(0,6).map(s => `<span>${s}</span>`).join("")}</div>
+        <div class="hero-line-art">${diagramFor(page.title + " " + page.strip.join(" "))}</div>
         <div class="wrap">
           <div class="eyebrow">${page.eyebrow}</div>
           <h1>${emphasis(page.title)}</h1>
@@ -548,10 +549,17 @@ function routePage(page, path) {
             ${page.form ? "" : `<div class="thumb-grid">${page.cards.map(([title, text, href]) => thumb(title, text, href)).join("")}</div>`}
             ${pageSpecific(path, page)}
           </article>
-          <aside class="sidebar"><div class="kicker">Related</div>${serviceLinks.map(([href, label]) => `<a class="side-link" href="${href}">${label}</a>`).join("")}</aside>
         </div>
       </section>
     </div>`;
+}
+
+function heroClass(path) {
+  if (/design|representation|trade/.test(path)) return "hero-design";
+  if (/estate/.test(path)) return "hero-estate";
+  if (/business|managed/.test(path)) return "hero-business";
+  if (/network|security|automation|infrastructure/.test(path)) return "hero-capability";
+  return "hero-general";
 }
 
 function pageSpecific(path, page) {
@@ -562,6 +570,7 @@ function pageSpecific(path, page) {
         <div class="dark-visual"><div class="diagram-tile">${diagramFor("network dashboard documentation")}</div><h3>Designed for Your Business</h3><p>Whether you are preparing support, professionalizing an informal setup, or planning a transition, the assessment gives leadership a clear operating picture.</p></div>
       </section>
       <section class="outcome-grid">${["Infrastructure Review", "Security Posture", "Endpoint & User Access", "Communications", "Documentation", "Roadmap"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Assessment category</p></div>`).join("")}</section>
+      ${blueprintFeature("Technology Assessment", "Understand before you change.", ["Asset inventory", "Ownership map", "Risk register", "Support roadmap"])}
     `;
   }
   if (path === "/estate-assessment-remediation/") {
@@ -571,6 +580,7 @@ function pageSpecific(path, page) {
         <div class="copy-panel compact"><div class="kicker">Existing System Remediation</div><h2>When the technology is already there but is not working together.</h2><p class="lead">We document what exists, separate symptoms from root causes, and build a staged path toward stability, simplicity, and long-term manageability.</p><ul class="check-list">${["Recover missing system knowledge", "Prioritize reliability and security issues", "Coordinate vendors and trades", "Prepare the home for ongoing management"].map(item => `<li>${item}</li>`).join("")}</ul></div>
       </section>
       <section class="outcome-grid">${["Network & Wi-Fi", "Security & Cameras", "Access & Entry", "Automation & Control", "Lighting", "Infrastructure Documentation"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Assessment focus</p></div>`).join("")}</section>
+      ${blueprintFeature("Remediation", "Stabilize without turning the home into a construction project.", ["Existing conditions", "Root cause review", "Vendor coordination", "Long-term management"])}
     `;
   }
   if (path === "/estate/" || path === "/estate-technology/") {
@@ -588,8 +598,9 @@ function pageSpecific(path, page) {
         ${["Proactive Monitoring", "Preventative Maintenance", "Vendor Coordination", "Complete Documentation"].map(item => `<div>${iconFor(item)}<strong>${item}</strong></div>`).join("")}
       </section>
       ${imageCopy("Our Approach", "Proactive. Personal. Accountable.", "We continuously monitor, maintain, and optimize your technology environment, coordinating with trusted trade partners and manufacturers so everything works together now and for years to come.", ["24/7 system monitoring", "Firmware and security updates", "Performance optimization", "Vendor and warranty management", "Dedicated client support"])}
+      <section class="visual-card-row">${["System Health & Reliability", "Ongoing Updates & Care", "Vendor Coordination", "Documentation & Continuity"].map(item => `<div><div class="mini-photo"><div class="tech-overlay">${diagramFor(item)}</div></div>${iconFor(item)}<h3>${item}</h3><p>${managementText(item)}</p><span class="text-link">Learn More</span></div>`).join("")}</section>
       <section class="section-card navy-card"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>Whether it is your primary residence, second home, or multiple estates, ThrillHouzz provides a unified management strategy, consistent standards, and a single knowledgeable team across your portfolio.</p></div><div class="mini-folio">${["Primary Residence", "Second Homes", "Private Estates", "Multi-Property Families"].map(item => `<span>${iconFor(item)}${item}</span>`).join("")}</div></section>
-      ${projectQuote("At Your Fingertips", "Visibility Without the Complexity.", "Access key system information, status updates, and support through a simple, secure interface when the production support workflow is connected.")}
+      ${devicePanel("At Your Fingertips", "Visibility Without the Complexity.", "Access key system information, status updates, and support through a simple, secure interface when the production support workflow is connected.")}
     `;
   }
   if (path === "/design-engineering/") {
@@ -601,11 +612,16 @@ function pageSpecific(path, page) {
       <section class="deliverables-row">
         ${["Plans & Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Designs", "Camera Coverage", "Cable Schedules", "IP Architecture", "Control Narratives", "Redlines"].map(item => `<span>${iconFor(item)}${item}</span>`).join("")}
       </section>
+      <section class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</section>
       <section class="section-card navy-card"><div><div class="kicker">Independent Design</div><h2>Continuous Representation.</h2><p>ThrillHouzz does not need to install the system we design. We can act as your independent technology partner from concept to final acceptance.</p></div><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></section>
+      ${processImageBand(["Design", "Bid", "Contractor Selection", "Construction", "Commissioning", "Acceptance"])}
+      ${projectQuote("Built for Extraordinary Places", "From Concept to Reality.", "Placeholder testimonial area reserved for approved real client proof.")}
     `;
   }
   if (path === "/owners-technology-representation/") {
     return `
+      <section class="missing-piece"><div><div class="kicker">The Missing Piece</div><h2>Who Represents Your Technology?</h2><p>Your architect represents the architecture. Your engineers represent their disciplines. Your GC manages construction. <strong>ThrillHouzz represents your technology.</strong></p></div>
+      ${[["Architect","Represents the architecture."],["Engineers","Represent their disciplines."],["General Contractor","Manages construction."],["ThrillHouzz","Represents your technology."]].map(([title,text]) => `<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</section>
       <section class="representation-strip">
         ${[
           ["Architect", "Represents the architecture."],
@@ -614,8 +630,10 @@ function pageSpecific(path, page) {
           ["ThrillHouzz", "Represents your technology."]
         ].map(([title, text]) => `<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}
       </section>
+      <section class="leadership-board"><div><div class="kicker">What We Do for You</div><h2>Technology Leadership for a Successful Outcome.</h2><p>We serve as your independent technology representative, advocating for your best interests and coordinating technical disciplines.</p><a class="button bronze" href="/start-a-project/">Explore Our Services</a></div><div class="outcome-grid dark-grid">${["Design Oversight", "Trade Coordination", "RFI & Submittal Review", "Schedule Support", "Budget Guidance", "Site Inspections", "Change Management", "Final Acceptance"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Owner advocacy</p></div>`).join("")}</div></section>
       <section class="outcome-grid">${["Design Oversight", "Trade Coordination", "RFI & Submittal Review", "Schedule Support", "Budget Guidance", "Site Inspections", "Change Management", "Final Acceptance"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Owner advocacy</p></div>`).join("")}</section>
       <section class="process-cards">${["Discovery & Vision", "Design & Planning", "Bid & Contractor Selection", "Construction Support", "Commissioning & Training", "Ongoing Support"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(item)}<strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</section>
+      ${blueprintFeature("Independent, Client-Focused", "We Work for You.", ["Objective design input", "Trade alignment", "Budget awareness", "Final acceptance"])}
       ${projectQuote("Project Example", "Estate Technology Representation", "Placeholder project example only, showing where approved work can later describe scope, design intent, budget alignment, and successful commissioning.")}
     `;
   }
@@ -646,6 +664,7 @@ function pageSpecific(path, page) {
   if (path === "/our-approach/") {
     return `
       <section class="method-panel">${method.map((m, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span>${iconFor(m[0])}<strong>${m[0]}</strong><p>${m[1]}</p></div>`).join("")}</section>
+      ${processImageBand(["Discover", "Design", "Engineer", "Implement", "Commission", "Document", "Manage"])}
       <section class="section-card navy-card"><div><div class="kicker">More Than Installation</div><h2>A Better Process.</h2><p>Our approach reduces risk, improves communication, and ensures your technology works together now and for the future.</p></div><a class="button bronze" href="/start-a-project/">See How We Begin</a></section>
     `;
   }
@@ -658,7 +677,7 @@ function pageSpecific(path, page) {
           ["Design & Engineering", "Architecture, construction, documentation, coordination, and representation.", "/design-engineering/"]
         ].map(([title, text, href]) => `<a href="${href}">${iconFor(title)}<strong>${title}</strong><p>${text}</p><span class="text-link">Explore path</span></a>`).join("")}
       </section>
-      <section class="gallery-strip">${["Business environment", "Estate environment", "Design documents"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</section>
+      <section class="start-mosaic">${["Business Discovery", "Residence / Estate", "Design & Engineering", "Assessment", "Support", "Next Step"].map(item => `<div><div class="tech-overlay">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</section>
     `;
   }
   if (path === "/client-support/") {
@@ -687,6 +706,7 @@ function pageSpecific(path, page) {
   if (path === "/network-wireless/" || path === "/security-access/" || path === "/automation-lighting-experience/" || path === "/infrastructure-systems-engineering/") {
     return `
       ${imageCopy("Engineered for Performance", page.heading, page.copy, page.strip)}
+      ${blueprintFeature(page.eyebrow, page.title, page.strip)}
       <section class="discipline-board">
         ${page.strip.map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><strong>${item}</strong></div>`).join("")}
       </section>
@@ -700,7 +720,28 @@ function imageCopy(kicker, title, text, bullets) {
 }
 
 function projectQuote(kicker, title, text) {
-  return `<section class="project-quote"><div class="project-visual"></div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>Placeholder testimonial area reserved for approved real client proof.</blockquote></section>`;
+  return `<section class="project-quote"><div class="project-visual"><div class="tech-overlay">${diagramFor(title)}</div></div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>Placeholder testimonial area reserved for approved real client proof.</blockquote></section>`;
+}
+
+function blueprintFeature(kicker, title, items) {
+  return `<section class="blueprint-feature"><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>Rendering-style placeholder panel for diagrams, plans, coverage, and system documentation.</p><a class="button secondary" href="/start-a-project/">Start a Conversation</a></div><div class="blueprint-sheets">${items.slice(0, 6).map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div></section>`;
+}
+
+function processImageBand(items) {
+  return `<section class="process-image-band">${items.map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><div class="mini-photo"><div class="tech-overlay">${diagramFor(item)}</div></div><strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</section>`;
+}
+
+function devicePanel(kicker, title, text) {
+  return `<section class="device-panel"><div class="device-mock">${diagramFor("dashboard support visibility")}</div><div><div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>Placeholder testimonial area reserved for approved real client proof.</blockquote></section>`;
+}
+
+function managementText(item) {
+  return {
+    "System Health & Reliability": "Continuous monitoring, alerts, and preventative maintenance to keep systems performing.",
+    "Ongoing Updates & Care": "Firmware, software, and security updates managed with minimal disruption.",
+    "Vendor Coordination": "Coordination with trusted trades so you do not have to diagnose ownership.",
+    "Documentation & Continuity": "Clear records for owners, staff, property managers, and future service."
+  }[item] || "Ongoing stewardship for complex environments.";
 }
 
 function partnerStepText(item) {
