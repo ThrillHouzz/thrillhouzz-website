@@ -569,6 +569,38 @@ p { color: var(--muted); }
 .folio-row div:last-child { border-right: 0; }
 .folio-row .site-icon { color: var(--bronze); }
 .specific-row { margin-top: 34px; }
+.design-first-band {
+  min-height: 275px;
+  display: grid;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(248,245,239,.98) 0%, rgba(248,245,239,.86) 34%, rgba(248,245,239,.22) 58%, rgba(248,245,239,.02) 100%),
+    var(--photo) center right / cover no-repeat;
+}
+.design-first-band .wrap {
+  width: min(1380px, 100%);
+  padding: 34px 44px;
+}
+.design-first-band h2 {
+  max-width: 520px;
+  font-size: clamp(2.4rem, 4.2vw, 4.8rem);
+  line-height: .98;
+  letter-spacing: 0;
+  margin: 10px 0 14px;
+}
+.design-first-band p {
+  max-width: 520px;
+  color: #304251;
+  font-size: 1.05rem;
+}
+.design-render-order {
+  padding-top: 0;
+}
+.design-render-order .discipline-board {
+  margin-top: 0;
+}
 .section-card {
   margin-top: 34px;
   padding: 34px;

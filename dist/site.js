@@ -1,7 +1,8 @@
-const bg = 'url("assets/thrillhouzz-architecture-technology.png")';
-const estateMountain = 'url("assets/estate-mountain.png")';
-const estateOcean = 'url("assets/estate-ocean.png")';
-const estateLake = 'url("assets/estate-lake.png")';
+const bg = "url('/assets/thrillhouzz-architecture-technology.png')";
+const estateMountain = "url('/assets/estate-mountain.png')";
+const estateOcean = "url('/assets/estate-ocean.png')";
+const estateLake = "url('/assets/estate-lake.png')";
+const designFirstTabletop = "url('/assets/design-first-heatmap-tabletop.png')";
 
 const method = [
   ["Discover", "Understand the client, environment, goals, and objectives."],
@@ -553,6 +554,7 @@ function capCard([title, text]) {
 }
 
 function routePage(page, path) {
+  if (path === "/design-engineering/") return designEngineeringPage(page, path);
   return `
     <div class="route-page">
       <section class="route-hero ${heroClass(path)}">
@@ -577,6 +579,66 @@ function routePage(page, path) {
         </div>
       </section>
     </div>`;
+}
+
+function designEngineeringPage(page, path) {
+  return `
+    <div class="route-page design-functional-page">
+      <section class="route-hero ${heroClass(path)}">
+        <div class="blueprint-labels">${(page.strip || []).slice(0,6).map(s => `<span>${s}</span>`).join("")}</div>
+        <div class="hero-line-art">${diagramFor(page.title + " " + page.strip.join(" "))}</div>
+        <div class="wrap">
+          <div class="eyebrow">${page.eyebrow}</div>
+          <h1>${emphasis(page.title)}</h1>
+          <p>${page.intro}</p>
+          <div class="route-tags">${page.tags.map(t => `<span>${t}</span>`).join("")}</div>
+          <div class="hero-ctas"><a class="button" href="/start-a-project/">Start a Design Project</a><a class="button secondary" href="/our-approach/">Explore Our Process</a></div>
+        </div>
+      </section>
+      ${designFirstBand()}
+      <section class="section light design-render-order">
+        <div class="wrap route-layout">
+          <article>
+            ${designEngineeringSpecific()}
+          </article>
+        </div>
+      </section>
+    </div>`;
+}
+
+function designFirstBand() {
+  return `<section class="design-first-band" style="--photo:${designFirstTabletop}">
+    <div class="wrap">
+      <div class="kicker">Design First.</div>
+      <h2>Design First.<br>Products Second.</h2>
+      <p>The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.</p>
+    </div>
+  </section>`;
+}
+
+function designEngineeringSpecific() {
+  return `
+    <section class="discipline-board design-doc-board">
+      ${[
+        ["Network & Wireless Engineering", "Architecture, topology, RF planning, coverage, redundancy, and infrastructure."],
+        ["Security Engineering", "Surveillance, camera coverage, intrusion, access control, gates, intercom, and monitoring."],
+        ["Infrastructure Design", "Structured cabling, fiber, pathways, racks, equipment rooms, power, and coordination."],
+        ["Automation & Controls", "Lighting, shading, environmental integration, control logic, and programming."],
+        ["Audio & Video", "System architecture, speaker layouts, amplification, video, and distribution."],
+        ["Programming & Commissioning", "Integration logic, programming, testing, performance verification, and acceptance."]
+      ].map(([title, text]) => designDisciplineCard(title, text)).join("")}
+    </section>
+    <section class="deliverables-showcase">
+      <div><div class="kicker">Tangible Deliverables</div><h2>Detailed Documentation for a Successful Build.</h2><p>We deliver clear, professional documentation that aligns your team, reduces risk and ensures a seamless installation and long-term operation.</p></div>
+      <div class="deliverables-row docs-dark">
+        ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => docTile(item, "dark")).join("")}
+      </div>
+    </section>
+    <section class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => docTile(item, "light")).join("")}</section>
+    <section class="section-card navy-card"><div><div class="kicker">Independent Design</div><h2>Continuous Representation.</h2><p>ThrillHouzz does not need to install the system we design. We can act as your independent technology partner from concept to final acceptance.</p></div><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></section>
+    ${processImageBand(["Design", "Bid", "Contractor Selection", "Construction", "Commissioning", "Acceptance"])}
+    ${projectQuote("Built for Extraordinary Places", "From Concept to Reality.", "A coordinated design engagement for a complex private residence, aligning architecture, infrastructure, controls, security, audio/video, and documentation before installation began.", estateOcean, "design")}
+  `;
 }
 
 function heroClass(path) {
@@ -630,7 +692,7 @@ function pageSpecific(path, page) {
   }
   if (path === "/design-engineering/") {
     return `
-      ${imageCopy("Design First", "Design First. Products Second.", "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.", ["Network and wireless engineering", "Security engineering", "Infrastructure design", "Automation and controls", "Programming and commissioning"], estateMountain)}
+      ${imageCopy("Design First", "Design First. Products Second.", "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future.", ["Network and wireless engineering", "Security engineering", "Infrastructure design", "Automation and controls", "Programming and commissioning"], designFirstTabletop)}
       <section class="discipline-board design-doc-board">
         ${[
           ["Network & Wireless Engineering", "Architecture, topology, RF planning, coverage, redundancy, and infrastructure."],
