@@ -553,7 +553,6 @@ function capCard([title, text]) {
 }
 
 function routePage(page, path) {
-  if (path === "/design-engineering/") return designRenderingPage();
   return `
     <div class="route-page">
       <section class="route-hero ${heroClass(path)}">
@@ -577,24 +576,6 @@ function routePage(page, path) {
           </article>
         </div>
       </section>
-    </div>`;
-}
-
-function designRenderingPage() {
-  return `
-    <div class="approved-design-page" aria-label="Design & Engineering approved rendering">
-      <img src="/assets/design-engineering-approved-rendering.jpg" alt="Approved ThrillHouzz Design & Engineering page rendering">
-      <nav class="approved-hotspots" aria-label="Design page links">
-        <a href="/" aria-label="ThrillHouzz home"></a>
-        <a href="/business/" aria-label="Business"></a>
-        <a href="/estate/" aria-label="Estate"></a>
-        <a href="/design-engineering/" aria-label="Design & Engineering"></a>
-        <a href="/projects/" aria-label="Projects"></a>
-        <a href="/insights/" aria-label="Insights"></a>
-        <a href="/about/" aria-label="About"></a>
-        <a href="/client-support/" aria-label="Client Support"></a>
-        <a href="/start-a-project/" aria-label="Start a Project"></a>
-      </nav>
     </div>`;
 }
 
@@ -889,7 +870,6 @@ function form(type) {
 
 function render() {
   const path = normalize(location.pathname);
-  document.body.dataset.route = path.replace(/^\/|\/$/g, "") || "home";
   let html;
   const page = pages[path];
   if (path === "/") html = home();
