@@ -638,7 +638,14 @@ function designEngineeringSpecific() {
     </section>
     <section class="design-representation">
       <div class="representation-intro"><div class="kicker">Independent Design. Continuous Representation.</div><p>ThrillHouzz does not need to install the system we design. We act as your independent technology partner, representing your interests through every phase, from concept to construction to final acceptance.</p><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></div>
-      <div class="design-process">${["Design", "Bid", "Contractor Selection", "Construction", "Commissioning", "Acceptance"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><div class="mini-photo" style="--photo:${i % 2 ? designFirstTabletop : estateMountain}">${diagramFor(item)}</div><strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</div>
+      <div class="design-process">${[
+        ["Design", "Define needs, develop plans and specifications.", estateMountain],
+        ["Bid", "Prepare bid packages and evaluate proposals.", designFirstTabletop],
+        ["Contractor Selection", "Support selection and scope clarification.", estateOcean],
+        ["Construction", "Coordinate trades and protect design intent.", estateLake],
+        ["Commissioning", "Verify installation, testing, and performance.", bg],
+        ["Acceptance", "Confirm documentation and a successful handover.", designFirstTabletop]
+      ].map(([item, text, photo], i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><div class="mini-photo" style="--photo:${photo}">${diagramFor(item)}</div><strong>${item}</strong><p>${text}</p></div>`).join("")}</div>
     </section>
     <section class="design-closing"><div class="closing-photo" style="--photo:${estateMountain}"></div><div class="closing-copy"><div class="kicker">Built for Extraordinary Places</div><h2>From Concept to Reality.</h2><p>We collaborate with homeowners, architects, builders, designers, and trade partners to create intelligent, reliable, and beautifully integrated technology environments.</p><a class="button secondary" href="/start-a-project/">Start a Design Project</a></div><blockquote>Independent expertise from first concept through final acceptance.<cite>Design & Engineering</cite></blockquote></section>
   `;

@@ -1744,9 +1744,9 @@ p { color: var(--muted); }
 .design-functional-page .route-hero::after { display: none; }
 .design-functional-page .route-hero .wrap { width: min(1320px, calc(100% - 72px)); }
 .design-functional-page .route-hero h1 {
-  max-width: 590px;
+  max-width: 720px;
   margin: 15px 0 13px;
-  font-size: 3.35rem;
+  font-size: 3.05rem;
   line-height: 1.02;
   letter-spacing: 0;
 }
@@ -1795,6 +1795,7 @@ p { color: var(--muted); }
 .design-functional-page .representation-intro .kicker { color: white; line-height: 1.55; }
 .design-functional-page .representation-intro p { margin: 16px 0; color: rgba(255,255,255,.77); font-size: .87rem; line-height: 1.48; }
 .design-functional-page .representation-intro .button { font-size: .58rem; min-height: 38px; padding: 8px 10px; }
+.design-functional-page .representation-intro .button.bronze { color: #e6c47a; background: transparent; }
 .design-functional-page .design-process { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); padding: 22px max(28px, calc((100vw - 1320px) / 2)) 18px 18px; }
 .design-functional-page .design-process > div { padding: 2px 8px; border-right: 1px solid var(--line); }
 .design-functional-page .design-process > div:last-child { border: 0; }
