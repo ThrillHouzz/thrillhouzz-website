@@ -585,8 +585,7 @@ function designEngineeringPage(page, path) {
   return `
     <div class="route-page design-functional-page">
       <section class="route-hero ${heroClass(path)}">
-        <div class="blueprint-labels">${(page.strip || []).slice(0,6).map(s => `<span>${s}</span>`).join("")}</div>
-        <div class="hero-line-art">${diagramFor(page.title + " " + page.strip.join(" "))}</div>
+        <div class="blueprint-labels">${["Network Design", "Lighting Control", "Camera Coverage", "Automation", "Audio / Video", "Infrastructure"].map(s => `<span>${s}</span>`).join("")}</div>
         <div class="wrap">
           <div class="eyebrow">${page.eyebrow}</div>
           <h1>${emphasis(page.title)}</h1>
@@ -618,27 +617,49 @@ function designFirstBand() {
 
 function designEngineeringSpecific() {
   return `
-    <section class="discipline-board design-doc-board">
+    <section class="design-disciplines" aria-labelledby="design-disciplines-title">
+      <div class="kicker" id="design-disciplines-title">Our Engineering Disciplines</div>
+      <div class="discipline-board design-doc-board">
       ${[
-        ["Network & Wireless Engineering", "Architecture, topology, RF planning, coverage, redundancy, and infrastructure."],
-        ["Security Engineering", "Surveillance, camera coverage, intrusion, access control, gates, intercom, and monitoring."],
-        ["Infrastructure Design", "Structured cabling, fiber, pathways, racks, equipment rooms, power, and coordination."],
-        ["Automation & Controls", "Lighting, shading, environmental integration, control logic, and programming."],
-        ["Audio & Video", "System architecture, speaker layouts, amplification, video, and distribution."],
-        ["Programming & Commissioning", "Integration logic, programming, testing, performance verification, and acceptance."]
-      ].map(([title, text]) => designDisciplineCard(title, text)).join("")}
-    </section>
-    <section class="deliverables-showcase">
-      <div><div class="kicker">Tangible Deliverables</div><h2>Detailed Documentation for a Successful Build.</h2><p>We deliver clear, professional documentation that aligns your team, reduces risk and ensures a seamless installation and long-term operation.</p></div>
-      <div class="deliverables-row docs-dark">
-        ${["Wireless Design", "Camera Coverage", "Rack Elevations", "Control Systems", "Audio Layouts", "System Integration"].map(item => docTile(item, "dark")).join("")}
+        ["Network & Wireless Engineering", "Architecture, topology, RF planning, coverage, redundancy, and infrastructure.", "Wireless Design"],
+        ["Security Engineering", "Surveillance, camera coverage, intrusion, access control, gates, intercom, and monitoring.", "Camera Coverage"],
+        ["Infrastructure Design", "Structured cabling, fiber, pathways, racks, equipment rooms, power, and coordination.", "Rack Elevations"],
+        ["Automation & Controls", "Lighting, shading, environmental integration, control logic, and programming.", "Control Systems"],
+        ["Audio & Video", "System architecture, speaker layouts, amplification, video, and distribution.", "Audio Layouts"],
+        ["Programming & Commissioning", "Integration logic, programming, testing, performance verification, and acceptance.", "System Integration"]
+      ].map(([title, text, graphic]) => `<div class="discipline-cell">${iconFor(title)}<h3>${title}</h3><p>${text}</p><div class="discipline-sample">${diagramFor(graphic)}</div><span class="sample-label">${graphic}</span></div>`).join("")}
       </div>
     </section>
-    <section class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => docTile(item, "light")).join("")}</section>
-    <section class="section-card navy-card"><div><div class="kicker">Independent Design</div><h2>Continuous Representation.</h2><p>ThrillHouzz does not need to install the system we design. We can act as your independent technology partner from concept to final acceptance.</p></div><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></section>
-    ${processImageBand(["Design", "Bid", "Contractor Selection", "Construction", "Commissioning", "Acceptance"])}
-    ${projectQuote("Built for Extraordinary Places", "From Concept to Reality.", "A coordinated design engagement for a complex private residence, aligning architecture, infrastructure, controls, security, audio/video, and documentation before installation began.", estateOcean, "design")}
+    <section class="design-deliverables" aria-labelledby="design-deliverables-title">
+      <div class="kicker">Tangible Deliverables</div>
+      <h2 id="design-deliverables-title">Detailed Documentation for a Successful Build.</h2>
+      <p>We deliver clear, professional documentation that aligns your team, reduces risk, and supports installation and long-term operation.</p>
+      <div class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div class="system-doc light">${designDocumentGraphic(item)}<span>${item}</span></div>`).join("")}</div>
+    </section>
+    <section class="design-representation">
+      <div class="representation-intro"><div class="kicker">Independent Design. Continuous Representation.</div><p>ThrillHouzz does not need to install the system we design. We act as your independent technology partner, representing your interests through every phase, from concept to construction to final acceptance.</p><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></div>
+      <div class="design-process">${["Design", "Bid", "Contractor Selection", "Construction", "Commissioning", "Acceptance"].map((item, i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><div class="mini-photo" style="--photo:${i % 2 ? designFirstTabletop : estateMountain}">${diagramFor(item)}</div><strong>${item}</strong><p>${partnerStepText(item)}</p></div>`).join("")}</div>
+    </section>
+    <section class="design-closing"><div class="closing-photo" style="--photo:${estateMountain}"></div><div class="closing-copy"><div class="kicker">Built for Extraordinary Places</div><h2>From Concept to Reality.</h2><p>We collaborate with homeowners, architects, builders, designers, and trade partners to create intelligent, reliable, and beautifully integrated technology environments.</p><a class="button secondary" href="/start-a-project/">Start a Design Project</a></div><blockquote>Independent expertise from first concept through final acceptance.<cite>Design & Engineering</cite></blockquote></section>
   `;
+}
+
+function designDocumentGraphic(label) {
+  const floor = '<rect x="12" y="12" width="116" height="84"/><path d="M12 44h116M48 12v84M88 44v52M12 70h76M48 30h28M108 62h20"/>';
+  const table = '<rect x="10" y="14" width="120" height="82"/><path d="M10 32h120M10 48h120M10 64h120M10 80h120M45 14v82M94 14v82"/>';
+  const shapes = {
+    'Floor Plans': floor + '<path class="accent" d="M47 44v14m40 12v13"/>',
+    'Riser Diagrams': '<path d="M70 8v88M24 22h92M24 48h92M24 74h92M34 22v18h72V22M44 48v17h52V48"/><circle cx="70" cy="22" r="5"/><circle cx="70" cy="48" r="5"/><circle cx="70" cy="74" r="5"/>',
+    'Device Schedules': table + '<path class="accent" d="M18 40h18M18 56h18M18 72h18"/>',
+    'Rack Elevations': '<rect x="42" y="8" width="56" height="92"/><path d="M49 22h42M49 35h42M49 48h42M49 61h42M49 74h42M49 87h42"/><circle cx="54" cy="28" r="2"/><circle cx="54" cy="54" r="2"/><circle cx="54" cy="80" r="2"/><path class="accent" d="M88 28c30 12 30 40 0 51"/>',
+    'Wireless Heatmaps': floor + '<circle class="heat-one" cx="55" cy="50" r="30"/><circle class="heat-two" cx="55" cy="50" r="16"/><circle class="heat-one" cx="100" cy="72" r="24"/><circle class="heat-two" cx="100" cy="72" r="12"/>',
+    'Camera Coverage': floor + '<path class="coverage" d="M24 25l48 20-48 22ZM112 32L76 58l36 20Z"/><circle cx="24" cy="25" r="4"/><circle cx="112" cy="32" r="4"/>',
+    'Cable Schedules': table + '<path class="accent" d="M17 40h20m18 0h30M17 56h20m18 0h30M17 72h20m18 0h30"/>',
+    'Control Narratives': '<rect x="12" y="12" width="116" height="84"/><path d="M25 27h56M25 43h37M25 59h43M25 75h55"/><circle cx="104" cy="42" r="10"/><path class="accent" d="M96 42h16M104 34v16"/>',
+    'Redlines': floor + '<path class="redline" d="M30 70l21-15 17 9 31-29M85 28l14 7-4 14"/>',
+    'Commissioning Reports': '<rect x="18" y="10" width="104" height="88"/><path d="M32 25h54M32 42h54M32 59h54M32 76h54"/><path class="accent" d="M95 38l5 5 11-12M95 55l5 5 11-12M95 72l5 5 11-12"/>'
+  };
+  return `<svg class="design-document-svg" viewBox="0 0 140 108" aria-hidden="true">${shapes[label]}</svg>`;
 }
 
 function heroClass(path) {

@@ -1732,3 +1732,109 @@ p { color: var(--muted); }
   .copy-panel { padding: 34px 22px; }
   .button { width: 100%; }
 }
+
+/* Design & Engineering follows the approved architectural rendering. */
+.design-functional-page .route-hero.hero-design {
+  min-height: 465px;
+  padding: 52px 0 38px;
+  background:
+    linear-gradient(90deg, rgba(248,245,239,.91) 0%, rgba(248,245,239,.72) 28%, rgba(248,245,239,.08) 50%, rgba(7,26,42,.1) 100%),
+    url("assets/design-hero-wireframe.png") center 54% / cover no-repeat;
+}
+.design-functional-page .route-hero::after { display: none; }
+.design-functional-page .route-hero .wrap { width: min(1320px, calc(100% - 72px)); }
+.design-functional-page .route-hero h1 {
+  max-width: 590px;
+  margin: 15px 0 13px;
+  font-size: 3.35rem;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+.design-functional-page .route-hero p {
+  max-width: 430px;
+  margin-bottom: 13px;
+  font-size: 1rem;
+  line-height: 1.38;
+}
+.design-functional-page .route-tags { max-width: 510px; gap: 5px 10px; margin: 12px 0 18px; font-size: .63rem; }
+.design-functional-page .route-tags span { gap: 0; }
+.design-functional-page .route-tags span:not(:last-child)::after { content: "•"; margin-left: 10px; }
+.design-functional-page .blueprint-labels { top: 72px; right: 28px; gap: 24px; font-size: .58rem; }
+.design-functional-page .design-first-band { min-height: 245px; }
+.design-functional-page .design-first-band .wrap { width: min(1320px, calc(100% - 72px)); padding: 24px 0; }
+.design-functional-page .design-first-band h2 { max-width: 470px; margin: 10px 0 8px; font-size: 2.75rem; line-height: .97; }
+.design-functional-page .design-first-band p { max-width: 460px; font-size: .96rem; line-height: 1.4; }
+.design-functional-page .design-render-order { padding: 0; background: #fff; }
+.design-functional-page .design-render-order > .wrap { width: 100%; max-width: none; }
+.design-functional-page .design-disciplines { background: var(--navy); color: white; padding: 26px max(28px, calc((100vw - 1320px) / 2)) 18px; }
+.design-functional-page .design-disciplines .kicker { color: white; margin-bottom: 10px; }
+.design-functional-page .design-disciplines .discipline-board { border: 0; margin: 0; background: transparent; }
+.design-functional-page .design-doc-board .discipline-cell { display: flex; flex-direction: column; padding: 8px 13px 0; }
+.design-functional-page .design-doc-board .discipline-cell:first-child { padding-left: 0; }
+.design-functional-page .design-doc-board .discipline-cell:last-child { padding-right: 0; border-right: 0; }
+.design-functional-page .discipline-cell > .site-icon { width: 28px; height: 28px; color: #e7edf0; }
+.design-functional-page .design-doc-board h3 { min-height: 38px; margin: 8px 0 7px; font-size: .93rem; letter-spacing: 0; }
+.design-functional-page .design-doc-board p { min-height: 83px; font-size: .75rem; line-height: 1.38; }
+.design-functional-page .discipline-sample { margin-top: auto; height: 100px; overflow: hidden; border: 1px solid rgba(255,255,255,.45); background: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px), #152b3b; background-size: 18px 18px; }
+.design-functional-page .discipline-sample .diagram-svg { width: 100%; height: 100%; padding: 4px; }
+.design-functional-page .sample-label { padding: 8px 0 2px; color: white; text-align: center; font-size: .61rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.design-functional-page .design-deliverables { padding: 26px max(28px, calc((100vw - 1320px) / 2)) 27px; background: #fbfaf7; }
+.design-functional-page .design-deliverables h2 { margin: 8px 0 5px; font-size: 2rem; letter-spacing: 0; }
+.design-functional-page .design-deliverables > p { margin: 0; font-size: .9rem; }
+.design-functional-page .doc-gallery { margin-top: 18px; border: 0; gap: 8px; }
+.design-functional-page .system-doc.light { min-height: 136px; border: 1px solid #d7dce0; background: white; }
+.design-functional-page .design-document-svg { width: 100%; height: 92px; padding: 7px; fill: none; stroke: #526474; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; background: linear-gradient(rgba(7,26,42,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,26,42,.045) 1px, transparent 1px); background-size: 14px 14px; }
+.design-functional-page .design-document-svg .accent { stroke: #ba985d; stroke-width: 2.2; }
+.design-functional-page .design-document-svg .redline { stroke: #b75d52; stroke-width: 2.4; }
+.design-functional-page .design-document-svg .heat-one { fill: rgba(231,189,91,.18); stroke: rgba(188,143,60,.7); }
+.design-functional-page .design-document-svg .heat-two { fill: rgba(210,96,71,.25); stroke: #c36951; }
+.design-functional-page .design-document-svg .coverage { fill: rgba(192,146,68,.15); stroke: #b18d54; }
+.design-functional-page .system-doc.light span { min-height: 42px; padding: 6px 3px; font-size: .56rem; letter-spacing: .03em; }
+.design-functional-page .design-representation { display: grid; grid-template-columns: 28% 72%; background: #f1f1ee; }
+.design-functional-page .representation-intro { padding: 28px 28px 28px max(28px, calc((100vw - 1320px) / 2)); background: var(--navy); color: white; }
+.design-functional-page .representation-intro .kicker { color: white; line-height: 1.55; }
+.design-functional-page .representation-intro p { margin: 16px 0; color: rgba(255,255,255,.77); font-size: .87rem; line-height: 1.48; }
+.design-functional-page .representation-intro .button { font-size: .58rem; min-height: 38px; padding: 8px 10px; }
+.design-functional-page .design-process { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); padding: 22px max(28px, calc((100vw - 1320px) / 2)) 18px 18px; }
+.design-functional-page .design-process > div { padding: 2px 8px; border-right: 1px solid var(--line); }
+.design-functional-page .design-process > div:last-child { border: 0; }
+.design-functional-page .design-process span { display: inline-grid; place-items: center; width: 25px; height: 25px; margin-bottom: 4px; border-radius: 50%; background: var(--navy); color: white; font-size: .6rem; font-weight: 800; }
+.design-functional-page .design-process .mini-photo { height: 75px; overflow: hidden; background: var(--photo) center / cover no-repeat; }
+.design-functional-page .design-process .mini-photo .diagram-svg { width: 100%; height: 100%; padding: 10px; background: rgba(7,26,42,.15); }
+.design-functional-page .design-process strong { display: block; margin: 6px 0 4px; font-size: .75rem; line-height: 1.2; }
+.design-functional-page .design-process p { margin: 0; font-size: .69rem; line-height: 1.35; }
+.design-functional-page .design-closing { display: grid; grid-template-columns: 35% 40% 25%; min-height: 205px; background: #fbfaf7; }
+.design-functional-page .closing-photo { background: var(--photo) center / cover no-repeat; }
+.design-functional-page .closing-copy { padding: 26px 30px; }
+.design-functional-page .closing-copy h2 { margin: 8px 0; font-size: 2rem; letter-spacing: 0; }
+.design-functional-page .closing-copy p { font-size: .88rem; line-height: 1.45; }
+.design-functional-page .design-closing blockquote { margin: 25px 0; padding: 14px 24px; border-left: 1px solid var(--line); color: #7b674b; font-family: Georgia, serif; font-size: 1.03rem; font-style: italic; line-height: 1.4; }
+.design-functional-page .design-closing cite { display: block; margin-top: 14px; color: var(--navy); font: 700 .58rem Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: .1em; }
+
+@media (max-width: 1000px) {
+  .design-functional-page .design-doc-board { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .design-functional-page .design-doc-board .discipline-cell { padding: 14px; }
+  .design-functional-page .doc-gallery { grid-template-columns: repeat(5,minmax(0,1fr)); }
+  .design-functional-page .design-representation { grid-template-columns: 1fr; }
+  .design-functional-page .design-process { padding: 22px 28px; }
+  .design-functional-page .design-closing { grid-template-columns: 40% 60%; }
+  .design-functional-page .design-closing blockquote { grid-column: 1 / -1; margin: 0; }
+}
+@media (max-width: 640px) {
+  .design-functional-page .route-hero.hero-design { min-height: 590px; padding: 34px 0; background-position: 61% center; background-image: linear-gradient(180deg, rgba(248,245,239,.96) 0%, rgba(248,245,239,.85) 45%, rgba(248,245,239,.05) 100%), url("assets/design-hero-wireframe.png"); }
+  .design-functional-page .route-hero .wrap, .design-functional-page .design-first-band .wrap { width: calc(100% - 36px); }
+  .design-functional-page .route-hero h1 { font-size: 2.6rem; max-width: 390px; }
+  .design-functional-page .route-hero p { max-width: 360px; }
+  .design-functional-page .route-tags { font-size: .58rem; }
+  .design-functional-page .design-first-band { min-height: 360px; align-items: start; background-position: 59% center; background-image: linear-gradient(180deg, rgba(248,245,239,.99) 0%, rgba(248,245,239,.91) 43%, rgba(248,245,239,.02) 100%), var(--photo); }
+  .design-functional-page .design-first-band h2 { font-size: 2.25rem; }
+  .design-functional-page .design-disciplines, .design-functional-page .design-deliverables { padding: 25px 18px; }
+  .design-functional-page .design-doc-board { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .design-functional-page .design-doc-board .discipline-cell { padding: 12px 8px; }
+  .design-functional-page .design-doc-board p { min-height: 125px; }
+  .design-functional-page .doc-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .design-functional-page .design-process { grid-template-columns: repeat(2,minmax(0,1fr)); padding: 18px; }
+  .design-functional-page .design-closing { grid-template-columns: 1fr; }
+  .design-functional-page .closing-photo { min-height: 220px; }
+  .design-functional-page .design-closing blockquote { grid-column: auto; }
+}
