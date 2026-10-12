@@ -391,10 +391,11 @@ pages["/estate-technology/"] = pages["/estate/"];
 
 function home() {
   return `
+    <div class="home-page">
     <section class="hero">
       <div class="blueprint-labels"><span>Networking</span><span>Automation</span><span>Security</span><span>Lighting</span><span>Audio / Video</span><span>Infrastructure</span></div>
       <div class="hero-inner">
-        <div class="eyebrow">Design Integration Management</div>
+        <div class="eyebrow">Design &bull; Integration &bull; Management</div>
         <h1>Technology for <strong>Extraordinary Places.</strong></h1>
         <p>Technology design, integration, and management for businesses, private residences, and complex environments.</p>
         <div class="motif">DESIGN &bull; INTEGRATE &bull; SUPPORT</div>
@@ -511,11 +512,13 @@ function home() {
         </div>
       </div>
     </section>
-    <section class="section navy"><div class="wrap split"><div><div class="kicker">Start With the Outcome</div><h2>What Are You Trying to Accomplish?</h2></div><div><p class="lead">Start by telling us what you are trying to accomplish. We will begin there.</p><a class="button bronze" href="/start-a-project/">Start a Project</a><a class="button bronze" href="/client-support/" style="margin-left:12px">Request Support</a></div></div></section>`;
+    <section class="section navy"><div class="wrap split"><div><div class="kicker">Start With the Outcome</div><h2>What Are You Trying to Accomplish?</h2></div><div><p class="lead">Start by telling us what you are trying to accomplish. We will begin there.</p><a class="button bronze" href="/start-a-project/">Start a Project</a><a class="button bronze" href="/client-support/" style="margin-left:12px">Request Support</a></div></div></section>
+    </div>`;
 }
 
 function practiceTile(icon, label, title, text, href, pos) {
-  return `<a class="practice-tile" style="--bg:${bg};background-position:${pos}" href="${href}"><div><div class="mini-icon">${iconFor(label)}</div><div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Explore ${label.split(" ")[0]}</span></div></a>`;
+  const photo = label.startsWith("Estate") ? estateMountain : label.startsWith("Design") ? designFirstTabletop : bg;
+  return `<a class="practice-tile" style="--bg:${photo};background-position:${pos}" href="${href}"><div><div class="mini-icon">${iconFor(label)}</div><div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Explore ${label.split(" ")[0]}</span></div></a>`;
 }
 
 function modelPanel(title, target) {
@@ -555,9 +558,11 @@ function capCard([title, text]) {
 
 function routePage(page, path) {
   if (path === "/design-engineering/") return designEngineeringPage(page, path);
+  if (path === "/estate-technology-management/") return estateManagementPage(page);
+  if (path === "/owners-technology-representation/") return ownersRepresentationPage(page);
   return `
-    <div class="route-page">
-      <section class="route-hero ${heroClass(path)}">
+    <div class="route-page route-${path.replaceAll("/", "")}">
+      <section class="route-hero ${heroClass(path)}" style="--route-photo:${routePhoto(path)}">
         <div class="blueprint-labels">${(page.strip || []).slice(0,6).map(s => `<span>${s}</span>`).join("")}</div>
         <div class="hero-line-art">${diagramFor(page.title + " " + page.strip.join(" "))}</div>
         <div class="wrap">
@@ -579,6 +584,52 @@ function routePage(page, path) {
         </div>
       </section>
     </div>`;
+}
+
+function routePhoto(path) {
+  if (/estate|case|project/.test(path)) return estateMountain;
+  if (/design|representation|trade/.test(path)) return "url('/assets/design-hero-wireframe.png')";
+  if (/network|security|infrastructure/.test(path)) return bg;
+  if (/automation|about|approach|support/.test(path)) return estateLake;
+  return estateOcean;
+}
+
+function estateManagementPage(page) {
+  const management = [
+    ["Proactive Monitoring", "Identify and resolve issues before they affect the home."],
+    ["Preventative Maintenance", "Keep systems performing at the highest level."],
+    ["Vendor Coordination", "One point of contact for all technology partners."],
+    ["Complete Documentation", "Accurate records for owners, staff, and future care."]
+  ];
+  const services = ["Network & Wi-Fi", "Security & Access", "Automation & Control", "Lighting", "Audio & Video", "Climate & Environment", "Infrastructure", "Cybersecurity", "Support & Coordination"];
+  return `<div class="route-page estate-management-page">
+    <section class="route-hero management-hero" style="--route-photo:${estateMountain}"><div class="blueprint-labels">${["Monitoring", "Maintenance", "Updates", "Security", "Vendor Management", "Documentation", "Owner & Staff Support"].map(s=>`<span>${s}</span>`).join("")}</div><div class="wrap"><div class="eyebrow">Estate Technology Management</div><h1>You Shouldn&rsquo;t Have<br><strong>to Know Who to Call.</strong></h1><p>Proactive management, ongoing support, and vendor coordination to keep your technology performing, secure, and effortless across your entire portfolio.</p><div class="route-tags">${["Primary Residences", "Second Homes", "Private Estates", "Multi-Property Families"].map(s=>`<span>${s}</span>`).join("")}</div><div class="hero-ctas"><a class="button" href="#management-services">Explore Management</a><a class="button secondary" href="/start-a-project/">Start a Conversation</a></div></div></section>
+    <section class="management-promise"><div><div class="kicker">Peace of Mind. Every Day.</div><h2>A Smarter Way to<br>Manage Your Home.</h2><p>We take a proactive, concierge-style approach to keep your systems running, secure, and ready so you can focus on what matters most.</p></div><div class="promise-grid">${management.map(([title,text])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</div></section>
+    <section class="management-service-band" id="management-services"><div class="kicker">A Complete, Integrated Management Service.</div><div class="service-icons">${services.map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div><a class="button bronze" href="/start-a-project/">Discuss Management</a></section>
+    <section class="management-approach"><div class="approach-photo" style="--photo:${estateLake}"></div><div><div class="kicker">Our Approach</div><h2>Proactive.<br>Personal. Accountable.</h2><p>We continuously monitor, maintain, and optimize your technology environment, coordinating with trusted trade partners so everything works together now and for years to come.</p></div><ul class="check-list">${["System monitoring", "Proactive issue resolution", "Firmware and security updates", "Performance optimization", "Vendor and warranty management", "Detailed system documentation", "Dedicated client support"].map(s=>`<li>${s}</li>`).join("")}</ul></section>
+    <section class="management-visuals">${[
+      ["System Health & Reliability", "Continuous monitoring, alerts, and preventative maintenance.", estateMountain],
+      ["Ongoing Updates & Care", "Firmware, software, and security updates with minimal disruption.", bg],
+      ["Vendor Coordination", "We coordinate the trades so you do not have to.", estateLake],
+      ["Documentation & Continuity", "Clear records for your home, staff, and future property managers.", designFirstTabletop]
+    ].map(([title,text,photo])=>`<div><div class="mini-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><a class="text-link" href="/start-a-project/">Learn More</a></div>`).join("")}</section>
+    <section class="management-portfolio"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>A unified management strategy, consistent standards, and one knowledgeable team across your entire portfolio.</p><a class="button bronze" href="/start-a-project/">Explore Portfolio Management</a></div><div class="portfolio-icons">${["Primary Residence","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
+    <section class="management-device"><div class="dashboard-device"><div class="dashboard-top">THRILLHOUZZ <span>HOME</span></div><div class="dashboard-grid">${["Network","Security","Lighting","Climate","Audio","Support"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></div><div><div class="kicker">At Your Fingertips</div><h2>Visibility Without the Complexity.</h2><p>Access key system information, status updates, and support through a simple, secure interface for your team.</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>One knowledgeable technology relationship across every property.<cite>Estate Technology Management</cite></blockquote></section>
+  </div>`;
+}
+
+function ownersRepresentationPage(page) {
+  const roles = [["Architect", "Represents the architecture.", designFirstTabletop], ["Engineers", "Represent their disciplines.", bg], ["General Contractor", "Manages construction.", estateOcean], ["ThrillHouzz", "Represents your technology.", estateMountain]];
+  const leadership = [["Design Oversight","Protect approved design intent."],["Trade Coordination","Align architects, GCs, and trades."],["RFI & Submittal Review","Review drawings and product options."],["Schedule & Milestone Support","Track technology through closeout."],["Budget Guidance","Bring cost clarity and value engineering."],["Site Inspections","Validate installation quality."],["Change Management","Evaluate scope changes and impacts."],["Final Acceptance","Verify performance and documentation."]];
+  const steps = ["Discovery & Vision","Design & Planning","Bid & Contractor Selection","Construction Support","Commissioning & Training","Ongoing Support"];
+  return `<div class="route-page representation-page">
+    <section class="route-hero representation-hero" style="--route-photo:url('/assets/design-hero-wireframe.png')"><div class="blueprint-labels">${["Owner Representation","System Coordination","Trade Alignment","Budget Oversight","Schedule Support","Final Acceptance"].map(s=>`<span>${s}</span>`).join("")}</div><div class="wrap"><div class="eyebrow">Owner&rsquo;s Technology Representation</div><h1>Your Vision. <strong>Our<br>Representation.</strong></h1><p>We represent your technology interests from concept to completion, ensuring every system, trade, and vendor is aligned, coordinated, and accountable.</p><div class="route-tags">${["New Construction","Renovations","Estates","Multi-Property"].map(s=>`<span>${s}</span>`).join("")}</div><div class="hero-ctas"><a class="button" href="/start-a-project/">Start a Conversation</a><a class="button secondary" href="/our-approach/">Explore Our Approach</a></div></div></section>
+    <section class="representation-roles"><div><div class="kicker">The Missing Piece</div><h2>Who Represents<br>Your Technology?</h2><p>Your architect represents the architecture. Your engineers represent their disciplines. Your GC manages construction. <strong>ThrillHouzz represents your technology.</strong></p></div>${roles.map(([title,text,photo])=>`<div class="role-tile" style="--photo:${photo}">${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</section>
+    <section class="representation-leadership"><div><div class="kicker">What We Do for You</div><h2>Technology Leadership for a Successful Outcome.</h2><p>Independent representation that coordinates technical disciplines and advocates for your interests through every phase.</p><a class="button bronze" href="/start-a-project/">Explore Our Services</a></div><div class="leadership-grid">${leadership.map(([title,text])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</div></section>
+    <section class="representation-process"><div><div class="kicker">Our Process</div><h2>From Concept<br>to Completion.</h2><p>Continuous representation through every phase of your project.</p></div><div class="process-track">${steps.map((s,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><strong>${s}</strong><p>${partnerStepText(s)}</p></div>`).join("")}</div></section>
+    <section class="representation-independent"><div><div class="kicker">Independent. Client-Focused.</div><h2>We Work for You.</h2><p>ThrillHouzz does not need to install the systems we design or represent. Our role is to help you receive the right solution, from the right partners, executed to the highest standard.</p><a class="button bronze" href="/design-engineering/">Learn More About Representation</a></div><div class="independent-photo" style="--photo:${designFirstTabletop}"></div><blockquote>Clear technology leadership from concept through final acceptance.<cite>Owner Representation</cite></blockquote></section>
+    <section class="representation-example"><div><div class="kicker">Project Example</div><h2>Estate Technology Representation</h2><p>A design illustration of coordinated network, security, automation, lighting, audio/video, and infrastructure across multiple trades.</p><a class="button secondary" href="/case-study/">View Project</a></div><div style="--photo:${estateLake}"></div><div style="--photo:${estateOcean}"></div></section>
+  </div>`;
 }
 
 function designEngineeringPage(page, path) {
