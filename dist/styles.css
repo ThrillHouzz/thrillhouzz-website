@@ -1778,6 +1778,7 @@ p { color: var(--muted); }
 .design-functional-page .design-doc-board p { min-height: 83px; font-size: .75rem; line-height: 1.38; }
 .design-functional-page .discipline-sample { margin-top: auto; height: 100px; overflow: hidden; border: 1px solid rgba(255,255,255,.45); background: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px), #152b3b; background-size: 18px 18px; }
 .design-functional-page .discipline-sample .diagram-svg { width: 100%; height: 100%; padding: 4px; }
+.design-functional-page .discipline-sample img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .design-functional-page .sample-label { padding: 8px 0 2px; color: white; text-align: center; font-size: .61rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .design-functional-page .design-deliverables { padding: 26px max(28px, calc((100vw - 1320px) / 2)) 27px; background: #fbfaf7; }
 .design-functional-page .design-deliverables h2 { margin: 8px 0 5px; font-size: 2rem; letter-spacing: 0; }
@@ -1785,6 +1786,7 @@ p { color: var(--muted); }
 .design-functional-page .doc-gallery { margin-top: 18px; border: 0; gap: 8px; }
 .design-functional-page .system-doc.light { min-height: 136px; border: 1px solid #d7dce0; background: white; }
 .design-functional-page .design-document-svg { width: 100%; height: 92px; padding: 7px; fill: none; stroke: #526474; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; background: linear-gradient(rgba(7,26,42,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,26,42,.045) 1px, transparent 1px); background-size: 14px 14px; }
+.design-functional-page .system-doc.light img { display: block; width: 100%; height: 92px; object-fit: cover; object-position: center; }
 .design-functional-page .design-document-svg .accent { stroke: #ba985d; stroke-width: 2.2; }
 .design-functional-page .design-document-svg .redline { stroke: #b75d52; stroke-width: 2.4; }
 .design-functional-page .design-document-svg .heat-one { fill: rgba(231,189,91,.18); stroke: rgba(188,143,60,.7); }
@@ -2218,6 +2220,7 @@ p { color: var(--muted); }
 .route-hero.project-hero { min-height: 300px; padding: 38px 0; }
 .route-hero.project-hero h1 { max-width: 580px; margin: 9px 0; font-size: 3rem; line-height: 1.04; letter-spacing: 0; }
 .route-hero.project-hero p { max-width: 470px; font-size: .92rem; }
+.route-hero.project-hero + .section.light { padding-top: 26px; }
 .route-hero.case-hero { min-height: 340px; padding: 42px 0; background: linear-gradient(90deg,rgba(248,245,239,.96),rgba(248,245,239,.78) 38%,rgba(248,245,239,.04) 66%),var(--case-photo) center / cover no-repeat; }
 .route-hero.case-hero h1 { max-width: 580px; font-size: 3.2rem; line-height: 1.04; letter-spacing: 0; }
 .form-disclosure { margin: 10px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.4; }

@@ -785,6 +785,26 @@ function designFirstBand() {
 }
 
 function designEngineeringSpecific() {
+  const disciplineImages = {
+    "Wireless Design": "wireless-heatmap-design.png",
+    "Camera Coverage": "camera-coverage-design.png",
+    "Rack Elevations": "rack-elevation-design.png",
+    "Control Systems": "lighting-control-design.png",
+    "Audio Layouts": "audio-layout-design.png",
+    "System Integration": "system-integration-design.png"
+  };
+  const documentImages = {
+    "Floor Plans": "floor-plan-document.png",
+    "Riser Diagrams": "riser-diagram-document.png",
+    "Device Schedules": "device-schedule-document.png",
+    "Rack Elevations": "rack-elevation-design.png",
+    "Wireless Heatmaps": "wireless-heatmap-design.png",
+    "Camera Coverage": "camera-coverage-design.png",
+    "Cable Schedules": "device-schedule-document.png",
+    "Control Narratives": "lighting-control-design.png",
+    "Redlines": "floor-plan-document.png",
+    "Commissioning Reports": "commissioning-report-document.png"
+  };
   return `
     <section class="design-disciplines" aria-labelledby="design-disciplines-title">
       <div class="kicker" id="design-disciplines-title">Our Engineering Disciplines</div>
@@ -796,14 +816,14 @@ function designEngineeringSpecific() {
         ["Automation & Controls", "Lighting, shading, environmental integration, control logic, and programming.", "Control Systems"],
         ["Audio & Video", "System architecture, speaker layouts, amplification, video, and distribution.", "Audio Layouts"],
         ["Programming & Commissioning", "Integration logic, programming, testing, performance verification, and acceptance.", "System Integration"]
-      ].map(([title, text, graphic]) => `<div class="discipline-cell">${iconFor(title)}<h3>${title}</h3><p>${text}</p><div class="discipline-sample">${diagramFor(graphic)}</div><span class="sample-label">${graphic}</span></div>`).join("")}
+      ].map(([title, text, graphic]) => `<div class="discipline-cell">${iconFor(title)}<h3>${title}</h3><p>${text}</p><div class="discipline-sample"><img src="/assets/${disciplineImages[graphic]}" alt="Illustrative ${graphic.toLowerCase()} drawing" loading="lazy"></div><span class="sample-label">${graphic}</span></div>`).join("")}
       </div>
     </section>
     <section class="design-deliverables" aria-labelledby="design-deliverables-title">
       <div class="kicker">Tangible Deliverables</div>
       <h2 id="design-deliverables-title">Detailed Documentation for a Successful Build.</h2>
       <p>We deliver clear, professional documentation that aligns your team, reduces risk, and supports installation and long-term operation.</p>
-      <div class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div class="system-doc light">${designDocumentGraphic(item)}<span>${item}</span></div>`).join("")}</div>
+      <div class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div class="system-doc light"><img src="/assets/${documentImages[item]}" alt="Illustrative ${item.toLowerCase()} document" loading="lazy"><span>${item}</span></div>`).join("")}</div>
     </section>
     <section class="design-representation">
       <div class="representation-intro"><div class="kicker">Independent Design. Continuous Representation.</div><p>ThrillHouzz does not need to install the system we design. We act as your independent technology partner, representing your interests through every phase, from concept to construction to final acceptance.</p><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></div>
@@ -1122,7 +1142,7 @@ function casePage() {
 
 function projectListing(category, title, scope, text, image = bg) {
   const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/-$/,'');
-  return `<a class="project-listing" data-project-category="${category}" href="/case-study/?project=${slug}"><div class="project-listing-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
+  return `<a class="project-listing" data-project-category="${category}" href="/case-study/?project=${slug}"><div class="project-listing-visual" style="--photo:${image}"></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
 }
 
 function form(type) {
