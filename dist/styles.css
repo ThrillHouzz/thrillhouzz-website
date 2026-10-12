@@ -1940,6 +1940,7 @@ p { color: var(--muted); }
 .portfolio-icons .site-icon { display: block; margin: 0 auto 12px; color: var(--gold); }
 .portfolio-icons span { font-size: .75rem; }
 .management-device { display: grid; grid-template-columns: 34% 42% 24%; align-items: center; gap: 0; padding: 22px max(28px, calc((100vw - 1320px) / 2)); background: #fbfaf7; }
+.client-interface-photo { width: 100%; min-height: 190px; background: url('assets/estate-client-interface.png') center / cover no-repeat; }
 .dashboard-device { width: 260px; min-height: 150px; margin: auto; padding: 13px; border: 8px solid #101f2b; border-radius: 8px; box-shadow: 0 14px 24px rgba(7,26,42,.24); background: #102d40; color: white; }
 .dashboard-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--white-line); padding-bottom: 8px; font-size: .61rem; font-weight: 800; }
 .dashboard-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding-top: 10px; }
