@@ -800,9 +800,9 @@ function designEngineeringSpecific() {
     "Rack Elevations": "rack-elevation-design.png",
     "Wireless Heatmaps": "wireless-heatmap-design.png",
     "Camera Coverage": "camera-coverage-design.png",
-    "Cable Schedules": "device-schedule-document.png",
+    "Cable Schedules": "cable-schedule-document.png",
     "Control Narratives": "lighting-control-design.png",
-    "Redlines": "floor-plan-document.png",
+    "Redlines": "redline-document.png",
     "Commissioning Reports": "commissioning-report-document.png"
   };
   return `
