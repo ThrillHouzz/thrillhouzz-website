@@ -515,7 +515,7 @@ function home() {
           ["Professional Technology Environment", "Business", "A coordinated technology environment for a growing organization, combining managed systems, network reliability, communications, cybersecurity, and physical security.", businessOffice],
           ["Private Estate Technology", "Estate", "A fully integrated private estate environment designed around privacy, performance, simplicity, and long-term support.", estateMountain],
           ["Whole-Property Technology Engineering", "Design", "A design-first engagement aligning architecture, infrastructure, wireless, security, controls, and documentation before construction.", estateOcean]
-        ].map(([title, label, text, image]) => `<a class="project-card" href="/case-study/"><div class="project-visual" style="--photo:${image}"></div><div class="project-copy">${iconFor(title)}<div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
+        ].map(([title, label, text, image]) => `<a class="project-card" href="/case-study/?project=${label === "Business" ? "peak-law-firm" : label === "Estate" ? "north-lake-tahoe-estate" : "ocean-bluff-estate-design"}"><div class="project-visual" style="--photo:${image}"></div><div class="project-copy">${iconFor(title)}<div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
       </div>
     </section>
     <section class="section cream">
@@ -623,7 +623,7 @@ function aboutPage() {
     ["Long-Term Partnership", "Documentation and stewardship preserve continuity."]
   ];
   return `<div class="route-page editorial-page about-page">
-    <section class="route-hero editorial-hero" style="--route-photo:${estateOcean}"><div class="wrap"><div class="eyebrow">About ThrillHouzz</div><h1>Technology Is Complicated.<br><strong>Working With Us Shouldn&rsquo;t Be.</strong></h1><p>We design, integrate, and support technology environments for businesses, residences, estates, and complex projects nationwide.</p><div class="hero-ctas"><a class="button" href="/our-approach/">Our Story &amp; Approach</a><a class="button secondary" href="/start-a-project/">Meet the Team</a></div></div></section>
+    <section class="route-hero editorial-hero" style="--route-photo:${estateOcean}"><div class="wrap"><div class="eyebrow">About ThrillHouzz</div><h1>Technology Is Complicated.<br><strong>Working With Us Shouldn&rsquo;t Be.</strong></h1><p>We design, integrate, and support technology environments for businesses, residences, estates, and complex projects nationwide.</p><div class="hero-ctas"><a class="button" href="/our-approach/">Our Story &amp; Approach</a><a class="button secondary" href="/start-a-project/">Start a Conversation</a></div></div></section>
     <section class="editorial-values">${values.map(([title,copy])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${copy}</p></div>`).join("")}</section>
     <section class="editorial-split"><div class="editorial-photo" style="--photo:${estateLake}"></div><div><div class="kicker">Built on Real-World Experience</div><h2>Technology Should Feel Clear, Accountable, and Supportable.</h2><p>ThrillHouzz connects the design vision, the systems, the trades, and the people who depend on the environment every day. We start by understanding the outcome, then engineer a coordinated path toward it.</p><a class="button secondary" href="/our-approach/">Explore Our Approach</a></div></section>
     <section class="editorial-close"><div class="kicker">Design &bull; Integrate &bull; Support</div><h2>One Relationship Across the Entire Environment.</h2><p>From early design through commissioning and long-term management, we keep technology understandable and accountable.</p><a class="button bronze" href="/start-a-project/">Start a Conversation</a></section>
@@ -1094,37 +1094,48 @@ function projectsPage() {
 }
 
 function casePage() {
+  const examples = {
+    "north-lake-tahoe-estate": ["North Lake Tahoe Estate", "Estate Technology", "A fully integrated technology environment designed for privacy, performance, simplicity, and long-term estate management.", estateMountain, ["Network", "Security", "Automation", "Lighting", "Audio / Video", "Infrastructure"]],
+    "peak-law-firm": ["Peak Law Firm", "Business Technology", "A coordinated professional environment focused on reliable systems, cybersecurity, communications, and continuity.", businessOffice, ["Managed IT", "Network", "Cybersecurity", "Communications", "Access", "Documentation"]],
+    "colorado-voice-clinic": ["Colorado Voice Clinic", "Business Technology", "An illustrative healthcare technology environment with secure connectivity, communications, and clear support paths.", networkBuilding, ["Network", "Security", "Communications", "Access", "Support", "Documentation"]],
+    "forest-lake-residence": ["Forest Lake Residence", "Estate Technology", "A lakefront technology environment designed for a quiet experience, property-wide connectivity, and long-term stewardship.", estateLake, ["Wireless", "Security", "Lighting", "Audio / Video", "Management", "Documentation"]],
+    "granite-realty": ["Granite Realty", "Business Technology", "A connected operations environment for a growing Colorado professional team.", businessOffice, ["Connectivity", "Identity", "Collaboration", "Support", "Security", "Documentation"]],
+    "ocean-bluff-estate-design": ["Ocean Bluff Estate Design", "Design & Engineering", "Independent technology planning and documentation before construction and integration.", estateOcean, ["Infrastructure", "Wireless", "Security", "Controls", "Commissioning", "Documentation"]]
+  };
+  const [name, practice, intro, photo, systems] = examples[new URLSearchParams(location.search).get("project")] || examples["north-lake-tahoe-estate"];
   return `
-    <section class="route-hero case-hero"><div class="wrap"><div class="eyebrow">Projects / North Lake Tahoe Estate</div><h1>North Lake Tahoe Estate</h1><p>A fully integrated technology environment designed for privacy, performance, simplicity, and long-term estate management.</p><div class="route-tags">${["Network", "Security", "Automation", "Lighting", "Audio / Video", "Infrastructure"].map(t => `<span>${t}</span>`).join("")}</div></div></section>
-    <section class="case-stats">${["28 Spaces", "100% Property Coverage", "Multi-Zone Audio / Video", "Unified Control"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><span>Designed outcome</span></div>`).join("")}</section>
+    <section class="route-hero case-hero" style="--case-photo:${photo}"><div class="wrap"><div class="eyebrow">Projects / ${practice}</div><h1>${name}</h1><p>${intro}</p><div class="route-tags">${systems.map(t => `<span>${t}</span>`).join("")}</div></div></section>
+    <section class="case-stats">${systems.slice(0,4).map(item => `<div>${iconFor(item)}<strong>${item}</strong><span>Design discipline</span></div>`).join("")}</section>
     <section class="section light"><div class="wrap case-shell">
       <aside class="case-nav"><div class="kicker">Project Overview</div>${["Property Type", "Project Scope", "Design & Engineering", "Systems", "Result", "Ongoing Support"].map(item => `<span>${item}</span>`).join("")}</aside>
       <article>
-        <div class="case-section"><div class="kicker">The Challenge</div><h2>Privacy. Performance. Simplicity.</h2><p class="lead">The property required a technology environment that could support daily living, guest access, security, entertainment, and ongoing management without making the owner or estate staff responsible for diagnosing every issue.</p></div>
-        <div class="gallery-strip">${["Wireless coverage", "Camera planning", "Rack documentation", "Control experience"].map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div>
+        <div class="case-section"><div class="kicker">The Challenge</div><h2>Clarity Across the Whole Environment.</h2><p class="lead">${intro} The design brief called for technology that works together, remains understandable, and can be supported as needs evolve.</p></div>
+        <div class="gallery-strip">${systems.slice(0,4).map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><span>${item}</span></div>`).join("")}</div>
         <div class="case-two">
           <div class="copy-panel compact"><div class="kicker">The Solution</div><h3>One documented environment.</h3><ul class="check-list"><li>Discovery and existing condition review</li><li>System architecture and infrastructure planning</li><li>Vendor coordination and commissioning pathway</li><li>Support handoff and lifecycle documentation</li></ul></div>
           <div class="dark-visual"><div class="diagram-tile">${diagramFor("dashboard support")}</div><h3>Result</h3><p>A single documented technology environment with coordinated systems, simplified control, clear support paths, and long-term stewardship.</p></div>
         </div>
-        <blockquote class="quote">&ldquo;${proofQuote("estate")}&rdquo;</blockquote>
+        <blockquote class="quote">Illustrative design concept for the ThrillHouzz website. Project details will be replaced with approved portfolio material.</blockquote>
       </article>
     </div></section>`;
 }
 
 function projectListing(category, title, scope, text, image = bg) {
-  return `<a class="project-listing" data-project-category="${category}" href="/case-study/"><div class="project-listing-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/-$/,'');
+  return `<a class="project-listing" data-project-category="${category}" href="/case-study/?project=${slug}"><div class="project-listing-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
 }
 
 function form(type) {
   const support = type === "support";
   return `<form class="form" data-form>
-    <div class="success" data-success>${support ? "Support request captured for this prototype. Connect this to Odoo Helpdesk before production use." : "Inquiry captured for this prototype. Connect this to Odoo CRM before production use."}</div>
+    <div class="success" data-success>This is a design preview. Your information was not sent.</div>
     <label>Name<input required name="name" autocomplete="name"></label>
     <label>Email<input required type="email" name="email" autocomplete="email"></label>
     <label>${support ? "Client / Location" : "Company, property, or project"}<input name="context"></label>
     <label>Inquiry type<select name="type"><option>Business technology</option><option>Estate technology</option><option>Design & engineering</option><option>Client support</option><option>Assessment</option></select></label>
     <label>${support ? "Issue or request" : "What should ThrillHouzz know?"}<textarea required name="message"></textarea></label>
-    <button class="button" type="submit">${support ? "Go to Client Support" : "Send Inquiry"}</button>
+    <button class="button" type="submit">${support ? "Review Support Request" : "Review Inquiry"}</button>
+    <p class="form-disclosure">Design preview only. This form is not connected to a submission service.</p>
   </form>`;
 }
 
@@ -1152,10 +1163,9 @@ function render() {
     formEl.addEventListener("submit", event => {
       event.preventDefault();
       formEl.querySelector("[data-success]").style.display = "block";
-      formEl.reset();
     });
   });
-  const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? "North Lake Tahoe Estate" : page?.title || "Technology Design, Integration & Management";
+  const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? (document.querySelector('.case-hero h1')?.textContent || "Project Case Study") : page?.title || "Technology Design, Integration & Management";
   document.title = `${strip(title)} | ThrillHouzz`;
 }
 

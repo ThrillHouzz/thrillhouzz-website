@@ -2214,3 +2214,15 @@ p { color: var(--muted); }
   .start-backdrop { min-height: 260px; padding: 25px 18px; }
   .start-backdrop h2 { font-size: 2rem; }
 }
+
+.route-hero.project-hero { min-height: 300px; padding: 38px 0; }
+.route-hero.project-hero h1 { max-width: 580px; margin: 9px 0; font-size: 3rem; line-height: 1.04; letter-spacing: 0; }
+.route-hero.project-hero p { max-width: 470px; font-size: .92rem; }
+.route-hero.case-hero { min-height: 340px; padding: 42px 0; background: linear-gradient(90deg,rgba(248,245,239,.96),rgba(248,245,239,.78) 38%,rgba(248,245,239,.04) 66%),var(--case-photo) center / cover no-repeat; }
+.route-hero.case-hero h1 { max-width: 580px; font-size: 3.2rem; line-height: 1.04; letter-spacing: 0; }
+.form-disclosure { margin: 10px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.4; }
+@media (max-width: 640px) {
+  .route-hero.project-hero { min-height: 390px; }
+  .route-hero.project-hero h1, .route-hero.case-hero h1 { font-size: 2.35rem; }
+  .route-hero.case-hero { min-height: 430px; background-position: 62% center; }
+}
