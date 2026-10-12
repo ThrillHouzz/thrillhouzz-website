@@ -3,6 +3,9 @@ const estateMountain = "url('/assets/estate-mountain.png')";
 const estateOcean = "url('/assets/estate-ocean.png')";
 const estateLake = "url('/assets/estate-lake.png')";
 const designFirstTabletop = "url('/assets/design-first-heatmap-tabletop.png')";
+const businessOffice = "url('/assets/business-office.png')";
+const automationLiving = "url('/assets/automation-living-room.png')";
+const networkBuilding = "url('/assets/network-building.png')";
 
 const method = [
   ["Discover", "Understand the client, environment, goals, and objectives."],
@@ -44,6 +47,16 @@ const iconPaths = {
   roadmap: '<path d="M5 19V5l5 3 5-3 4 2v14l-4-2-5 3-5-3Z"/><path d="M10 8v14M15 5v14"/>',
   power: '<path d="M13 2L5 14h6l-1 8 8-12h-6l1-8Z"/>',
   privacy: '<path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v11H5z"/><path d="M12 14v3"/>',
+  secondHome: '<path d="M2 19l7-12 3 5 3-4 7 11H2Z"/><path d="M6 19v-5l3-3M16 19l-3-5"/>',
+  privateEstate: '<path d="M3 20h18M5 20v-7l3-5 3 5v7M13 20v-9l3-7 3 7v9M4 16h8M13 15h7"/>',
+  portfolio: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-4 4-4 14 0 18M12 3c4 4 4 14 0 18"/>',
+  maintenance: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
+  vendor: '<path d="M3 9l5-3 4 2 4-2 5 3-2 8-5 3-2-2-2 2-5-3-2-8Z"/><path d="M8 12l4 3 4-3"/>',
+  climate: '<path d="M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0Z"/><path d="M12 9v9"/>',
+  architect: '<path d="M3 21L12 3l9 18H3Z"/><path d="M8 17h8M12 8v9"/>',
+  builder: '<path d="M3 16a9 9 0 0 1 18 0M6 16V9M18 16V9M2 16h20v3H2z"/>',
+  interiors: '<path d="M4 20h16M7 20v-8h10v8M8 12l3-7h2l3 7M12 5V3"/>',
+  integrator: '<circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="19" r="2"/><path d="M7 7l4 10M17 7l-4 10M7 6h10"/>',
   default: '<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/>'
 };
 
@@ -65,6 +78,16 @@ function iconFor(label, extraClass = "") {
   if (/people|team|staff|owner|user|trade|partner|contractor|manager/.test(text)) key = "people";
   if (/roadmap|lifecycle|future|evolve|change/.test(text)) key = "roadmap";
   if (/privacy/.test(text)) key = "privacy";
+  if (/second home/.test(text)) key = "secondHome";
+  if (/private estate/.test(text)) key = "privateEstate";
+  if (/multi-property|portfolio|famil/.test(text)) key = "portfolio";
+  if (/maintenance|updates|care/.test(text)) key = "maintenance";
+  if (/vendor|trade coordination/.test(text)) key = "vendor";
+  if (/climate|environment/.test(text)) key = "climate";
+  if (/architect/.test(text)) key = "architect";
+  if (/builder|general contractor|construction/.test(text)) key = "builder";
+  if (/interior designer/.test(text)) key = "interiors";
+  if (/integrator/.test(text)) key = "integrator";
   return `<svg class="site-icon ${extraClass}" viewBox="0 0 24 24" aria-hidden="true">${iconPaths[key]}</svg>`;
 }
 
@@ -489,7 +512,7 @@ function home() {
         <div class="kicker">Selected Work</div>
         <h2>Designed Around the Environment.</h2>
         <div class="selected-grid">${[
-          ["Professional Technology Environment", "Business", "A coordinated technology environment for a growing organization, combining managed systems, network reliability, communications, cybersecurity, and physical security.", bg],
+          ["Professional Technology Environment", "Business", "A coordinated technology environment for a growing organization, combining managed systems, network reliability, communications, cybersecurity, and physical security.", businessOffice],
           ["Private Estate Technology", "Estate", "A fully integrated private estate environment designed around privacy, performance, simplicity, and long-term support.", estateMountain],
           ["Whole-Property Technology Engineering", "Design", "A design-first engagement aligning architecture, infrastructure, wireless, security, controls, and documentation before construction.", estateOcean]
         ].map(([title, label, text, image]) => `<a class="project-card" href="/case-study/"><div class="project-visual" style="--photo:${image}"></div><div class="project-copy">${iconFor(title)}<div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">View Project</span></div></a>`).join("")}</div>
@@ -517,7 +540,7 @@ function home() {
 }
 
 function practiceTile(icon, label, title, text, href, pos) {
-  const photo = label.startsWith("Estate") ? estateMountain : label.startsWith("Design") ? designFirstTabletop : bg;
+  const photo = label.startsWith("Estate") ? estateMountain : label.startsWith("Design") ? designFirstTabletop : businessOffice;
   return `<a class="practice-tile" style="--bg:${photo};background-position:${pos}" href="${href}"><div><div class="mini-icon">${iconFor(label)}</div><div class="label">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Explore ${label.split(" ")[0]}</span></div></a>`;
 }
 
@@ -562,6 +585,10 @@ function routePage(page, path) {
   if (path === "/owners-technology-representation/") return ownersRepresentationPage(page);
   if (path === "/estate/" || path === "/estate-technology/") return estateTechnologyPage(page);
   if (path === "/trade-partners-professionals/") return tradePartnersPage(page);
+  if (path === "/about/") return aboutPage();
+  if (path === "/our-approach/") return approachPage();
+  if (path === "/start-a-project/") return startProjectPage();
+  if (path === "/client-support/") return clientSupportPage();
   return `
     <div class="route-page route-${path.replaceAll("/", "")}">
       <section class="route-hero ${heroClass(path)}" style="--route-photo:${routePhoto(path)}">
@@ -586,6 +613,54 @@ function routePage(page, path) {
         </div>
       </section>
     </div>`;
+}
+
+function aboutPage() {
+  const values = [
+    ["Independent Expertise", "Technology recommendations start with requirements."],
+    ["Cross-Discipline Knowledge", "Systems are considered as one environment."],
+    ["Accountability", "Clear ownership through every phase."],
+    ["Long-Term Partnership", "Documentation and stewardship preserve continuity."]
+  ];
+  return `<div class="route-page editorial-page about-page">
+    <section class="route-hero editorial-hero" style="--route-photo:${estateOcean}"><div class="wrap"><div class="eyebrow">About ThrillHouzz</div><h1>Technology Is Complicated.<br><strong>Working With Us Shouldn&rsquo;t Be.</strong></h1><p>We design, integrate, and support technology environments for businesses, residences, estates, and complex projects nationwide.</p><div class="hero-ctas"><a class="button" href="/our-approach/">Our Story &amp; Approach</a><a class="button secondary" href="/start-a-project/">Meet the Team</a></div></div></section>
+    <section class="editorial-values">${values.map(([title,copy])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${copy}</p></div>`).join("")}</section>
+    <section class="editorial-split"><div class="editorial-photo" style="--photo:${estateLake}"></div><div><div class="kicker">Built on Real-World Experience</div><h2>Technology Should Feel Clear, Accountable, and Supportable.</h2><p>ThrillHouzz connects the design vision, the systems, the trades, and the people who depend on the environment every day. We start by understanding the outcome, then engineer a coordinated path toward it.</p><a class="button secondary" href="/our-approach/">Explore Our Approach</a></div></section>
+    <section class="editorial-close"><div class="kicker">Design &bull; Integrate &bull; Support</div><h2>One Relationship Across the Entire Environment.</h2><p>From early design through commissioning and long-term management, we keep technology understandable and accountable.</p><a class="button bronze" href="/start-a-project/">Start a Conversation</a></section>
+  </div>`;
+}
+
+function approachPage() {
+  return `<div class="route-page editorial-page approach-page">
+    <section class="route-hero editorial-hero" style="--route-photo:${designFirstTabletop}"><div class="wrap"><div class="eyebrow">Our Approach</div><h1>Start With the Outcome.</h1><p>A structured, proven process that turns your vision into a coordinated, well-documented, and high-performing technology environment.</p><div class="hero-ctas"><a class="button" href="#method">Explore the Process</a></div></div></section>
+    <section class="approach-method" id="method">${method.map(([title,copy],i)=>`<div><span>${String(i+1).padStart(2,"0")}</span>${iconFor(title)}<strong>${title}</strong><p>${copy}</p></div>`).join("")}</section>
+    <section class="editorial-split"><div class="editorial-photo" style="--photo:${estateLake}"></div><div><div class="kicker">Beyond Installation</div><h2>More Than Installation. A Better Process.</h2><p>Technology should remain coherent long after the installation team leaves. Our process protects design intent, creates clear documentation, and keeps support and lifecycle planning in view from the beginning.</p><a class="button secondary" href="/start-a-project/">See How We Begin</a></div></section>
+    <section class="editorial-close"><div class="kicker">Continuity by Design</div><h2>Discover. Design. Engineer. Implement. Commission. Document. Manage.</h2><a class="button bronze" href="/design-engineering/">Explore Design &amp; Engineering</a></section>
+  </div>`;
+}
+
+function startProjectPage() {
+  const paths = [
+    ["Business Technology", "IT, security, communications, support, and documentation.", businessOffice],
+    ["Residence / Estate", "Networking, control, security, and long-term stewardship.", estateMountain],
+    ["Design & Engineering", "Technology planning, documentation, and representation.", designFirstTabletop]
+  ];
+  return `<div class="route-page editorial-page start-page">
+    <section class="route-hero editorial-hero" style="--route-photo:${estateOcean}"><div class="wrap"><div class="eyebrow">Start a Project</div><h1>Tell Us What You&rsquo;re<br><strong>Trying to Accomplish.</strong></h1><p>Every great project starts with a conversation. Share a few details and we will guide you to the right next step.</p><div class="hero-ctas"><a class="button" href="#project-inquiry">Start the Conversation</a></div></div></section>
+    <section class="start-paths">${paths.map(([title,copy,photo])=>`<a href="#project-inquiry"><div style="--photo:${photo}"></div>${iconFor(title)}<h2>${title}</h2><p>${copy}</p><span class="text-link">Discuss This Path</span></a>`).join("")}</section>
+    <section class="start-backdrop" style="--photo:${businessOffice}"><div><div class="kicker">Start With the Outcome</div><h2>You Don&rsquo;t Need to Know Which Equipment You Need.</h2><p>Tell us about the business, property, portfolio, or project, and the experience you want to create.</p></div></section>
+    <section class="start-inquiry" id="project-inquiry"><div><div class="kicker">Begin Here</div><h2>What Are You Trying to Accomplish?</h2><p>Include the location, stage of the project, and what would make the outcome successful.</p></div>${form("project")}</section>
+  </div>`;
+}
+
+function clientSupportPage() {
+  const supportItems = ["Request Support", "Emergency Assistance", "Remote Support", "Schedule Service", "System Resources", "Training", "Contact Us", "Service Guides"];
+  return `<div class="route-page editorial-page support-page">
+    <section class="route-hero editorial-hero" style="--route-photo:${bg}"><div class="wrap"><div class="eyebrow">Client Support</div><h1>Already a ThrillHouzz<br><strong>Client?</strong></h1><p>Access support, resources, and tools to help your systems run smoothly.</p><div class="hero-ctas"><a class="button" href="#support-request">Request Support</a><a class="button secondary" href="#support-request">Emergency Assistance</a><a class="button secondary" href="#support-resources">Remote Support</a></div></div></section>
+    <section class="support-options" id="support-resources">${supportItems.map(s=>`<a href="#support-request">${iconFor(s)}<strong>${s}</strong></a>`).join("")}</section>
+    <section class="editorial-split"><div class="editorial-photo" style="--photo:${estateLake}"></div><div><div class="kicker">We're Here to Keep You Running</div><h2>One Team That Knows the Environment.</h2><p>Describe what is happening and where. We will use the system documentation and support history to help find the right next step.</p><a class="button secondary" href="#support-request">Go to Support Request</a></div></section>
+    <section class="start-inquiry" id="support-request"><div><div class="kicker">Existing Clients</div><h2>How Can We Help?</h2><p>For immediate concerns, use the support channel already provided in your service agreement.</p></div>${form("support")}</section>
+  </div>`;
 }
 
 function estateTechnologyPage(page) {
@@ -628,7 +703,11 @@ function tradePartnersPage(page) {
 function routePhoto(path) {
   if (/estate|case|project/.test(path)) return estateMountain;
   if (/design|representation|trade/.test(path)) return "url('/assets/design-hero-wireframe.png')";
-  if (/network|security|infrastructure/.test(path)) return bg;
+  if (/security/.test(path)) return "url('/assets/security-camera.png')";
+  if (/infrastructure/.test(path)) return "url('/assets/infrastructure-rack.png')";
+  if (/network/.test(path)) return networkBuilding;
+  if (/automation/.test(path)) return automationLiving;
+  if (/business|managed/.test(path)) return businessOffice;
   if (/automation|about|approach|support/.test(path)) return estateLake;
   return estateOcean;
 }
@@ -920,7 +999,7 @@ function pageSpecific(path, page) {
   }
   if (path === "/network-wireless/" || path === "/security-access/" || path === "/automation-lighting-experience/" || path === "/infrastructure-systems-engineering/") {
     return `
-      ${imageCopy("Engineered for Performance", page.heading, page.copy, page.strip)}
+      ${imageCopy("Engineered for Performance", page.heading, page.copy, page.strip, routePhoto(path))}
       ${blueprintFeature(page.eyebrow, page.title, page.strip)}
       <section class="discipline-board">
         ${page.strip.map(item => `<div><div class="diagram-tile">${diagramFor(item)}</div><strong>${item}</strong></div>`).join("")}
@@ -994,20 +1073,21 @@ function emphasis(title) {
 }
 
 function thumb(title, text, href) {
-  return `<a class="thumb-card" href="${href}"><div class="thumb-img" style="--bg:${bg}"></div><div class="thumb-copy">${iconFor(title)}<h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></div></a>`;
+  const image = /estate|residence|home|portfolio|property/i.test(title) ? estateMountain : /design|engineer|assessment|plan/i.test(title) ? designFirstTabletop : /security/i.test(title) ? "url('/assets/security-camera.png')" : /infrastructure/i.test(title) ? "url('/assets/infrastructure-rack.png')" : /network/i.test(title) ? networkBuilding : /business|managed/i.test(title) ? businessOffice : /automation|lighting/i.test(title) ? automationLiving : estateOcean;
+  return `<a class="thumb-card" href="${href}"><div class="thumb-img" style="--bg:${image}"></div><div class="thumb-copy">${iconFor(title)}<h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></div></a>`;
 }
 
 function projectsPage() {
   return `
     <section class="route-hero project-hero"><div class="wrap"><div class="eyebrow">Projects / Selected Work</div><h1>Complex Environments. <strong>Proven Results.</strong></h1><p>A collection of signature project stories across residential, commercial, and design-engineering work.</p></div></section>
     <section class="section light"><div class="wrap">
-      <div class="project-filter">${["All", "Business", "Estate", "Design & Engineering"].map(item => `<span>${item}</span>`).join("")}</div>
+      <div class="project-filter" role="group" aria-label="Filter projects">${["All", "Business", "Estate", "Design & Engineering"].map((item,i) => `<button type="button" data-project-filter="${item}" aria-pressed="${i===0}">${item}</button>`).join("")}</div>
       <div class="project-grid">
         ${projectListing("Estate", "North Lake Tahoe Estate", "Network, surveillance, access, automation, lighting, audio/video, infrastructure", "Privacy, performance, and simplicity across a fully integrated private estate.", estateMountain)}
-        ${projectListing("Business", "Peak Law Firm", "Managed technology, network, cybersecurity, communications, physical security", "A polished professional environment designed for reliability, privacy, and support.", bg)}
-        ${projectListing("Healthcare", "Colorado Voice Clinic", "Security, network reliability, communications, user support", "Secure connectivity, access control, and communications for a client-facing practice.", bg)}
+        ${projectListing("Business", "Peak Law Firm", "Managed technology, network, cybersecurity, communications, physical security", "A polished professional environment designed for reliability, privacy, and support.", businessOffice)}
+        ${projectListing("Business", "Colorado Voice Clinic", "Security, network reliability, communications, user support", "Secure connectivity, access control, and communications for a client-facing practice.", networkBuilding)}
         ${projectListing("Estate", "Forest Lake Residence", "Standards, documentation, vendor coordination, ongoing support", "Consistent technology stewardship for a lakefront home with long-term support needs.", estateLake)}
-        ${projectListing("Business", "Granite Realty", "Connectivity, identity, collaboration, documentation, support", "A connected operations environment for a growing Colorado real estate team.", bg)}
+        ${projectListing("Business", "Granite Realty", "Connectivity, identity, collaboration, documentation, support", "A connected operations environment for a growing Colorado real estate team.", businessOffice)}
         ${projectListing("Design & Engineering", "Ocean Bluff Estate Design", "Infrastructure, wireless, security, controls, documentation", "Independent design and documentation before construction and integration.", estateOcean)}
       </div>
     </div></section>`;
@@ -1032,7 +1112,7 @@ function casePage() {
 }
 
 function projectListing(category, title, scope, text, image = bg) {
-  return `<a class="project-listing" href="/case-study/"><div class="project-listing-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
+  return `<a class="project-listing" data-project-category="${category}" href="/case-study/"><div class="project-listing-visual" style="--photo:${image}"><div class="tech-overlay">${diagramFor(scope)}</div></div><div><div class="label">${category}</div><h3>${title}</h3><p>${scope}</p><span>${text}</span><b>View Project</b></div></a>`;
 }
 
 function form(type) {
@@ -1059,6 +1139,15 @@ function render() {
   else if (page === "case") html = casePage();
   else html = routePage(page || pages["/contact/"], path);
   document.getElementById("app").innerHTML = html;
+  document.querySelectorAll('[data-project-filter]').forEach(button => {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.projectFilter;
+      document.querySelectorAll('[data-project-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      document.querySelectorAll('[data-project-category]').forEach(item => {
+        item.hidden = selected !== 'All' && item.dataset.projectCategory !== selected;
+      });
+    });
+  });
   document.querySelectorAll("[data-form]").forEach(formEl => {
     formEl.addEventListener("submit", event => {
       event.preventDefault();
