@@ -797,18 +797,6 @@ function designEngineeringSpecific() {
     "Audio Layouts": "audio-layout-design.png",
     "System Integration": "system-integration-design.png"
   };
-  const documentImages = {
-    "Floor Plans": "floor-plan-document.png",
-    "Riser Diagrams": "riser-diagram-document.png",
-    "Device Schedules": "device-schedule-document.png",
-    "Rack Elevations": "rack-elevation-design.png",
-    "Wireless Heatmaps": "wireless-heatmap-design.png",
-    "Camera Coverage": "camera-coverage-design.png",
-    "Cable Schedules": "cable-schedule-document.png",
-    "Control Narratives": "lighting-control-design.png",
-    "Redlines": "redline-document.png",
-    "Commissioning Reports": "commissioning-report-document.png"
-  };
   return `
     <section class="design-disciplines" aria-labelledby="design-disciplines-title">
       <div class="kicker" id="design-disciplines-title">Our Engineering Disciplines</div>
@@ -827,7 +815,7 @@ function designEngineeringSpecific() {
       <div class="kicker">Tangible Deliverables</div>
       <h2 id="design-deliverables-title">Detailed Documentation for a Successful Build.</h2>
       <p>We deliver clear, professional documentation that aligns your team, reduces risk, and supports installation and long-term operation.</p>
-      <div class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div class="system-doc light"><img src="/assets/${documentImages[item]}" alt="Illustrative ${item.toLowerCase()} document" loading="lazy"><span>${item}</span></div>`).join("")}</div>
+      <div class="doc-gallery">${["Floor Plans", "Riser Diagrams", "Device Schedules", "Rack Elevations", "Wireless Heatmaps", "Camera Coverage", "Cable Schedules", "Control Narratives", "Redlines", "Commissioning Reports"].map(item => `<div class="system-doc light">${designDocumentGraphic(item)}<span>${item}</span></div>`).join("")}</div>
     </section>
     <section class="design-representation">
       <div class="representation-intro"><div class="kicker">Independent Design. Continuous Representation.</div><p>ThrillHouzz does not need to install the system we design. We act as your independent technology partner, representing your interests through every phase, from concept to construction to final acceptance.</p><a class="button bronze" href="/owners-technology-representation/">Learn More About Representation</a></div>
