@@ -203,7 +203,7 @@ const pages = {
     eyebrow: "Design & Engineering",
     title: "System Technology, Thoughtfully Designed.",
     intro: "Independent technology design and engineering that translates your vision into coordinated, buildable systems.",
-    tags: ["Network", "Wireless", "Security", "Automation", "Lighting", "Infrastructure"],
+    tags: ["Network", "Wireless", "Security", "Automation", "Lighting", "Audio / Video", "Infrastructure"],
     strip: ["Network Design", "Security Engineering", "Infrastructure", "Automation", "Audio & Video", "Commissioning"],
     heading: "Design first. Products second.",
     copy: "The right technology starts with understanding the space, the people, and the desired experience, then engineering a system that works now and for the future. ThrillHouzz can design the environment whether we install it or another qualified contractor does.",
