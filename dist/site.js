@@ -560,6 +560,8 @@ function routePage(page, path) {
   if (path === "/design-engineering/") return designEngineeringPage(page, path);
   if (path === "/estate-technology-management/") return estateManagementPage(page);
   if (path === "/owners-technology-representation/") return ownersRepresentationPage(page);
+  if (path === "/estate/" || path === "/estate-technology/") return estateTechnologyPage(page);
+  if (path === "/trade-partners-professionals/") return tradePartnersPage(page);
   return `
     <div class="route-page route-${path.replaceAll("/", "")}">
       <section class="route-hero ${heroClass(path)}" style="--route-photo:${routePhoto(path)}">
@@ -584,6 +586,43 @@ function routePage(page, path) {
         </div>
       </section>
     </div>`;
+}
+
+function estateTechnologyPage(page) {
+  const systems = ["Network", "Security", "Automation", "Lighting", "Audio & Video", "Environment", "Access", "Infrastructure"];
+  const settings = [
+    ["New Construction", "Get It Right From the Start.", "Technology belongs in the planning process early, before compromises and change orders.", estateMountain, "/design-engineering/"],
+    ["Existing Residences", "Modernize and Simplify.", "Assessment, remediation, and upgrades that improve reliability and simplicity.", estateOcean, "/estate-assessment-remediation/"],
+    ["Multi-Property", "Consistent Technology. Everywhere.", "A unified strategy and ongoing management for multiple homes and properties.", estateLake, "/estate-technology-management/"]
+  ];
+  return `<div class="route-page estate-technology-page">
+    <section class="route-hero estate-hero" style="--route-photo:${estateMountain}"><div class="blueprint-labels">${["Networking","Security","Automation","Lighting","Audio / Video","Infrastructure"].map(s=>`<span>${s}</span>`).join("")}</div><div class="wrap"><div class="eyebrow">Estate Technology</div><h1>Extraordinary Homes<br>Deserve <strong>Extraordinary<br>Technology.</strong></h1><p>Networking, security, automation, lighting, entertainment, and infrastructure designed around the way you live and managed as one connected environment.</p><div class="route-tags">${["Primary Residences","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<span>${s}</span>`).join("")}</div><div class="hero-ctas"><a class="button" href="/start-a-project/">Start a Conversation</a><a class="button secondary" href="#estate-services">Explore Estate Services</a></div></div></section>
+    <section class="estate-portfolio-intro"><div><div class="kicker">Simplistic Connectivity</div><h2>For the Entire Portfolio.</h2><p>A single, knowledgeable technology partner for every property, on site or across the country.</p></div><div class="portfolio-intro-icons">${["Primary Residences","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
+    <section class="estate-systems" id="estate-services"><div class="kicker">One Environment. Everything Works Together.</div><div class="system-icons">${systems.map(s=>`<a href="${/network/i.test(s)?"/network-wireless/":/security|access/i.test(s)?"/security-access/":/infrastructure/i.test(s)?"/infrastructure-systems-engineering/":"/automation-lighting-experience/"}">${iconFor(s)}<span>${s}</span></a>`).join("")}</div><a class="button bronze" href="/start-a-project/">Explore Estate Technology</a></section>
+    <section class="estate-approach"><div class="estate-approach-photo" style="--photo:${estateLake}"></div><div><div class="kicker">Our Approach</div><h2>Designed Around<br>How You Live.</h2><p>We begin by understanding your lifestyle, the property, and what you want to happen effortlessly, then engineer the technology to support it.</p></div><ul class="check-list">${["Discreet and intuitive","Reliable and secure","Integrated across systems","Designed for long-term management","Documented for the future"].map(s=>`<li>${s}</li>`).join("")}</ul></section>
+    <section class="estate-settings">${settings.map(([label,title,text,photo,href])=>`<a href="${href}"><div class="setting-photo" style="--photo:${photo}"></div>${iconFor(label)}<div class="kicker">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></a>`).join("")}</section>
+    <section class="estate-management-feature"><div><div class="kicker">Estate Technology Management</div><h2>You Shouldn&rsquo;t Have to Know Who to Call.</h2><p>From daily support to vendor coordination, system updates, documentation, and long-term planning, we provide ongoing management to keep your technology performing.</p><a class="button bronze" href="/estate-technology-management/">Explore Estate Management</a></div><div class="management-feature-points">${["One call for any technology issue.","We diagnose, resolve, or coordinate.","Your systems remain documented and understood."].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div><div class="feature-image" style="--photo:${bg}"></div></section>
+    <section class="estate-featured"><div class="featured-photo" style="--photo:${estateMountain}"></div><div><div class="kicker">Featured Estate Project</div><h2>Privacy. Performance. Simplicity.</h2><p>A design illustration of integrated networking, security, automation, lighting, audio/video, and infrastructure across a private mountain property.</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>Technology designed around the home and the people who live in it.<cite>Estate Technology</cite></blockquote></section>
+  </div>`;
+}
+
+function tradePartnersPage(page) {
+  const teams = [
+    ["Architects", "Preserve architectural intent while integrating technology early.", designFirstTabletop],
+    ["General Contractors", "Defined scopes and documentation for a smoother build.", estateMountain],
+    ["Interior Designers", "Technology integrated without compromising aesthetics.", estateOcean],
+    ["Electrical Contractors", "Coordinate power, pathways, controls, and infrastructure.", bg],
+    ["Technology Integrators", "Engineering, programming, and documentation support.", designFirstTabletop],
+    ["Developers & Estate Managers", "Consistent standards across properties and teams.", estateLake]
+  ];
+  return `<div class="route-page trade-partners-page">
+    <section class="route-hero trade-hero" style="--route-photo:url('/assets/design-hero-wireframe.png')"><div class="blueprint-labels">${["Coordination","Infrastructure","Security","Automation","Lighting","Audio / Video","Networking"].map(s=>`<span>${s}</span>`).join("")}</div><div class="wrap"><div class="eyebrow">Trade Partners &amp; Professionals</div><h1>Better Technology<br>Starts With <strong>Better<br>Collaboration.</strong></h1><p>We work alongside architects, builders, designers, and trade partners to translate client expectations into coordinated, documented, and buildable technology systems.</p><div class="route-tags">${["Architects","General Contractors","Interior Designers","Electrical Contractors","Technology Integrators","Developers"].map(s=>`<span>${s}</span>`).join("")}</div><div class="hero-ctas"><a class="button" href="/start-a-project/">Partner With ThrillHouzz</a><a class="button secondary" href="/our-approach/">Explore Our Process</a></div></div></section>
+    <section class="trade-vision"><div><div class="kicker">A Shared Vision</div><h2>Exceptional Projects<br>Demand a Coordinated Approach.</h2><p>We bring clarity, coordination, and technical expertise to align technology with design intent, construction, and client expectations.</p></div><div class="vision-icons">${["Preserve Design Intent","Reduce Change Orders","Streamline Coordination","Deliver Exceptional Results"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
+    <section class="trade-team"><div class="kicker">Tailored Support for Every Partner</div><div class="trade-team-grid">${teams.map(([title,text,photo])=>`<a href="/start-a-project/"><div class="team-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></a>`).join("")}</div></section>
+    <section class="trade-process"><div><div class="kicker">Our Collaborative Process</div><h2>From Design Intent<br>to Final Acceptance.</h2><p>We integrate with your team at every phase so technology is designed, coordinated, and delivered to a high standard.</p></div><div class="trade-process-grid">${["Design & Planning","Documentation","Trade Coordination","Construction Support","Commissioning","Final Acceptance"].map((s,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><div class="mini-photo" style="--photo:${teams[i][2]}"></div><strong>${s}</strong><p>${partnerStepText(s)}</p></div>`).join("")}</div></section>
+    <section class="trade-why"><div><div class="kicker">Why Partner With ThrillHouzz</div><h2>Expertise That Strengthens Your Project.</h2><p>Cross-discipline knowledge, real-world experience, and a commitment to your success help deliver spaces with technology that simply works.</p><a class="button bronze" href="/start-a-project/">Discuss Your Project</a></div><div class="why-photo" style="--photo:${estateOcean}"></div><ul class="check-list">${["Independent, objective expertise","Clear and buildable documentation","Reduced risk and costly rework","Responsive, solutions-focused support","A true partner from concept to completion"].map(s=>`<li>${s}</li>`).join("")}</ul></section>
+    <section class="trade-featured"><div class="featured-photo" style="--photo:${estateMountain}"></div><div><div class="kicker">Featured Collaborative Project</div><h2>Coordinated by Design.</h2><p>A concept example showing how architecture, construction, and technology teams can align from design through final commissioning.</p><a class="button secondary" href="/case-study/">View Project</a></div></section>
+  </div>`;
 }
 
 function routePhoto(path) {
@@ -1011,6 +1050,8 @@ function form(type) {
 
 function render() {
   const path = normalize(location.pathname);
+  const brand = document.querySelector('.site-header .brand-image');
+  if (brand) brand.innerHTML = '<span class="brand-mark" aria-hidden="true"></span><span class="brand-word"><strong>THRILL</strong>HOUZZ</span>';
   let html;
   const page = pages[path];
   if (path === "/") html = home();

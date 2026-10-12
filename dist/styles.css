@@ -1849,6 +1849,11 @@ p { color: var(--muted); }
 .home-page .hero::after { display: none; }
 .home-page .hero-inner { padding: 56px 0 38px; }
 .home-page .hero h1 { max-width: 590px; font-size: 3.35rem; line-height: 1.02; letter-spacing: 0; }
+.site-header .brand-image { width: 190px; min-width: 190px; height: 58px; gap: 7px; }
+.site-header .brand-mark { display: block; flex: 0 0 54px; height: 56px; background: url('/assets/thrillhouzz-logo.png') -20px -3px / 98px 75px no-repeat; }
+.site-header .brand-word { color: #101426; font-size: 1.19rem; font-weight: 400; line-height: 1; white-space: nowrap; letter-spacing: 0; }
+.site-header .brand-word strong { font-weight: 800; }
+.home-page .hero h1 { max-width: 560px; font-size: 3.05rem; }
 .home-page .hero p { max-width: 400px; font-size: 1rem; line-height: 1.42; }
 .home-page .hero .motif { margin: 16px 0; font-size: .75rem; }
 .home-page .hero .geo-line { margin-top: 16px; font-size: .64rem; }
@@ -2028,4 +2033,109 @@ p { color: var(--muted); }
   .process-track { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .representation-independent > div:first-child, .representation-example > div:first-child { padding: 25px 18px; }
   .representation-independent .independent-photo, .representation-example > div:not(:first-child) { min-height: 190px; }
+}
+
+.estate-portfolio-intro, .trade-vision { display: grid; grid-template-columns: 46% 54%; align-items: center; min-height: 150px; padding: 22px max(28px, calc((100vw - 1320px) / 2)); background: #fbfaf7; }
+.estate-portfolio-intro h2, .trade-vision h2 { margin: 7px 0; font-size: 2.35rem; letter-spacing: 0; }
+.estate-portfolio-intro p, .trade-vision p { max-width: 510px; margin: 0; font-size: .9rem; }
+.portfolio-intro-icons, .vision-icons { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); }
+.portfolio-intro-icons > div, .vision-icons > div { min-height: 90px; padding: 12px; border-left: 1px solid var(--line); text-align: center; }
+.portfolio-intro-icons .site-icon, .vision-icons .site-icon { display: block; width: 31px; height: 31px; margin: 0 auto 8px; }
+.portfolio-intro-icons span, .vision-icons span { display: block; font-size: .74rem; line-height: 1.3; }
+.estate-systems { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 20px max(28px, calc((100vw - 1320px) / 2)); background: var(--navy); color: white; }
+.estate-systems .kicker { grid-column: 1 / -1; color: white; }
+.system-icons { display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); }
+.system-icons a { min-height: 64px; padding: 5px 8px; border-right: 1px solid var(--white-line); text-align: center; }
+.system-icons .site-icon { display: block; width: 26px; height: 26px; margin: 0 auto 6px; color: white; }
+.system-icons span { display: block; font-size: .62rem; text-transform: uppercase; font-weight: 800; }
+.estate-approach { display: grid; grid-template-columns: 44% 34% 22%; align-items: center; background: #fff; }
+.estate-approach-photo { min-height: 235px; background: var(--photo) center / cover no-repeat; }
+.estate-approach > div:nth-child(2) { padding: 25px 30px; }
+.estate-approach h2 { margin: 8px 0; font-size: 2.35rem; letter-spacing: 0; }
+.estate-approach p { font-size: .85rem; }
+.estate-approach .check-list { padding: 15px; margin: 0; font-size: .76rem; }
+.estate-settings { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; padding: 16px max(28px, calc((100vw - 1320px) / 2)) 24px; background: #fff; }
+.estate-settings a { border-right: 1px solid var(--line); padding-right: 14px; }
+.estate-settings a:last-child { border: 0; }
+.estate-settings .setting-photo { height: 135px; margin-bottom: 10px; background: var(--photo) center / cover no-repeat; }
+.estate-settings .site-icon { width: 24px; height: 24px; }
+.estate-settings .kicker { display: inline-block; margin-left: 10px; font-size: .61rem; }
+.estate-settings h3 { margin: 9px 0 5px; font-size: 1.25rem; letter-spacing: 0; }
+.estate-settings p { margin: 0; font-size: .82rem; }
+.estate-settings .text-link { font-size: .63rem; }
+.estate-management-feature { display: grid; grid-template-columns: 45% 22% 33%; min-height: 235px; background: var(--navy); color: white; }
+.estate-management-feature > div:first-child { padding: 28px max(28px, calc((100vw - 1320px) / 2)); }
+.estate-management-feature .kicker { color: white; }
+.estate-management-feature h2 { margin: 8px 0; font-size: 2.2rem; letter-spacing: 0; }
+.estate-management-feature p { color: rgba(255,255,255,.83); font-size: .84rem; }
+.estate-management-feature .management-feature-points { display: grid; align-content: center; gap: 15px; padding: 18px; }
+.management-feature-points > div { display: flex; align-items: center; gap: 10px; font-size: .76rem; }
+.management-feature-points .site-icon { width: 25px; height: 25px; flex: 0 0 25px; color: var(--gold); }
+.estate-management-feature .feature-image { background: var(--photo) center / cover no-repeat; }
+.estate-featured { display: grid; grid-template-columns: 37% 39% 24%; min-height: 220px; background: #fbfaf7; }
+.estate-featured .featured-photo, .trade-featured .featured-photo { background: var(--photo) center / cover no-repeat; }
+.estate-featured > div:nth-child(2), .trade-featured > div:nth-child(2) { padding: 24px 30px; }
+.estate-featured h2, .trade-featured h2 { margin: 8px 0; font-size: 1.85rem; letter-spacing: 0; }
+.estate-featured p, .trade-featured p { font-size: .82rem; }
+.estate-featured blockquote { margin: 24px 0; padding: 15px 24px; border-left: 1px solid var(--line); color: #7b674b; font: italic 1rem Georgia,serif; }
+.estate-featured cite { display: block; margin-top: 14px; color: var(--navy); font: 700 .58rem Inter,Arial,sans-serif; text-transform: uppercase; }
+
+.trade-vision { grid-template-columns: 51% 49%; }
+.trade-team { padding: 22px max(28px, calc((100vw - 1320px) / 2)) 20px; background: var(--navy); color: white; }
+.trade-team .kicker { color: white; }
+.trade-team-grid { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); margin-top: 12px; }
+.trade-team-grid a { min-height: 230px; padding: 0 9px 10px; border-right: 1px solid var(--white-line); }
+.trade-team-grid a:first-child { padding-left: 0; }
+.trade-team-grid a:last-child { border: 0; }
+.team-photo { height: 90px; margin-bottom: 10px; background: var(--photo) center / cover no-repeat; }
+.trade-team-grid .site-icon { width: 24px; height: 24px; color: white; }
+.trade-team-grid h3 { margin: 6px 0; font-size: .95rem; letter-spacing: 0; }
+.trade-team-grid p { margin: 0; color: rgba(255,255,255,.8); font-size: .73rem; line-height: 1.38; }
+.trade-team-grid .text-link { margin-top: 8px; font-size: .6rem; }
+.trade-process { display: grid; grid-template-columns: 29% 71%; padding: 26px max(28px, calc((100vw - 1320px) / 2)); background: #fbfaf7; }
+.trade-process h2 { margin: 8px 0; font-size: 2.25rem; letter-spacing: 0; }
+.trade-process p { font-size: .82rem; }
+.trade-process-grid { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); }
+.trade-process-grid > div { padding: 6px 8px; border-left: 1px solid var(--line); }
+.trade-process-grid span { display: grid; place-items: center; width: 25px; height: 25px; margin-bottom: 5px; border-radius: 50%; background: var(--navy); color: white; font-size: .62rem; font-weight: 800; }
+.trade-process-grid .mini-photo { height: 65px; background: var(--photo) center / cover no-repeat; }
+.trade-process-grid strong { display: block; margin: 7px 0 3px; font-size: .73rem; line-height: 1.2; }
+.trade-process-grid p { margin: 0; font-size: .66rem; line-height: 1.3; }
+.trade-why { display: grid; grid-template-columns: 38% 38% 24%; min-height: 220px; background: var(--navy); color: white; }
+.trade-why > div:first-child { padding: 25px max(28px, calc((100vw - 1320px) / 2)); }
+.trade-why .kicker { color: white; }
+.trade-why h2 { margin: 8px 0; font-size: 2.2rem; letter-spacing: 0; }
+.trade-why p { color: rgba(255,255,255,.83); font-size: .82rem; }
+.trade-why .why-photo { background: var(--photo) center / cover no-repeat; }
+.trade-why .check-list { align-self: center; margin: 0; padding: 20px; color: white; font-size: .74rem; }
+.trade-featured { display: grid; grid-template-columns: 38% 62%; min-height: 210px; background: #fbfaf7; }
+
+@media (max-width: 1000px) {
+  .estate-portfolio-intro, .trade-vision, .estate-management-feature, .estate-featured, .trade-why { grid-template-columns: 1fr 1fr; }
+  .estate-approach { grid-template-columns: 1fr 1fr; }
+  .estate-approach .check-list, .estate-featured blockquote, .trade-why .check-list { grid-column: 1 / -1; }
+  .estate-management-feature .feature-image { min-height: 210px; grid-column: 1 / -1; }
+  .trade-team-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .trade-process { grid-template-columns: 1fr; }
+  .trade-process-grid { margin-top: 18px; }
+}
+@media (max-width: 640px) {
+  .estate-portfolio-intro, .trade-vision, .estate-approach, .estate-management-feature, .estate-featured, .trade-why, .trade-featured { grid-template-columns: 1fr; }
+  .estate-portfolio-intro, .trade-vision { padding: 25px 18px; }
+  .portfolio-intro-icons, .vision-icons { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 16px; }
+  .estate-systems { grid-template-columns: 1fr; padding: 24px 18px; }
+  .system-icons { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .estate-approach-photo { min-height: 210px; }
+  .estate-settings { grid-template-columns: 1fr; padding: 20px 18px; }
+  .estate-settings a { border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 15px; }
+  .estate-management-feature > div:first-child { padding: 25px 18px; }
+  .estate-management-feature .feature-image { min-height: 180px; grid-column: auto; }
+  .estate-featured .featured-photo, .trade-featured .featured-photo { min-height: 200px; }
+  .trade-team { padding: 24px 18px; }
+  .trade-team-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .trade-team-grid a { min-height: 245px; }
+  .trade-process { padding: 25px 18px; }
+  .trade-process-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .trade-why > div:first-child { padding: 25px 18px; }
+  .trade-why .why-photo { min-height: 190px; }
 }
