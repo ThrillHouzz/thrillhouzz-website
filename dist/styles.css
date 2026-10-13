@@ -2230,3 +2230,273 @@ p { color: var(--muted); }
   .route-hero.project-hero h1, .route-hero.case-hero h1 { font-size: 2.35rem; }
   .route-hero.case-hero { min-height: 430px; background-position: 62% center; }
 }
+
+.estate-intelligence {
+  display: grid;
+  grid-template-columns: 34% 66%;
+  gap: 0;
+  padding: 34px max(28px, calc((100vw - 1320px) / 2));
+  background: #fbfaf7;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.estate-intelligence > div:first-child { padding-right: 34px; }
+.estate-intelligence h2,
+.portfolio-standard h2,
+.estate-lead-magnet h2,
+.lead-magnet-ideas h2,
+.partner-intro h2,
+.partner-products h2 {
+  margin: 10px 0;
+  font-size: 2.35rem;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+.estate-intelligence p,
+.portfolio-standard p,
+.estate-lead-magnet p,
+.lead-magnet-ideas p,
+.partner-intro p,
+.partner-products p { font-size: .88rem; }
+.estate-concern-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+}
+.estate-concern-grid article,
+.lead-idea-grid article {
+  min-height: 185px;
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.62);
+}
+.estate-concern-grid .site-icon,
+.lead-idea-grid .site-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--bronze);
+  margin-bottom: 10px;
+}
+.estate-concern-grid h3,
+.lead-idea-grid h3 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+.estate-concern-grid p,
+.lead-idea-grid p {
+  margin: 0;
+  font-size: .76rem;
+  line-height: 1.45;
+}
+.portfolio-standard {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  min-height: 340px;
+  background: white;
+}
+.portfolio-photo { background: var(--photo) center / cover no-repeat; }
+.portfolio-standard > div:last-child { padding: 38px max(28px, calc((100vw - 1320px) / 2)) 38px 38px; }
+.portfolio-standard-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 0;
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.portfolio-standard-grid > div {
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.portfolio-standard-grid .site-icon {
+  width: 27px;
+  height: 27px;
+  color: var(--bronze);
+  margin-bottom: 9px;
+}
+.portfolio-standard-grid strong { display: block; margin-bottom: 6px; }
+.portfolio-standard-grid p {
+  margin: 0;
+  font-size: .76rem;
+  line-height: 1.45;
+}
+.estate-lead-magnet {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 420px);
+  gap: 36px;
+  padding: 42px max(28px, calc((100vw - 1320px) / 2));
+  background:
+    linear-gradient(90deg, rgba(7,26,42,.94), rgba(7,26,42,.84)),
+    url("assets/estate-hero-wireframe.png") center / cover no-repeat;
+  color: white;
+}
+.estate-lead-magnet p,
+.estate-lead-magnet .check-list li { color: rgba(255,255,255,.82); }
+.estate-lead-magnet .form {
+  margin: 0;
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.2);
+}
+.estate-lead-magnet label { color: rgba(255,255,255,.82); }
+.estate-lead-magnet input,
+.estate-lead-magnet select {
+  background: rgba(255,255,255,.96);
+  color: var(--navy);
+}
+.lead-magnet-ideas {
+  display: grid;
+  grid-template-columns: 28% 72%;
+  gap: 0;
+  padding: 32px max(28px, calc((100vw - 1320px) / 2));
+  background: #fbfaf7;
+}
+.lead-idea-grid {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.partner-intro {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 420px);
+  gap: 36px;
+  padding: 42px max(28px, calc((100vw - 1320px) / 2));
+  background: #fbfaf7;
+  border-bottom: 1px solid var(--line);
+}
+.partner-note {
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: white;
+  align-self: start;
+}
+.partner-note strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+.partner-category-grid { background: white; }
+.partner-category {
+  display: grid;
+  grid-template-columns: 26% 74%;
+  border-bottom: 1px solid var(--line);
+  padding: 24px max(28px, calc((100vw - 1320px) / 2));
+}
+.partner-category-head { padding-right: 28px; }
+.partner-category h3 {
+  font-size: 1.35rem;
+  letter-spacing: 0;
+}
+.partner-company-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.partner-company {
+  min-height: 210px;
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.vendor-mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  border: 1px solid var(--bronze);
+  color: var(--bronze);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.partner-company strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+.partner-company p {
+  margin: 0;
+  font-size: .78rem;
+  line-height: 1.5;
+}
+.partner-products {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 0;
+  padding: 34px max(28px, calc((100vw - 1320px) / 2));
+  background: var(--navy);
+  color: white;
+}
+.partner-products p { color: rgba(255,255,255,.76); }
+.product-use-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  border-left: 1px solid var(--white-line);
+}
+.product-use-grid > div {
+  padding: 18px;
+  border-right: 1px solid var(--white-line);
+}
+.product-use-grid .site-icon {
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.product-use-grid strong {
+  display: block;
+  margin-bottom: 8px;
+}
+.product-use-grid p {
+  margin: 0;
+  font-size: .77rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 1000px) {
+  .estate-intelligence,
+  .portfolio-standard,
+  .estate-lead-magnet,
+  .lead-magnet-ideas,
+  .partner-intro,
+  .partner-category,
+  .partner-products { grid-template-columns: 1fr; }
+  .estate-intelligence > div:first-child,
+  .partner-category-head {
+    padding-right: 0;
+    padding-bottom: 22px;
+  }
+  .estate-concern-grid,
+  .partner-company-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .lead-idea-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    margin-top: 18px;
+  }
+  .product-use-grid { margin-top: 18px; }
+}
+
+@media (max-width: 640px) {
+  .estate-intelligence,
+  .estate-lead-magnet,
+  .lead-magnet-ideas,
+  .partner-intro,
+  .partner-category,
+  .partner-products { padding: 28px 18px; }
+  .estate-concern-grid,
+  .portfolio-standard-grid,
+  .lead-idea-grid,
+  .partner-company-grid,
+  .product-use-grid { grid-template-columns: 1fr; }
+  .portfolio-standard > div:last-child { padding: 28px 18px; }
+  .portfolio-photo { min-height: 210px; }
+  .estate-intelligence h2,
+  .portfolio-standard h2,
+  .estate-lead-magnet h2,
+  .lead-magnet-ideas h2,
+  .partner-intro h2,
+  .partner-products h2 { font-size: 2rem; }
+}

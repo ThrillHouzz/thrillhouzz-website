@@ -716,6 +716,78 @@ function routePhoto(path) {
   return estateOcean;
 }
 
+const estateConcerns = [
+  ["Privacy & Digital Exposure", "Smart-home systems, cameras, networks, personal devices, vendors, and staff access all expand the household's risk surface."],
+  ["Reliability Across Properties", "Every residence should feel familiar, stable, and supportable, whether the family is in Colorado, at a second home, or traveling."],
+  ["Staff & Family Usability", "Technology should be easy for homeowners, estate managers, assistants, house staff, and trusted vendors to operate without guesswork."],
+  ["Vendor Accountability", "ISPs, security companies, AV integrators, electricians, gate providers, and automation specialists need one coordinated technology lead."],
+  ["Documentation & Continuity", "The home should not depend on one installer's memory. System records, access notes, equipment, and design decisions need to survive turnover."],
+  ["Lifecycle Planning", "Networks, cameras, controls, lighting processors, batteries, software, and subscriptions need renewal plans before they become emergencies."]
+];
+
+const estateOperatingModel = [
+  ["One Team, Many Sites", "A consistent ThrillHouzz team carries standards, documentation, and history across each residence instead of relearning every property separately."],
+  ["Portfolio Standards", "Network design, access practices, naming conventions, monitoring, documentation, and support workflows can be standardized across homes."],
+  ["Coordinated Vendors", "When another trade is responsible, ThrillHouzz can diagnose the system context and coordinate the right provider without making the owner referee."],
+  ["Better Experience", "Families and staff get a more consistent interface, fewer surprises, clearer support paths, and technology that feels less fragmented from home to home."]
+];
+
+const estateLeadMagnets = [
+  ["Private Estate Technology Readiness Checklist", "A practical checklist for estate managers and family offices to review networks, vendors, access, documentation, and support readiness."],
+  ["Multi-Property Technology Standards Sheet", "A spreadsheet-style planning tool for comparing systems, providers, credentials, subscriptions, and lifecycle risks across residences."],
+  ["Smart Home Risk & Vendor Access Audit", "A guided worksheet for identifying who has access, which systems are exposed, and where documentation or support ownership is missing."],
+  ["Estate Technology Turnover Packet", "A handoff template for new estate managers, family office staff, property managers, or incoming support providers."],
+  ["Second Home Opening Technology Checklist", "A seasonal checklist for preparing networks, cameras, gates, access, AV, lighting, and support channels before the family arrives."]
+];
+
+const technologyPartners = [
+  {
+    group: "Network, Wi-Fi & Infrastructure",
+    companies: [
+      ["Ubiquiti / UniFi", "Switching, gateways, wireless access points, cameras, door access, and network management for homes and small commercial environments."],
+      ["Ruckus", "High-performance wireless access points and switching for demanding residential and commercial coverage requirements."],
+      ["Araknis Networks", "Integrator-focused routers, switches, wireless access points, and remote network management tools."],
+      ["Netgear AV", "Managed switching commonly used for AV-over-IP, media rooms, rack systems, and distributed technology environments."]
+    ]
+  },
+  {
+    group: "Automation, Lighting & Controls",
+    companies: [
+      ["Control4", "Whole-home automation, touchscreens, remotes, scenes, audio/video control, and connected experiences."],
+      ["Lutron", "Architectural lighting control, shading, keypads, dimming, and automated daylight/privacy experiences."],
+      ["Savant", "Premium automation, control, energy, lighting, entertainment, and lifestyle technology platforms."],
+      ["Josh.ai", "Voice control designed for privacy-conscious luxury residential environments."]
+    ]
+  },
+  {
+    group: "Security, Access & Surveillance",
+    companies: [
+      ["Axis Communications", "Professional network cameras, intercoms, access control, and surveillance infrastructure."],
+      ["Hanwha Vision", "Video surveillance cameras, recorders, analytics, and security system components."],
+      ["Alarm.com", "Interactive security, access, video, automation, and monitoring platform integrations."],
+      ["2N", "IP intercoms, door stations, access control, and entry communication systems."]
+    ]
+  },
+  {
+    group: "Audio, Video & Experience",
+    companies: [
+      ["Sonos", "Whole-home music and wireless audio products for everyday listening spaces."],
+      ["Sony", "Displays, projection, cameras, and entertainment products used in residential and commercial systems."],
+      ["Samsung", "Displays, lifestyle screens, commercial displays, and connected device ecosystems."],
+      ["Origin Acoustics", "Architectural speakers, landscape audio, and discreet audio products for finished spaces."]
+    ]
+  },
+  {
+    group: "Power, Monitoring & Support",
+    companies: [
+      ["WattBox", "Managed power, surge protection, remote reboot, and rack power management."],
+      ["APC", "UPS battery backup, power protection, and infrastructure continuity products."],
+      ["OvrC", "Remote management and monitoring platform used by integrators to support connected systems."],
+      ["Domotz", "Network monitoring, device inventory, alerting, and remote management for managed environments."]
+    ]
+  }
+];
+
 function estateManagementPage(page) {
   const management = [
     ["Proactive Monitoring", "Identify and resolve issues before they affect the home."],
@@ -727,6 +799,8 @@ function estateManagementPage(page) {
   return `<div class="route-page estate-management-page">
     <section class="route-hero management-hero" style="--route-photo:${estateMountain}"><div class="blueprint-labels">${["Monitoring", "Maintenance", "Updates", "Security", "Vendor Management", "Documentation", "Owner & Staff Support"].map(s=>`<span>${s}</span>`).join("")}</div><div class="wrap"><div class="eyebrow">Estate Technology Management</div><h1>You Shouldn&rsquo;t Have<br><strong>to Know Who to Call.</strong></h1><p>Proactive management, ongoing support, and vendor coordination to keep your technology performing, secure, and effortless across your entire portfolio.</p><div class="route-tags">${["Primary Residences", "Second Homes", "Private Estates", "Multi-Property Families"].map(s=>`<span>${s}</span>`).join("")}</div><div class="hero-ctas"><a class="button" href="#management-services">Explore Management</a><a class="button secondary" href="/start-a-project/">Start a Conversation</a></div></div></section>
     <section class="management-promise"><div><div class="kicker">Peace of Mind. Every Day.</div><h2>A Smarter Way to<br>Manage Your Home.</h2><p>We take a proactive, concierge-style approach to keep your systems running, secure, and ready so you can focus on what matters most.</p></div><div class="promise-grid">${management.map(([title,text])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</div></section>
+    <section class="estate-intelligence"><div><div class="kicker">What Matters to Estate Accounts</div><h2>Private homes now operate like connected environments.</h2><p>Estate technology touches privacy, family experience, staff workflows, security, vendors, travel, and daily comfort. The work is not just keeping devices online. It is preserving confidence across the entire household.</p></div><div class="estate-concern-grid">${estateConcerns.map(([title,text])=>`<article>${iconFor(title)}<h3>${title}</h3><p>${text}</p></article>`).join("")}</div></section>
+    <section class="portfolio-standard"><div class="portfolio-photo" style="--photo:${estateLake}"></div><div><div class="kicker">One Team Across Every Residence</div><h2>Consistency improves the experience.</h2><p>When the same team collaboratively spearheads every site, the family gains shared standards, better documentation, familiar support paths, and faster troubleshooting. Each property can be unique, but the operating model should not start over every time.</p><div class="portfolio-standard-grid">${estateOperatingModel.map(([title,text])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</div></div></section>
     <section class="management-service-band" id="management-services"><div class="kicker">A Complete, Integrated Management Service.</div><div class="service-icons">${services.map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div><a class="button bronze" href="/start-a-project/">Discuss Management</a></section>
     <section class="management-approach"><div class="approach-photo" style="--photo:${automationLiving}"></div><div><div class="kicker">Our Approach</div><h2>Proactive.<br>Personal. Accountable.</h2><p>We continuously monitor, maintain, and optimize your technology environment, coordinating with trusted trade partners so everything works together now and for years to come.</p></div><ul class="check-list">${["System monitoring", "Proactive issue resolution", "Firmware and security updates", "Performance optimization", "Vendor and warranty management", "Detailed system documentation", "Dedicated client support"].map(s=>`<li>${s}</li>`).join("")}</ul></section>
     <section class="management-visuals">${[
@@ -737,6 +811,8 @@ function estateManagementPage(page) {
     ].map(([title,text,photo])=>`<div><div class="mini-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><a class="text-link" href="/start-a-project/">Learn More</a></div>`).join("")}</section>
     <section class="management-portfolio"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>A unified management strategy, consistent standards, and one knowledgeable team across your entire portfolio.</p><a class="button bronze" href="/start-a-project/">Explore Portfolio Management</a></div><div class="portfolio-icons">${["Primary Residence","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
     <section class="management-device"><div class="client-interface-photo" role="img" aria-label="Illustrative estate technology interface on a tablet and phone"></div><div><div class="kicker">At Your Fingertips</div><h2>Visibility Without the Complexity.</h2><p>A clear view of your technology environment can bring system information, status updates, and support together for your team.</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>One knowledgeable technology relationship across every property.<cite>Estate Technology Management</cite></blockquote></section>
+    <section class="estate-lead-magnet"><div><div class="kicker">Free Private Estate Tool</div><h2>Download the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><form class="form compact lead-form" data-form><div class="success" data-success>Design preview only. This would trigger the checklist download in production.</div><label>Name<input required name="name" autocomplete="name"></label><label>Email<input required type="email" name="email" autocomplete="email"></label><label>Role<select name="role"><option>Homeowner</option><option>Estate Manager</option><option>Family Office</option><option>Property Manager</option><option>Architect / Builder</option></select></label><button class="button" type="submit">Get the Checklist</button><p class="form-disclosure">Design preview only. This form is not connected to a submission service.</p></form></section>
+    <section class="lead-magnet-ideas"><div><div class="kicker">Additional Gated Offers</div><h2>Lead magnets for this market.</h2></div><div class="lead-idea-grid">${estateLeadMagnets.map(([title,text])=>`<article>${iconFor(title)}<h3>${title}</h3><p>${text}</p></article>`).join("")}</div></section>
   </div>`;
 }
 
@@ -996,10 +1072,17 @@ function pageSpecific(path, page) {
   }
   if (path === "/technology-partners/") {
     return `
-      <section class="partner-matrix">
-        ${["Networking", "Security", "Communications", "Automation", "Lighting", "Entertainment", "Infrastructure", "Support"].map(item => `<div>${iconFor(item)}<strong>${item}</strong><p>Selected when the environment calls for it.</p></div>`).join("")}
+      <section class="partner-intro"><div><div class="kicker">Technology Ecosystem</div><h2>Products are selected for the environment.</h2><p>ThrillHouzz works across networking, security, communications, automation, lighting, audio/video, power, and support platforms. The final manufacturer mix should be approved for each project based on performance, supportability, aesthetics, budget, and long-term management.</p></div><div class="partner-note"><strong>Approval note</strong><p>This section is structured so the final confirmed vendor list can be edited before production. It avoids claiming exclusive or certified manufacturer relationships unless you choose to publish those details.</p></div></section>
+      <section class="partner-category-grid">
+        ${technologyPartners.map(category => `<article class="partner-category"><div class="partner-category-head"><div class="kicker">${category.group}</div><h3>${category.group}</h3></div><div class="partner-company-grid">${category.companies.map(([name, text]) => `<div class="partner-company"><div class="vendor-mark">${name.split(" ").map(part => part[0]).join("").slice(0,3)}</div><strong>${name}</strong><p>${text}</p></div>`).join("")}</div></article>`).join("")}
       </section>
-      <section class="section-card"><div><div class="kicker">Requirements First</div><h2>Manufacturer lists do not define the design.</h2><p>Public partner logos can be added later after approval. For now, this page keeps the positioning clear without implying unauthorized relationships.</p></div></section>
+      <section class="partner-products"><div><div class="kicker">How We Use the Ecosystem</div><h2>Design, integrate, document, support.</h2></div><div class="product-use-grid">${[
+        ["Evaluate", "Compare platforms against the property, user experience, service expectations, and lifecycle requirements."],
+        ["Integrate", "Coordinate products so networks, security, controls, lighting, AV, access, and power behave as one environment."],
+        ["Document", "Record equipment, configuration, relationships, support paths, and design decisions for future service."],
+        ["Manage", "Monitor, update, coordinate vendors, and plan replacements before technology becomes fragile."]
+      ].map(([title,text])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</div></section>
+      <section class="section-card navy-card"><div><div class="kicker">Requirements First</div><h2>Manufacturer relationships do not define the design.</h2><p>Products are selected because they fit the environment, can be supported responsibly, and help create a reliable long-term ownership experience.</p></div><a class="button bronze" href="/start-a-project/">Discuss Your Environment</a></section>
     `;
   }
   if (path === "/insights/") {
