@@ -613,6 +613,7 @@ function routePage(page, path) {
             <div class="split"><div><div class="kicker">Overview</div><h2>${page.heading}</h2></div><div><p class="lead">${page.copy}</p>${page.form ? form(page.form) : ""}</div></div>
             ${page.form ? "" : `<div class="thumb-grid">${page.cards.map(([title, text, href]) => thumb(title, text, href)).join("")}</div>`}
             ${pageSpecific(path, page)}
+            ${marketOfferPanel(path)}
           </article>
         </div>
       </section>
@@ -681,6 +682,7 @@ function estateTechnologyPage(page) {
     <section class="estate-approach"><div class="estate-approach-photo" style="--photo:${estateLivingRoom}"></div><div><div class="kicker">Our Approach</div><h2>Designed Around<br>How You Live.</h2><p>We begin by understanding your lifestyle, the property, and what you want to happen effortlessly, then engineer the technology to support it.</p></div><ul class="check-list">${["Discreet and intuitive","Reliable and secure","Integrated across systems","Designed for long-term management","Documented for the future"].map(s=>`<li>${s}</li>`).join("")}</ul></section>
     <section class="estate-settings">${settings.map(([label,title,text,photo,href])=>`<a href="${href}"><div class="setting-photo" style="--photo:${photo}"></div>${iconFor(label)}<div class="kicker">${label}</div><h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></a>`).join("")}</section>
     <section class="estate-management-feature"><div><div class="kicker">Estate Technology Management</div><h2>You Shouldn&rsquo;t Have to Know Who to Call.</h2><p>From daily support to vendor coordination, system updates, documentation, and long-term planning, we provide ongoing management to keep your technology performing.</p><a class="button bronze" href="/estate-technology-management/">Explore Estate Management</a></div><div class="management-feature-points">${["One call for any technology issue.","We diagnose, resolve, or coordinate.","Your systems remain documented and understood."].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div><div class="feature-image" style="--photo:${estateClientInterface}"></div></section>
+    ${marketOfferPanel("/estate/")}
     <section class="estate-featured"><div class="featured-photo" style="--photo:${estateLake}"></div><div><div class="kicker">Featured Estate Project</div><h2>Privacy. Performance. Simplicity.</h2><p>A design illustration of integrated networking, security, automation, lighting, audio/video, and infrastructure across a private mountain property.</p><a class="button secondary" href="/case-study/">View Project</a></div><blockquote>Technology designed around the home and the people who live in it.<cite>Estate Technology</cite></blockquote></section>
   </div>`;
 }
@@ -700,6 +702,7 @@ function tradePartnersPage(page) {
     <section class="trade-team"><div class="kicker">Tailored Support for Every Partner</div><div class="trade-team-grid">${teams.map(([title,text,photo])=>`<a href="/start-a-project/"><div class="team-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><span class="text-link">Learn More</span></a>`).join("")}</div></section>
     <section class="trade-process"><div><div class="kicker">Our Collaborative Process</div><h2>From Design Intent<br>to Final Acceptance.</h2><p>We integrate with your team at every phase so technology is designed, coordinated, and delivered to a high standard.</p></div><div class="trade-process-grid">${["Design & Planning","Documentation","Trade Coordination","Construction Support","Commissioning","Final Acceptance"].map((s,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><div class="mini-photo" style="--photo:${teams[i][2]}"></div><strong>${s}</strong><p>${partnerStepText(s)}</p></div>`).join("")}</div></section>
     <section class="trade-why"><div><div class="kicker">Why Partner With ThrillHouzz</div><h2>Expertise That Strengthens Your Project.</h2><p>Cross-discipline knowledge, real-world experience, and a commitment to your success help deliver spaces with technology that simply works.</p><a class="button bronze" href="/start-a-project/">Discuss Your Project</a></div><div class="why-photo" style="--photo:${estateOcean}"></div><ul class="check-list">${["Independent, objective expertise","Clear and buildable documentation","Reduced risk and costly rework","Responsive, solutions-focused support","A true partner from concept to completion"].map(s=>`<li>${s}</li>`).join("")}</ul></section>
+    ${marketOfferPanel("/trade-partners-professionals/")}
     <section class="trade-featured"><div class="featured-photo" style="--photo:${estateMountain}"></div><div><div class="kicker">Featured Collaborative Project</div><h2>Coordinated by Design.</h2><p>A concept example showing how architecture, construction, and technology teams can align from design through final commissioning.</p><a class="button secondary" href="/case-study/">View Project</a></div></section>
   </div>`;
 }
@@ -714,6 +717,32 @@ function routePhoto(path) {
   if (/business|managed/.test(path)) return businessOffice;
   if (/automation|about|approach|support/.test(path)) return estateLake;
   return estateOcean;
+}
+
+function marketOfferPanel(path) {
+  const offer = marketOffers[path];
+  if (!offer) return "";
+  return `
+    <section class="market-offer" style="--offer-photo:${routePhoto(path)}">
+      <div>
+        <div class="kicker">${offer.kicker}</div>
+        <h2>${offer.title}</h2>
+        <p>${offer.text}</p>
+        <ul class="check-list">${offer.bullets.map(item => `<li>${item}</li>`).join("")}</ul>
+      </div>
+      <form class="form compact lead-form" data-form>
+        <div class="success" data-success>Design preview only. This would deliver ${offer.deliverable} in production.</div>
+        <label>Name<input required name="name" autocomplete="name"></label>
+        <label>Email<input required type="email" name="email" autocomplete="email"></label>
+        <label>Market<select name="market"><option>${offer.deliverable}</option><option>Business Technology</option><option>Estate Technology</option><option>Design &amp; Engineering</option><option>Trade Partner / Professional</option></select></label>
+        <button class="button" type="submit">${offer.cta}</button>
+        <p class="form-disclosure">Design preview only. This form is not connected to a submission service.</p>
+      </form>
+    </section>
+    <section class="market-offer-ideas">
+      <div><div class="kicker">Additional Offer Ideas</div><h2>More ways to start the conversation.</h2></div>
+      <div class="market-idea-grid">${offer.ideas.map(([title,text]) => `<article>${iconFor(title)}<h3>${title}</h3><p>${text}</p></article>`).join("")}</div>
+    </section>`;
 }
 
 const estateConcerns = [
@@ -739,6 +768,178 @@ const estateLeadMagnets = [
   ["Estate Technology Turnover Packet", "A handoff template for new estate managers, family office staff, property managers, or incoming support providers."],
   ["Second Home Opening Technology Checklist", "A seasonal checklist for preparing networks, cameras, gates, access, AV, lighting, and support channels before the family arrives."]
 ];
+
+const marketOffers = {
+  "/business/": {
+    kicker: "Free Business Tool",
+    title: "Get the Colorado Business Technology Readiness Scorecard.",
+    text: "A practical scorecard for reviewing reliability, cybersecurity, user access, communications, documentation, vendors, and support readiness before you commit to a managed technology relationship.",
+    deliverable: "Business Technology Readiness Scorecard",
+    cta: "Get the Scorecard",
+    bullets: ["Network and Wi-Fi reliability", "Cybersecurity and identity basics", "Vendor and ownership map", "Documentation gaps", "Lifecycle priorities"],
+    ideas: [
+      ["Office Technology Risk Checklist", "A simple executive review of the hidden risks inside everyday IT, access, communications, and support."],
+      ["IT Vendor Handoff Worksheet", "A worksheet for organizing accounts, providers, contracts, admin access, and responsibility before changing support partners."],
+      ["Managed Technology Budget Planner", "A planning sheet for comparing support, replacement cycles, security, connectivity, and business continuity investments."]
+    ]
+  },
+  "/managed-technology-services/": {
+    kicker: "Free Managed Services Tool",
+    title: "Download the Managed Technology Fit Assessment.",
+    text: "A decision worksheet for business owners and operators who want to understand whether their current technology environment is ready for recurring management.",
+    deliverable: "Managed Technology Fit Assessment",
+    cta: "Download the Assessment",
+    bullets: ["Support expectations", "Systems and user inventory", "Recurring service cadence", "Documentation needs", "Vendor coordination model"],
+    ideas: [
+      ["Support Model Comparison Sheet", "Compare reactive support, internal staff, and managed service relationships in plain business language."],
+      ["Technology Standards Starter Kit", "A starter worksheet for naming, documentation, security, replacement, and support standards."],
+      ["Vendor Responsibility Map", "Clarify who owns internet, phones, security, access, devices, applications, and physical technology."]
+    ]
+  },
+  "/business-technology-assessment/": {
+    kicker: "Free Assessment Prep",
+    title: "Get the Business Technology Assessment Prep Sheet.",
+    text: "A prep worksheet that helps leadership gather the right information before a technology assessment, vendor transition, office move, or support overhaul.",
+    deliverable: "Business Assessment Prep Sheet",
+    cta: "Get the Prep Sheet",
+    bullets: ["Systems to inventory", "Admin access to locate", "Vendor details to collect", "Risk questions to answer", "Leadership priorities to rank"],
+    ideas: [
+      ["Documentation Gap Checklist", "Identify what your team can and cannot currently explain about the environment."],
+      ["Office Move Technology Checklist", "Plan connectivity, security, phones, Wi-Fi, access, and support before the move becomes urgent."],
+      ["Cybersecurity Baseline Worksheet", "A non-technical starting point for reviewing identity, backups, endpoints, MFA, and access."]
+    ]
+  },
+  "/estate/": {
+    kicker: "Free Estate Planning Tool",
+    title: "Download the Luxury Home Technology Planning Checklist.",
+    text: "A planning guide for homeowners, estate managers, and project teams who want network, security, lighting, AV, automation, and documentation considered before decisions become expensive to change.",
+    deliverable: "Luxury Home Technology Planning Checklist",
+    cta: "Get the Planning Checklist",
+    bullets: ["New construction questions", "Network and security planning", "Lighting and control expectations", "Staff and guest usability", "Documentation and supportability"],
+    ideas: [
+      ["Private Residence Technology Brief", "A short brief for describing how the home should live, feel, respond, and be supported."],
+      ["Second Home Readiness Checklist", "Prepare connectivity, cameras, access, lighting, AV, and support before arrival."],
+      ["Smart Home Simplicity Audit", "Identify where controls, apps, vendors, or automations are making the home harder to use."]
+    ]
+  },
+  "/estate-technology/": {
+    kicker: "Free Estate Planning Tool",
+    title: "Download the Luxury Home Technology Planning Checklist.",
+    text: "A planning guide for homeowners, estate managers, and project teams who want network, security, lighting, AV, automation, and documentation considered before decisions become expensive to change.",
+    deliverable: "Luxury Home Technology Planning Checklist",
+    cta: "Get the Planning Checklist",
+    bullets: ["New construction questions", "Network and security planning", "Lighting and control expectations", "Staff and guest usability", "Documentation and supportability"],
+    ideas: [
+      ["Private Residence Technology Brief", "A short brief for describing how the home should live, feel, respond, and be supported."],
+      ["Second Home Readiness Checklist", "Prepare connectivity, cameras, access, lighting, AV, and support before arrival."],
+      ["Smart Home Simplicity Audit", "Identify where controls, apps, vendors, or automations are making the home harder to use."]
+    ]
+  },
+  "/estate-assessment-remediation/": {
+    kicker: "Free Remediation Tool",
+    title: "Get the Existing Home Technology Recovery Checklist.",
+    text: "A practical worksheet for organizing symptoms, vendors, missing documentation, risk areas, and priorities before remediation begins.",
+    deliverable: "Existing Home Technology Recovery Checklist",
+    cta: "Get the Recovery Checklist",
+    bullets: ["System symptom log", "Vendor and access map", "Unknown equipment list", "Priority risk ranking", "Remediation stages"],
+    ideas: [
+      ["Smart Home Vendor Access Audit", "Review who can access the home, systems, cameras, networks, apps, and support tools."],
+      ["Technology Triage Worksheet", "Sort issues into urgent, reliability, security, usability, and lifecycle categories."],
+      ["Documentation Recovery Template", "A template for rebuilding system records when the original installation details are missing."]
+    ]
+  },
+  "/design-engineering/": {
+    kicker: "Free Design Tool",
+    title: "Download the Technology Design Brief Template.",
+    text: "A structured brief for architects, builders, owners, and design teams to capture the desired experience before products, drawings, or bid packages are selected.",
+    deliverable: "Technology Design Brief Template",
+    cta: "Download the Brief",
+    bullets: ["Desired experiences", "Rooms and systems", "Stakeholder priorities", "Construction phase context", "Documentation requirements"],
+    ideas: [
+      ["Technology Scope Starter", "A short worksheet to define what belongs in the technology scope before trade bids."],
+      ["Owner Requirements Interview", "A question set for translating lifestyle, operations, privacy, and support needs into design inputs."],
+      ["System Documentation Index", "A checklist of the plans, schedules, diagrams, narratives, and closeout records the project should produce."]
+    ]
+  },
+  "/trade-partners-professionals/": {
+    kicker: "Free Professional Tool",
+    title: "Get the Technology Coordination Checklist for Project Teams.",
+    text: "A coordination checklist for architects, GCs, designers, electrical contractors, integrators, developers, and estate managers who want fewer surprises during construction.",
+    deliverable: "Project Team Coordination Checklist",
+    cta: "Get the Checklist",
+    bullets: ["Design-intent questions", "Pathway and power coordination", "RFI and submittal points", "Responsibility matrix", "Closeout documentation"],
+    ideas: [
+      ["Low-Voltage Responsibility Matrix", "Clarify which trade owns pathways, cable, power, racks, devices, controls, and testing."],
+      ["Architectural Coordination Worksheet", "Capture technology locations before they compromise aesthetics or require rework."],
+      ["Construction Closeout Checklist", "Track documentation, testing, training, credentials, and final acceptance."]
+    ]
+  },
+  "/owners-technology-representation/": {
+    kicker: "Free Representation Tool",
+    title: "Download the Owner's Technology Representation Brief.",
+    text: "A decision guide for owners and family offices who want someone accountable for technology interests from early planning through final acceptance.",
+    deliverable: "Owner Representation Brief",
+    cta: "Download the Brief",
+    bullets: ["Owner priorities", "Project risk areas", "Trade accountability", "Budget and schedule checkpoints", "Acceptance criteria"],
+    ideas: [
+      ["Technology Advocate Scorecard", "Decide whether the project needs independent technology representation."],
+      ["Bid Review Checklist", "Compare technology proposals, exclusions, responsibilities, and documentation promises."],
+      ["Final Acceptance Worksheet", "Know what should be verified before a system is considered complete."]
+    ]
+  },
+  "/network-wireless/": {
+    kicker: "Free Network Tool",
+    title: "Get the Network & Wi-Fi Readiness Checklist.",
+    text: "A checklist for reviewing connectivity, coverage, cabling, rack conditions, segmentation, redundancy, monitoring, and remote support readiness.",
+    deliverable: "Network & Wi-Fi Readiness Checklist",
+    cta: "Get the Network Checklist",
+    bullets: ["ISP and failover notes", "Rack and cabling review", "Access point planning", "Coverage and capacity goals", "Remote support readiness"],
+    ideas: [
+      ["Wi-Fi Coverage Walkthrough", "A worksheet for identifying weak spots, high-demand rooms, outdoor coverage, and roaming issues."],
+      ["Network Rack Audit Sheet", "Capture hardware, power, labeling, patching, UPS, airflow, and service access."],
+      ["Internet Redundancy Planner", "Plan primary service, backup service, failover behavior, and business or property priorities."]
+    ]
+  },
+  "/security-access/": {
+    kicker: "Free Security Tool",
+    title: "Download the Security & Access Planning Matrix.",
+    text: "A planning matrix for cameras, gates, intercoms, credentials, monitoring, privacy, staff access, vendor access, and support workflows.",
+    deliverable: "Security & Access Planning Matrix",
+    cta: "Download the Matrix",
+    bullets: ["Camera coverage goals", "Access roles", "Gate and intercom flow", "Monitoring expectations", "Privacy and retention questions"],
+    ideas: [
+      ["Camera Coverage Worksheet", "Map what needs to be seen, why it matters, and where privacy needs to be protected."],
+      ["Credential Access Planner", "Define owner, staff, vendor, guest, and temporary access rules."],
+      ["Security Vendor Handoff Sheet", "Organize system records, monitoring details, device lists, and support responsibilities."]
+    ]
+  },
+  "/automation-lighting-experience/": {
+    kicker: "Free Experience Tool",
+    title: "Get the Home Experience & Lighting Scene Planner.",
+    text: "A planning worksheet for daily scenes, entertaining, arrival, bedtime, guest use, staff workflows, lighting, shading, AV, climate, and control expectations.",
+    deliverable: "Home Experience & Lighting Scene Planner",
+    cta: "Get the Scene Planner",
+    bullets: ["Daily living scenes", "Keypad and control notes", "Lighting and shading intent", "Audio/video experience", "Automation boundaries"],
+    ideas: [
+      ["Scene Naming Worksheet", "Create intuitive scenes that match how people actually talk about rooms and routines."],
+      ["Guest Mode Planner", "Define what guests and staff should be able to control without complexity."],
+      ["Automation Boundary Checklist", "Decide what should happen automatically and what should remain manual."]
+    ]
+  },
+  "/infrastructure-systems-engineering/": {
+    kicker: "Free Infrastructure Tool",
+    title: "Download the Low-Voltage Infrastructure Planning Sheet.",
+    text: "A planning sheet for pathways, racks, equipment rooms, risers, power, UPS, spare capacity, cable schedules, and as-built documentation.",
+    deliverable: "Low-Voltage Infrastructure Planning Sheet",
+    cta: "Download the Sheet",
+    bullets: ["Pathways and risers", "Rack and equipment rooms", "Power and UPS", "Cable schedules", "Spare capacity and as-builts"],
+    ideas: [
+      ["Equipment Room Checklist", "Plan rack space, cooling, power, access, service clearance, and future expansion."],
+      ["Structured Cabling Planner", "Organize cable types, endpoints, labels, pathways, and testing records."],
+      ["Closeout Documentation Checklist", "Track drawings, redlines, schedules, credentials, and commissioning records."]
+    ]
+  }
+};
 
 const technologyPartners = [
   {
@@ -826,6 +1027,7 @@ function ownersRepresentationPage(page) {
     <section class="representation-leadership"><div><div class="kicker">What We Do for You</div><h2>Technology Leadership for a Successful Outcome.</h2><p>Independent representation that coordinates technical disciplines and advocates for your interests through every phase.</p><a class="button bronze" href="/start-a-project/">Explore Our Services</a></div><div class="leadership-grid">${leadership.map(([title,text])=>`<div>${iconFor(title)}<strong>${title}</strong><p>${text}</p></div>`).join("")}</div></section>
     <section class="representation-process"><div><div class="kicker">Our Process</div><h2>From Concept<br>to Completion.</h2><p>Continuous representation through every phase of your project.</p></div><div class="process-track">${steps.map((s,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><strong>${s}</strong><p>${partnerStepText(s)}</p></div>`).join("")}</div></section>
     <section class="representation-independent"><div><div class="kicker">Independent. Client-Focused.</div><h2>We Work for You.</h2><p>ThrillHouzz does not need to install the systems we design or represent. Our role is to help you receive the right solution, from the right partners, executed to the highest standard.</p><a class="button bronze" href="/design-engineering/">Learn More About Representation</a></div><div class="independent-photo" style="--photo:${ownerWorktable}"></div><blockquote>Clear technology leadership from concept through final acceptance.<cite>Owner Representation</cite></blockquote></section>
+    ${marketOfferPanel("/owners-technology-representation/")}
     <section class="representation-example"><div><div class="kicker">Project Example</div><h2>Estate Technology Representation</h2><p>A design illustration of coordinated network, security, automation, lighting, audio/video, and infrastructure across multiple trades.</p><a class="button secondary" href="/case-study/">View Project</a></div><div style="--photo:${estateLake}"></div><div style="--photo:${estateOcean}"></div></section>
   </div>`;
 }
@@ -904,6 +1106,7 @@ function designEngineeringSpecific() {
         ["Acceptance", "Confirm documentation and a successful handover.", designFirstTabletop]
       ].map(([item, text, photo], i) => `<div><span>${String(i + 1).padStart(2, "0")}</span><div class="mini-photo" style="--photo:${photo}">${diagramFor(item)}</div><strong>${item}</strong><p>${text}</p></div>`).join("")}</div>
     </section>
+    ${marketOfferPanel("/design-engineering/")}
     <section class="design-closing"><div class="closing-photo" style="--photo:${estateMountain}"></div><div class="closing-copy"><div class="kicker">Built for Extraordinary Places</div><h2>From Concept to Reality.</h2><p>We collaborate with homeowners, architects, builders, designers, and trade partners to create intelligent, reliable, and beautifully integrated technology environments.</p><a class="button secondary" href="/start-a-project/">Start a Design Project</a></div><blockquote>Independent expertise from first concept through final acceptance.<cite>Design & Engineering</cite></blockquote></section>
   `;
 }
