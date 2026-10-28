@@ -584,6 +584,7 @@ function capCard([title, text]) {
 }
 
 function routePage(page, path) {
+  if (path === "/managed-technology-services/") return managedTechnologyPage();
   if (path === "/design-engineering/") return designEngineeringPage(page, path);
   if (path === "/estate-technology-management/") return estateManagementPage(page);
   if (path === "/owners-technology-representation/") return ownersRepresentationPage(page);
@@ -618,6 +619,41 @@ function routePage(page, path) {
         </div>
       </section>
     </div>`;
+}
+
+function managedTechnologyPage() {
+  const disciplines = [
+    ["People", "Responsive support, onboarding, offboarding, and access for the people who rely on your systems."],
+    ["Devices", "Endpoint standards, updates, protection, and a clear inventory of what is in use."],
+    ["Cybersecurity", "Identity, access, security practices, and practical risk reduction woven into daily operations."],
+    ["Data", "Backup, recovery planning, information access, and continuity for important business records."],
+    ["Network", "Internet, Wi-Fi, switching, monitoring, and the connectivity behind every workflow."],
+    ["Communications", "Calling, collaboration, and provider coordination that keep teams connected."],
+    ["Physical Security", "Cameras, access, and entry systems considered alongside the business network."],
+    ["Management", "Documentation, vendor oversight, lifecycle planning, and accountable technology ownership."]
+  ];
+  const onboarding = [
+    ["Assess", "Review the environment, priorities, risks, and current support model."],
+    ["Discover", "Identify users, systems, vendors, dependencies, and unknowns."],
+    ["Document", "Build the inventory, access map, standards, and support record."],
+    ["Standardize", "Agree on security, device, network, and service practices."],
+    ["Stabilize", "Address high-priority gaps and establish a steady support rhythm."],
+    ["Manage", "Monitor, support, coordinate, and improve the environment over time."]
+  ];
+  const levels = [
+    ["Managed Foundation", "A clear operating baseline for smaller organizations that need dependable support, documented systems, and regular attention.", ["Endpoint and user support", "Network oversight", "Documentation and vendor map", "Lifecycle review"]],
+    ["Managed Business", "Broader oversight for teams with more users, systems, security requirements, and communication needs.", ["Everything in Foundation", "Identity and security coordination", "Communications oversight", "Recurring planning reviews"]],
+    ["Managed Environment", "Coordinated management for organizations where IT, physical security, connectivity, and multiple vendors intersect.", ["Cross-system stewardship", "Vendor and site coordination", "Continuity planning", "Technology roadmap"]]
+  ];
+  return `<div class="route-page managed-business-page">
+    <section class="route-hero managed-business-hero" style="--route-photo:${businessOffice}"><div class="wrap"><div class="eyebrow">Managed Technology Services</div><h1>Your Technology.<br><strong>Continuously Managed.</strong></h1><p>A proactive technology partnership built around security, reliability, support, and long-term continuity. Colorado businesses get one accountable team across the systems they depend on.</p><div class="hero-ctas"><a class="button" href="/business-technology-assessment/">Start With an Assessment</a><a class="button secondary" href="#managed-environment">Explore the Service</a></div></div><div class="blueprint-labels">${["Monitor","Support","Secure","Document","Evolve"].map(x=>`<span>${x}</span>`).join("")}</div></section>
+    <section class="managed-business-intro"><div><div class="kicker">The Fully Managed Stack</div><h2>One Partner. A Complete Technology Environment.</h2></div><p>We coordinate IT, cybersecurity, communications, networking, and physical technology as a connected operating environment. Your people have a clear support path; leadership has a clearer picture of ownership and risk.</p></section>
+    <section class="managed-disciplines" id="managed-environment">${disciplines.map(([title,copy])=>`<article>${iconFor(title)}<h3>${title}</h3><p>${copy}</p></article>`).join("")}</section>
+    <section class="managed-onboarding"><div class="managed-onboarding-head"><div><div class="kicker">What Happens Before We Manage IT Better</div><h2>A Disciplined Onboarding Process.</h2><p>We first understand, document, and stabilize your existing environment. That gives support a reliable starting point and gives leadership a practical plan for what comes next.</p></div><a class="button bronze" href="/business-technology-assessment/">Explore the Assessment</a></div><div class="managed-steps">${onboarding.map(([title,copy],i)=>`<article><span>${String(i+1).padStart(2,"0")}</span>${iconFor(title)}<h3>${title}</h3><p>${copy}</p></article>`).join("")}</div></section>
+    <section class="managed-levels"><div><div class="kicker">Managed Service Plans</div><h2>The Right Level of Management for Your Organization.</h2><p>Every managed relationship begins with discovery. Scope is shaped by your people, sites, systems, risk, and support expectations.</p></div><div class="managed-level-grid">${levels.map(([title,copy,items])=>`<article><h3>${title}</h3><p>${copy}</p><ul class="check-list">${items.map(item=>`<li>${item}</li>`).join("")}</ul></article>`).join("")}</div></section>
+    <section class="managed-strategy" style="--photo:${businessOffice}"><div><div class="kicker">Strategic Technology Management</div><h2>We're Not Just Maintaining What You Have. We're Helping Decide What Comes Next.</h2><p>Technology changes as teams, locations, threats, and business goals change. We preserve system knowledge and guide the next decision with an ongoing relationship grounded in your environment.</p><a class="button bronze" href="/start-a-project/">Discuss Your Technology Strategy</a></div><ul class="check-list">${["Quarterly technology reviews", "Lifecycle and renewal planning", "Clear documentation and reporting", "Vendor coordination", "Security and continuity priorities", "A roadmap that stays current"].map(x=>`<li>${x}</li>`).join("")}</ul></section>
+    ${marketOfferPanel("/managed-technology-services/")}
+  </div>`;
 }
 
 function aboutPage() {
