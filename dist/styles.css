@@ -2341,8 +2341,11 @@ p { color: var(--muted); }
 .managed-business-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; padding: 42px max(28px,calc((100vw - 1320px)/2)); background: #fbfaf7; }
 .managed-business-intro h2,.managed-onboarding h2,.managed-levels h2,.managed-strategy h2 { margin: 8px 0 12px; font-size: clamp(1.8rem,3vw,2.65rem); line-height: 1.08; letter-spacing: 0; }
 .managed-business-intro p { max-width: 630px; margin: 0; }
-.managed-disciplines { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); background: var(--navy); padding: 28px max(28px,calc((100vw - 1320px)/2)); color: white; }
-.managed-disciplines article { min-height: 175px; padding: 20px; border: 1px solid var(--white-line); margin: -1px 0 0 -1px; }
+.managed-disciplines { display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); background: var(--navy); padding: 0 max(18px,calc((100vw - 1420px)/2)) 24px; color: white; }
+.managed-disciplines article { min-width: 0; border-right: 1px solid var(--white-line); }
+.managed-disciplines article:first-child { border-left: 1px solid var(--white-line); }
+.managed-disciplines article > img { display: block; width: 100%; height: 125px; object-fit: cover; }
+.managed-discipline-body { padding: 14px 12px 18px; }
 .managed-disciplines .site-icon,.managed-steps .site-icon { color: var(--gold); width: 30px; height: 30px; }
 .managed-disciplines h3,.managed-steps h3 { margin: 12px 0 5px; font-size: 1rem; }
 .managed-disciplines p,.managed-steps p { margin: 0; font-size: .78rem; line-height: 1.45; color: rgba(255,255,255,.78); }
@@ -2350,7 +2353,7 @@ p { color: var(--muted); }
 .managed-onboarding-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 26px; }
 .managed-onboarding-head > div { max-width: 770px; }
 .managed-onboarding-head p { color: rgba(255,255,255,.8); }
-.managed-steps { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); border-top: 1px solid var(--white-line); border-left: 1px solid var(--white-line); }
+.managed-steps { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); border-top: 1px solid var(--white-line); border-left: 1px solid var(--white-line); }
 .managed-steps article { padding: 18px; border-right: 1px solid var(--white-line); border-bottom: 1px solid var(--white-line); }
 .managed-steps article > span { display: block; color: var(--gold); font-size: .78rem; font-weight: 800; margin-bottom: 12px; }
 .managed-levels { display: grid; grid-template-columns: 30% 70%; gap: 24px; background: #fbfaf7; padding: 42px max(28px,calc((100vw - 1320px)/2)); }
@@ -2358,14 +2361,17 @@ p { color: var(--muted); }
 .managed-level-grid article { padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: white; }
 .managed-level-grid h3 { font-size: 1.12rem; margin: 0 0 12px; }
 .managed-level-grid p,.managed-level-grid li { font-size: .78rem; }
-.managed-strategy { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; padding: 50px max(28px,calc((100vw - 1320px)/2)); color: white; background: linear-gradient(90deg,rgba(7,26,42,.96),rgba(7,26,42,.75)),var(--photo) center / cover no-repeat; }
-.managed-strategy > div { max-width: 750px; }
+.managed-strategy { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(210px,.55fr); gap: 0; color: white; background: var(--navy); min-height: 340px; }
+.managed-strategy-copy { padding: 42px 34px 42px max(28px,calc((100vw - 1360px)/2)); }
+.managed-strategy-photo { display: block; width: 100%; height: 100%; min-height: 340px; object-fit: cover; object-position: 58% center; }
+.managed-strategy > .check-list { padding: 30px max(28px,calc((100vw - 1420px)/2)) 30px 24px; }
 .managed-strategy p,.managed-strategy li { color: rgba(255,255,255,.84); }
 .managed-strategy .check-list { align-self: center; }
 .managed-business-page > .market-offer { padding-left: max(28px,calc((100vw - 1320px)/2)); padding-right: max(28px,calc((100vw - 1320px)/2)); }
 .managed-business-page > .market-offer-ideas { padding: 30px max(28px,calc((100vw - 1320px)/2)); }
-@media (max-width: 1000px) { .managed-business-intro,.managed-levels,.managed-strategy { grid-template-columns: 1fr; } .managed-disciplines { grid-template-columns: repeat(2,minmax(0,1fr)); } .managed-steps { grid-template-columns: repeat(3,minmax(0,1fr)); } .managed-onboarding-head { align-items: start; flex-direction: column; } }
-@media (max-width: 640px) { .managed-business-hero { min-height: 560px; background-position: 64% center; } .managed-business-intro,.managed-onboarding,.managed-levels,.managed-strategy { padding: 30px 18px; } .managed-disciplines { grid-template-columns: 1fr 1fr; padding: 20px 18px; } .managed-disciplines article { padding: 13px; min-height: 175px; } .managed-steps { grid-template-columns: 1fr 1fr; } .managed-steps article { padding: 14px; } .managed-level-grid { grid-template-columns: 1fr; } .managed-business-page > .market-offer { padding: 28px 18px; } .managed-business-page > .market-offer-ideas { padding: 28px 18px; } }
+@media (max-width: 1100px) { .managed-disciplines { grid-template-columns: repeat(4,minmax(0,1fr)); } .managed-strategy { grid-template-columns: 1fr 1fr; } .managed-strategy > .check-list { grid-column: 1/-1; padding: 24px 30px; columns: 2; } }
+@media (max-width: 1000px) { .managed-business-intro,.managed-levels { grid-template-columns: 1fr; } .managed-steps { grid-template-columns: repeat(4,minmax(0,1fr)); } .managed-onboarding-head { align-items: start; flex-direction: column; } }
+@media (max-width: 640px) { .managed-business-hero { min-height: 560px; background-position: 64% center; } .managed-business-intro,.managed-onboarding,.managed-levels { padding: 30px 18px; } .managed-disciplines { grid-template-columns: 1fr 1fr; padding: 0 18px 20px; } .managed-disciplines article > img { height: 110px; } .managed-discipline-body { padding: 12px; } .managed-steps { grid-template-columns: 1fr 1fr; } .managed-steps article { padding: 14px; } .managed-level-grid { grid-template-columns: 1fr; } .managed-strategy { grid-template-columns: 1fr; } .managed-strategy-copy { padding: 36px 18px; } .managed-strategy-photo { min-height: 240px; max-height: 340px; } .managed-strategy > .check-list { columns: 1; padding: 24px 18px; } .managed-business-page > .market-offer { padding: 28px 18px; } .managed-business-page > .market-offer-ideas { padding: 28px 18px; } }
 .estate-lead-magnet p,
 .estate-lead-magnet .check-list li { color: rgba(255,255,255,.82); }
 .estate-lead-magnet .form {
