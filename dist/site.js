@@ -389,7 +389,7 @@ const pages = {
     tags: ["Request support", "Remote support", "Emergency assistance", "Client portal"],
     strip: ["Schedule Service", "Client Portal", "Remote Support", "System Resources", "Training", "Service Guide"],
     heading: "We are here to keep you running.",
-    copy: "Existing clients can use this prototype support intake to describe the affected location, system, urgency, and best contact path. In production, this should connect to Odoo Helpdesk or the selected support workflow.",
+    copy: "Existing clients can describe the affected location, system, urgency, and best contact path using our Odoo request form. Include Client Support in the subject so the request can be routed correctly.",
     form: "support"
   },
   "/contact/": {
@@ -767,14 +767,7 @@ function marketOfferPanel(path) {
         <p>${offer.text}</p>
         <ul class="check-list">${offer.bullets.map(item => `<li>${item}</li>`).join("")}</ul>
       </div>
-      <form class="form compact lead-form" data-form>
-        <div class="success" data-success>Design preview only. This would deliver ${offer.deliverable} in production.</div>
-        <label>Name<input required name="name" autocomplete="name"></label>
-        <label>Email<input required type="email" name="email" autocomplete="email"></label>
-        <label>Market<select name="market"><option>${offer.deliverable}</option><option>Business Technology</option><option>Estate Technology</option><option>Design &amp; Engineering</option><option>Trade Partner / Professional</option></select></label>
-        <button class="button" type="submit">${offer.cta}</button>
-        <p class="form-disclosure">Design preview only. This form is not connected to a submission service.</p>
-      </form>
+      <div class="resource-request"><h3>Request the ${offer.deliverable}</h3><p>Use the ThrillHouzz Odoo contact form. Put “${offer.deliverable}” in the subject and we will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/contactus">Request the Resource</a></div>
     </section>
     <section class="market-offer-ideas">
       <div><div class="kicker">Additional Offer Ideas</div><h2>More ways to start the conversation.</h2></div>
@@ -822,7 +815,7 @@ const marketOffers = {
   },
   "/managed-technology-services/": {
     kicker: "Free Managed Services Tool",
-    title: "Download the Managed Technology Fit Assessment.",
+    title: "Request the Managed Technology Fit Assessment.",
     text: "A decision worksheet for business owners and operators who want to understand whether their current technology environment is ready for recurring management.",
     deliverable: "Managed Technology Fit Assessment",
     cta: "Download the Assessment",
@@ -848,7 +841,7 @@ const marketOffers = {
   },
   "/estate/": {
     kicker: "Free Estate Planning Tool",
-    title: "Download the Luxury Home Technology Planning Checklist.",
+    title: "Request the Luxury Home Technology Planning Checklist.",
     text: "A planning guide for homeowners, estate managers, and project teams who want network, security, lighting, AV, automation, and documentation considered before decisions become expensive to change.",
     deliverable: "Luxury Home Technology Planning Checklist",
     cta: "Get the Planning Checklist",
@@ -861,7 +854,7 @@ const marketOffers = {
   },
   "/estate-technology/": {
     kicker: "Free Estate Planning Tool",
-    title: "Download the Luxury Home Technology Planning Checklist.",
+    title: "Request the Luxury Home Technology Planning Checklist.",
     text: "A planning guide for homeowners, estate managers, and project teams who want network, security, lighting, AV, automation, and documentation considered before decisions become expensive to change.",
     deliverable: "Luxury Home Technology Planning Checklist",
     cta: "Get the Planning Checklist",
@@ -887,7 +880,7 @@ const marketOffers = {
   },
   "/design-engineering/": {
     kicker: "Free Design Tool",
-    title: "Download the Technology Design Brief Template.",
+    title: "Request the Technology Design Brief Template.",
     text: "A structured brief for architects, builders, owners, and design teams to capture the desired experience before products, drawings, or bid packages are selected.",
     deliverable: "Technology Design Brief Template",
     cta: "Download the Brief",
@@ -913,7 +906,7 @@ const marketOffers = {
   },
   "/owners-technology-representation/": {
     kicker: "Free Representation Tool",
-    title: "Download the Owner's Technology Representation Brief.",
+    title: "Request the Owner's Technology Representation Brief.",
     text: "A decision guide for owners and family offices who want someone accountable for technology interests from early planning through final acceptance.",
     deliverable: "Owner Representation Brief",
     cta: "Download the Brief",
@@ -939,7 +932,7 @@ const marketOffers = {
   },
   "/security-access/": {
     kicker: "Free Security Tool",
-    title: "Download the Security & Access Planning Matrix.",
+    title: "Request the Security & Access Planning Matrix.",
     text: "A planning matrix for cameras, gates, intercoms, credentials, monitoring, privacy, staff access, vendor access, and support workflows.",
     deliverable: "Security & Access Planning Matrix",
     cta: "Download the Matrix",
@@ -965,7 +958,7 @@ const marketOffers = {
   },
   "/infrastructure-systems-engineering/": {
     kicker: "Free Infrastructure Tool",
-    title: "Download the Low-Voltage Infrastructure Planning Sheet.",
+    title: "Request the Low-Voltage Infrastructure Planning Sheet.",
     text: "A planning sheet for pathways, racks, equipment rooms, risers, power, UPS, spare capacity, cable schedules, and as-built documentation.",
     deliverable: "Low-Voltage Infrastructure Planning Sheet",
     cta: "Download the Sheet",
@@ -1049,7 +1042,7 @@ function estateManagementPage(page) {
     ].map(([title,text,photo])=>`<div><div class="mini-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><a class="text-link" href="/start-a-project/">Learn More</a></div>`).join("")}</section>
     <section class="management-portfolio"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>A unified management strategy, consistent standards, and one knowledgeable team across your entire portfolio.</p><a class="button bronze" href="/start-a-project/">Explore Portfolio Management</a></div><div class="portfolio-icons">${["Primary Residence","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
     <section class="management-device"><div class="client-interface-photo" role="img" aria-label="Illustrative estate technology interface on a tablet and phone"></div><div><div class="kicker">At Your Fingertips</div><h2>Visibility Without the Complexity.</h2><p>A clear view of your technology environment can bring system information, status updates, and support together for your team.</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>One knowledgeable technology relationship across every property.<cite>Estate Technology Management</cite></blockquote></section>
-    <section class="estate-lead-magnet"><div><div class="kicker">Free Private Estate Tool</div><h2>Download the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><form class="form compact lead-form" data-form><div class="success" data-success>Design preview only. This would trigger the checklist download in production.</div><label>Name<input required name="name" autocomplete="name"></label><label>Email<input required type="email" name="email" autocomplete="email"></label><label>Role<select name="role"><option>Homeowner</option><option>Estate Manager</option><option>Family Office</option><option>Property Manager</option><option>Architect / Builder</option></select></label><button class="button" type="submit">Get the Checklist</button><p class="form-disclosure">Design preview only. This form is not connected to a submission service.</p></form></section>
+    <section class="estate-lead-magnet"><div><div class="kicker">Private Estate Tool</div><h2>Request the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><div class="resource-request"><h3>Request the checklist</h3><p>Use our Odoo contact form and put “Estate Technology Readiness Checklist” in the subject. We will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/contactus">Request the Checklist</a></div></section>
     <section class="lead-magnet-ideas"><div><div class="kicker">Additional Gated Offers</div><h2>Lead magnets for this market.</h2></div><div class="lead-idea-grid">${estateLeadMagnets.map(([title,text])=>`<article>${iconFor(title)}<h3>${title}</h3><p>${text}</p></article>`).join("")}</div></section>
   </div>`;
 }
@@ -1462,16 +1455,7 @@ function projectListing(category, title, scope, text, image = bg) {
 
 function form(type) {
   const support = type === "support";
-  return `<form class="form" data-form>
-    <div class="success" data-success>This is a design preview. Your information was not sent.</div>
-    <label>Name<input required name="name" autocomplete="name"></label>
-    <label>Email<input required type="email" name="email" autocomplete="email"></label>
-    <label>${support ? "Client / Location" : "Company, property, or project"}<input name="context"></label>
-    <label>Inquiry type<select name="type"><option>Business technology</option><option>Estate technology</option><option>Design & engineering</option><option>Client support</option><option>Assessment</option></select></label>
-    <label>${support ? "Issue or request" : "What should ThrillHouzz know?"}<textarea required name="message"></textarea></label>
-    <button class="button" type="submit">${support ? "Review Support Request" : "Review Inquiry"}</button>
-    <p class="form-disclosure">Design preview only. This form is not connected to a submission service.</p>
-  </form>`;
+  return `<div class="odoo-form-wrap"><p>${support ? "Use Client Support in the subject. Include the affected location, system, urgency, and best way to reach you. For an urgent issue, call 720-405-8900." : "Use the subject to identify your business, estate, or design inquiry. Tell us what outcome you want and the best way to reach you."}</p><iframe title="ThrillHouzz ${support ? "client support" : "project and contact"} request form" src="https://www.thrillhouzz.com/contactus" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="form-disclosure">Form provided by ThrillHouzz Odoo. <a href="https://www.thrillhouzz.com/contactus">Open the form directly</a> if it does not display here.</p></div>`;
 }
 
 function render() {
@@ -1492,12 +1476,6 @@ function render() {
       document.querySelectorAll('[data-project-category]').forEach(item => {
         item.hidden = selected !== 'All' && item.dataset.projectCategory !== selected;
       });
-    });
-  });
-  document.querySelectorAll("[data-form]").forEach(formEl => {
-    formEl.addEventListener("submit", event => {
-      event.preventDefault();
-      formEl.querySelector("[data-success]").style.display = "block";
     });
   });
   const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? (document.querySelector('.case-hero h1')?.textContent || "Project Case Study") : page?.title || "Technology Design, Integration & Management";
