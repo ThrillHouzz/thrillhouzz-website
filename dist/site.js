@@ -389,7 +389,7 @@ const pages = {
     tags: ["Request support", "Remote support", "Emergency assistance", "Client portal"],
     strip: ["Schedule Service", "Client Portal", "Remote Support", "System Resources", "Training", "Service Guide"],
     heading: "We are here to keep you running.",
-    copy: "Existing clients can describe the affected location, system, urgency, and best contact path using our Odoo request form. Include Client Support in the subject so the request can be routed correctly.",
+    copy: "Existing clients can describe the affected location, system, urgency, and best contact path using our support request form. The request goes to our Odoo Helpdesk team.",
     form: "support"
   },
   "/contact/": {
@@ -767,7 +767,7 @@ function marketOfferPanel(path) {
         <p>${offer.text}</p>
         <ul class="check-list">${offer.bullets.map(item => `<li>${item}</li>`).join("")}</ul>
       </div>
-      <div class="resource-request"><h3>Request the ${offer.deliverable}</h3><p>Use the ThrillHouzz Odoo contact form. Put “${offer.deliverable}” in the subject and we will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/contactus">Request the Resource</a></div>
+      <div class="resource-request"><h3>Request the ${offer.deliverable}</h3><p>Use our resource request form. Put “${offer.deliverable}” in the subject and we will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/resource-request">Request the Resource</a></div>
     </section>
     <section class="market-offer-ideas">
       <div><div class="kicker">Additional Offer Ideas</div><h2>More ways to start the conversation.</h2></div>
@@ -1042,7 +1042,7 @@ function estateManagementPage(page) {
     ].map(([title,text,photo])=>`<div><div class="mini-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><a class="text-link" href="/start-a-project/">Learn More</a></div>`).join("")}</section>
     <section class="management-portfolio"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>A unified management strategy, consistent standards, and one knowledgeable team across your entire portfolio.</p><a class="button bronze" href="/start-a-project/">Explore Portfolio Management</a></div><div class="portfolio-icons">${["Primary Residence","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
     <section class="management-device"><div class="client-interface-photo" role="img" aria-label="Illustrative estate technology interface on a tablet and phone"></div><div><div class="kicker">At Your Fingertips</div><h2>Visibility Without the Complexity.</h2><p>A clear view of your technology environment can bring system information, status updates, and support together for your team.</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>One knowledgeable technology relationship across every property.<cite>Estate Technology Management</cite></blockquote></section>
-    <section class="estate-lead-magnet"><div><div class="kicker">Private Estate Tool</div><h2>Request the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><div class="resource-request"><h3>Request the checklist</h3><p>Use our Odoo contact form and put “Estate Technology Readiness Checklist” in the subject. We will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/contactus">Request the Checklist</a></div></section>
+    <section class="estate-lead-magnet"><div><div class="kicker">Private Estate Tool</div><h2>Request the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><div class="resource-request"><h3>Request the checklist</h3><p>Use our resource request form and put “Estate Technology Readiness Checklist” in the subject. We will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/resource-request">Request the Checklist</a></div></section>
     <section class="lead-magnet-ideas"><div><div class="kicker">Additional Gated Offers</div><h2>Lead magnets for this market.</h2></div><div class="lead-idea-grid">${estateLeadMagnets.map(([title,text])=>`<article>${iconFor(title)}<h3>${title}</h3><p>${text}</p></article>`).join("")}</div></section>
   </div>`;
 }
@@ -1455,7 +1455,14 @@ function projectListing(category, title, scope, text, image = bg) {
 
 function form(type) {
   const support = type === "support";
-  return `<div class="odoo-form-wrap"><p>${support ? "Use Client Support in the subject. Include the affected location, system, urgency, and best way to reach you. For an urgent issue, call 720-405-8900." : "Use the subject to identify your business, estate, or design inquiry. Tell us what outcome you want and the best way to reach you."}</p><iframe title="ThrillHouzz ${support ? "client support" : "project and contact"} request form" src="https://www.thrillhouzz.com/contactus" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="form-disclosure">Form provided by ThrillHouzz Odoo. <a href="https://www.thrillhouzz.com/contactus">Open the form directly</a> if it does not display here.</p></div>`;
+  const contact = type === "contact";
+  const url = `https://www.thrillhouzz.com/${contact ? "contactus" : support ? "client-support-request" : "project-inquiry"}`;
+  const instructions = support
+    ? "Include the affected location, system, urgency, and best way to reach you. For an urgent issue, call 720-405-8900."
+    : contact
+      ? "Use the subject to identify your business, estate, or design inquiry. Tell us what outcome you want and the best way to reach you."
+      : "Tell us what you want to accomplish. For a residential inquiry, enter your property or project name in the Company field.";
+  return `<div class="odoo-form-wrap${contact ? "" : " odoo-form-compact"}"><p>${instructions}</p><iframe title="ThrillHouzz ${support ? "client support" : contact ? "general contact" : "project inquiry"} form" src="${url}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="form-disclosure">Form provided by ThrillHouzz Odoo. <a href="${url}">Open the form directly</a> if it does not display here.</p></div>`;
 }
 
 function render() {
