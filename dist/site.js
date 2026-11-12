@@ -1042,7 +1042,7 @@ function estateManagementPage(page) {
     ].map(([title,text,photo])=>`<div><div class="mini-photo" style="--photo:${photo}"></div>${iconFor(title)}<h3>${title}</h3><p>${text}</p><a class="text-link" href="/start-a-project/">Learn More</a></div>`).join("")}</section>
     <section class="management-portfolio"><div><div class="kicker">Multi-Property Management</div><h2>Consistent Technology. Everywhere.</h2><p>A unified management strategy, consistent standards, and one knowledgeable team across your entire portfolio.</p><a class="button bronze" href="/start-a-project/">Explore Portfolio Management</a></div><div class="portfolio-icons">${["Primary Residence","Second Homes","Private Estates","Multi-Property Families"].map(s=>`<div>${iconFor(s)}<span>${s}</span></div>`).join("")}</div></section>
     <section class="management-device"><div class="client-interface-photo" role="img" aria-label="Illustrative estate technology interface on a tablet and phone"></div><div><div class="kicker">At Your Fingertips</div><h2>Visibility Without the Complexity.</h2><p>A clear view of your technology environment can bring system information, status updates, and support together for your team.</p><a class="button secondary" href="/client-support/">See the Client Experience</a></div><blockquote>One knowledgeable technology relationship across every property.<cite>Estate Technology Management</cite></blockquote></section>
-    <section class="estate-lead-magnet"><div><div class="kicker">Private Estate Tool</div><h2>Request the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><div class="resource-request"><h3>Request the checklist</h3><p>Use our resource request form and put “Estate Technology Readiness Checklist” in the subject. We will follow up with the resource.</p><a class="button" href="https://www.thrillhouzz.com/resource-request">Request the Checklist</a></div></section>
+    <section class="estate-lead-magnet"><div><div class="kicker">Private Estate Tool</div><h2>Request the Estate Technology Readiness Checklist.</h2><p>A practical starting point for estate managers, family offices, and homeowners who want to understand whether their technology environment is documented, secure, supportable, and ready for ongoing stewardship.</p><ul class="check-list">${["Technology inventory prompts", "Vendor and access review", "Documentation gaps", "Multi-property consistency checks", "Support-readiness score"].map(s=>`<li>${s}</li>`).join("")}</ul></div><div class="resource-request"><h3>Get the checklist</h3><p>Review 28 practical checks across documentation, resilience, access, security, maintenance, vendors, and continuity.</p><a class="button" href="/estate-readiness-checklist/">Get the Checklist</a></div></section>
     <section class="lead-magnet-ideas"><div><div class="kicker">Additional Gated Offers</div><h2>Lead magnets for this market.</h2></div><div class="lead-idea-grid">${estateLeadMagnets.map(([title,text])=>`<article>${iconFor(title)}<h3>${title}</h3><p>${text}</p></article>`).join("")}</div></section>
   </div>`;
 }
@@ -1465,6 +1465,17 @@ function form(type) {
   return `<div class="odoo-form-wrap${contact ? "" : " odoo-form-compact"}"><p>${instructions}</p><iframe title="ThrillHouzz ${support ? "client support" : contact ? "general contact" : "project inquiry"} form" src="${url}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="form-disclosure">Form provided by ThrillHouzz Odoo. <a href="${url}">Open the form directly</a> if it does not display here.</p></div>`;
 }
 
+function estateChecklistPage() {
+  const domains = ["System knowledge & documentation", "Connectivity & resilience", "Access & privacy", "Security & response", "Maintenance & lifecycle", "Vendor accountability", "People & portfolio continuity"];
+  const formUrl = "https://www.thrillhouzz.com/estate-readiness-checklist-request";
+  return `<div class="checklist-page">
+    <section class="checklist-hero" style="--photo:${estateLake}"><div class="wrap"><div class="eyebrow">Estate Technology Resource</div><h1>Know What Your Property Technology Needs Next.</h1><p>A practical readiness checklist for homeowners, estate managers, and family offices who want more reliable systems and clearer ownership across every residence.</p><a class="button" href="#request-checklist">Get the Checklist</a><span>7 domains · 28 checks · 4-page printable PDF</span></div></section>
+    <section class="checklist-intro wrap"><div><div class="kicker">A Clearer Starting Point</div><h2>Make the invisible work visible.</h2><p>Technology can appear to work until a vendor changes, the internet fails, or someone needs information that only one person knows. Use this worksheet to find the gaps before they become urgent.</p></div><div class="checklist-intro-note"><strong>What you will receive</strong><p>A four-page printable assessment with a simple scoring method and space to choose three actions for the next 30 days.</p><p>No equipment list or private property details are required.</p></div></section>
+    <section class="checklist-domains"><div class="wrap"><div class="kicker">Inside the Worksheet</div><h2>Seven areas. One connected environment.</h2><div class="checklist-domain-grid">${domains.map((label,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><h3>${label}</h3></div>`).join("")}</div></div></section>
+    <section class="checklist-request wrap" id="request-checklist"><div><div class="kicker">Request Your Copy</div><h2>Start with what you know.</h2><p>Complete the short form to receive immediate access to the checklist. Your request creates an inquiry for the ThrillHouzz team in Odoo.</p><p>For a residence, use your property or portfolio name in the Company field. Please do not enter passwords, alarm codes, addresses, or security layouts in the form.</p></div><div class="odoo-form-wrap odoo-form-compact"><iframe title="Request the Estate Technology Readiness Checklist" src="${formUrl}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="form-disclosure">Form provided by ThrillHouzz Odoo. <a href="${formUrl}">Open the form directly</a> if it does not display here.</p></div></section>
+  </div>`;
+}
+
 function render() {
   const path = normalize(location.pathname);
   const brand = document.querySelector('.site-header .brand-image');
@@ -1472,6 +1483,7 @@ function render() {
   let html;
   const page = pages[path];
   if (path === "/") html = home();
+  else if (path === "/estate-readiness-checklist/") html = estateChecklistPage();
   else if (page === "projects") html = projectsPage();
   else if (page === "case") html = casePage();
   else html = routePage(page || pages["/contact/"], path);
@@ -1485,7 +1497,7 @@ function render() {
       });
     });
   });
-  const title = path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? (document.querySelector('.case-hero h1')?.textContent || "Project Case Study") : page?.title || "Technology Design, Integration & Management";
+  const title = path === "/estate-readiness-checklist/" ? "Estate Technology Readiness Checklist" : path === "/projects/" ? "Complex Environments. Proven Results." : path === "/case-study/" ? (document.querySelector('.case-hero h1')?.textContent || "Project Case Study") : page?.title || "Technology Design, Integration & Management";
   document.title = `${strip(title)} | ThrillHouzz`;
 }
 
