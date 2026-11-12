@@ -1659,12 +1659,27 @@ p { color: var(--muted); }
 }
 .footer .wordmark { color: white; }
 .footer-logo {
-  width: 190px;
+  display: block;
+  width: 170px;
   height: auto;
   max-height: 145px;
   object-fit: contain;
   object-position: left top;
   filter: brightness(0) invert(1);
+}
+.footer-brand-copy { min-width: 0; }
+.footer-brand-copy .footer-motif {
+  margin: 8px 0 0;
+  color: var(--gold);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.footer-brand-copy .footer-tagline {
+  margin: 10px 0 0;
+  font-size: .75rem;
+  white-space: nowrap;
 }
 .footer p, .footer a { color: rgba(255,255,255,.72); }
 .footer h4 {
