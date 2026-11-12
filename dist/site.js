@@ -1467,7 +1467,7 @@ function form(type) {
 
 function estateChecklistPage() {
   const domains = ["System knowledge & documentation", "Connectivity & resilience", "Access & privacy", "Security & response", "Maintenance & lifecycle", "Vendor accountability", "People & portfolio continuity"];
-  const formUrl = "https://www.thrillhouzz.com/estate-readiness-checklist-request";
+  const formUrl = "https://www.thrillhouzz.com/estate-technology-readiness-checklist-request";
   return `<div class="checklist-page">
     <section class="checklist-hero" style="--photo:${estateLake}"><div class="wrap"><div class="eyebrow">Estate Technology Resource</div><h1>Know What Your Property Technology Needs Next.</h1><p>A practical readiness checklist for homeowners, estate managers, and family offices who want more reliable systems and clearer ownership across every residence.</p><a class="button" href="#request-checklist">Get the Checklist</a><span>7 domains · 28 checks · 4-page printable PDF</span></div></section>
     <section class="checklist-intro wrap"><div><div class="kicker">A Clearer Starting Point</div><h2>Make the invisible work visible.</h2><p>Technology can appear to work until a vendor changes, the internet fails, or someone needs information that only one person knows. Use this worksheet to find the gaps before they become urgent.</p></div><div class="checklist-intro-note"><strong>What you will receive</strong><p>A four-page printable assessment with a simple scoring method and space to choose three actions for the next 30 days.</p><p>No equipment list or private property details are required.</p></div></section>
